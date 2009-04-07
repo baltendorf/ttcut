@@ -1,0 +1,275 @@
+<ui version="4.0" >
+ <class>TTMpeg2MainWnd</class>
+ <widget class="QMainWindow" name="TTMpeg2MainWnd" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>672</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QGridLayout" >
+    <property name="margin" >
+     <number>9</number>
+    </property>
+    <property name="spacing" >
+     <number>6</number>
+    </property>
+    <item row="2" column="0" >
+     <widget class="TTStepBy" name="stepControl" >
+      <property name="sizePolicy" >
+       <sizepolicy>
+        <hsizetype>0</hsizetype>
+        <vsizetype>0</vsizetype>
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize" >
+       <size>
+        <width>248</width>
+        <height>122</height>
+       </size>
+      </property>
+      <property name="maximumSize" >
+       <size>
+        <width>248</width>
+        <height>122</height>
+       </size>
+      </property>
+      <property name="title" >
+       <string>Step by</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" >
+     <widget class="QGroupBox" name="gbInformation" >
+      <property name="sizePolicy" >
+       <sizepolicy>
+        <hsizetype>0</hsizetype>
+        <vsizetype>5</vsizetype>
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize" >
+       <size>
+        <width>248</width>
+        <height>240</height>
+       </size>
+      </property>
+      <property name="maximumSize" >
+       <size>
+        <width>248</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="title" >
+       <string>Information</string>
+      </property>
+      <layout class="QGridLayout" >
+       <property name="margin" >
+        <number>9</number>
+       </property>
+       <property name="spacing" >
+        <number>6</number>
+       </property>
+       <item row="0" column="0" >
+        <widget class="QTabWidget" name="tabInformation" >
+         <property name="currentIndex" >
+          <number>1</number>
+         </property>
+         <widget class="QWidget" name="tabBuffer" >
+          <attribute name="title" >
+           <string>Buffer</string>
+          </attribute>
+         </widget>
+         <widget class="QWidget" name="tabHeader" >
+          <attribute name="title" >
+           <string>Header</string>
+          </attribute>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item rowspan="2" row="1" column="1" >
+     <widget class="QGroupBox" name="gbVideoView" >
+      <property name="sizePolicy" >
+       <sizepolicy>
+        <hsizetype>5</hsizetype>
+        <vsizetype>5</vsizetype>
+        <horstretch>4</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize" >
+       <size>
+        <width>400</width>
+        <height>400</height>
+       </size>
+      </property>
+      <property name="title" >
+       <string>GroupBox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="2" >
+     <widget class="TTFrameInfo" name="frameInfo" >
+      <property name="sizePolicy" >
+       <sizepolicy>
+        <hsizetype>5</hsizetype>
+        <vsizetype>0</vsizetype>
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize" >
+       <size>
+        <width>640</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="maximumSize" >
+       <size>
+        <width>16777215</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="title" >
+       <string>Current Frame Info</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2" >
+     <widget class="QScrollBar" name="scroller" >
+      <property name="orientation" >
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="2" >
+     <widget class="TTVideoFileInfo" name="videoFileInfo" >
+      <property name="sizePolicy" >
+       <sizepolicy>
+        <hsizetype>5</hsizetype>
+        <vsizetype>0</vsizetype>
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize" >
+       <size>
+        <width>640</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="maximumSize" >
+       <size>
+        <width>16777215</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="title" >
+       <string>Videofile</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>672</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile" >
+    <property name="title" >
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen" />
+    <addaction name="actionAna_yze" />
+    <addaction name="separator" />
+    <addaction name="actionSettings" />
+    <addaction name="separator" />
+    <addaction name="actionExit" />
+   </widget>
+   <widget class="QMenu" name="menuExtra" >
+    <property name="title" >
+     <string>Extras</string>
+    </property>
+    <addaction name="actionWrite_header_list" />
+   </widget>
+   <addaction name="menuFile" />
+   <addaction name="menuExtra" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionOpen" >
+   <property name="icon" >
+    <iconset resource="ttmpeg2_mainwnd.qrc" >:/pixmaps/pixmaps/fileopen_24.xpm</iconset>
+   </property>
+   <property name="text" >
+    <string>Open...</string>
+   </property>
+  </action>
+  <action name="actionAna_yze" >
+   <property name="icon" >
+    <iconset resource="ttmpeg2_mainwnd.qrc" >:/pixmaps/pixmaps/find.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Analyze</string>
+   </property>
+  </action>
+  <action name="actionSettings" >
+   <property name="icon" >
+    <iconset resource="ttmpeg2_mainwnd.qrc" >:/pixmaps/pixmaps/settings_16.xpm</iconset>
+   </property>
+   <property name="text" >
+    <string>Settings...</string>
+   </property>
+  </action>
+  <action name="actionExit" >
+   <property name="icon" >
+    <iconset resource="ttmpeg2_mainwnd.qrc" >:/pixmaps/pixmaps/exit_16.xpm</iconset>
+   </property>
+   <property name="text" >
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionWrite_header_list" >
+   <property name="text" >
+    <string>Write header list...</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TTStepBy</class>
+   <extends>QGroupBox</extends>
+   <header>../ttmpeg2_src/gui/ttstepby.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TTFrameInfo</class>
+   <extends>QGroupBox</extends>
+   <header>../ttmpeg2_src/gui/ttframeinfo.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TTVideoFileInfo</class>
+   <extends>QGroupBox</extends>
+   <header>../ttmpeg2_src/gui/ttvideofileinfo.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="ttmpeg2_mainwnd.qrc" />
+ </resources>
+ <connections/>
+</ui>

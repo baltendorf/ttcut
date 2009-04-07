@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/pixmaps" >
+        <file>pixmaps/exit_16.xpm</file>
+        <file>pixmaps/fileopen_24.xpm</file>
+        <file>pixmaps/find.png</file>
+        <file>pixmaps/search_18.xpm</file>
+        <file>pixmaps/settings_16.xpm</file>
+    </qresource>
+</RCC>

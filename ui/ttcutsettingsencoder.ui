@@ -1,0 +1,33 @@
+<ui version="4.0" >
+ <class>TTCutSettingsEncoder</class>
+ <widget class="QWidget" name="TTCutSettingsEncoder" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>596</width>
+    <height>370</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form1</string>
+  </property>
+  <widget class="QCheckBox" name="cbEncodingMode" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>200</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Use encoding mode</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="ttcutsettingsencoder.qrc" />
+ </resources>
+ <connections/>
+</ui>

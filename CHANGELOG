@@ -1,0 +1,113 @@
+--------------------------------------------------------------------------------
+TTCut-Changelog
+--------------------------------------------------------------------------------
+
+0.20.4: * New TTCut official release candidat
+        * Thread support and thread abort should work
+        * Minor fixes
+
+0.20.3: * Added thread support
+        * Added multi thread progress dialog
+        * TTCut use now native style under OS x
+        * Phonon is now used on Linux and OS X for previewing cuts
+        * Multiple input video should now basicly work
+        * Cut-Out and Current-Frame window now using QImage, theire is no need 
+          for OpenGL anymore (should work better with some ATI graphic cards)
+        * Each video can have multiple marker positions set
+        * Marker positions were saved in the project file
+
+0.20.2: * Qt Version >= 4.4.3 is required
+        * Phonon libs are required to build TTCut; At this moment Phonon is
+          only used under OS X, LINUX uses the mplayer furthermore because I
+          didn't get Phonon successfully working under LINUX :-(
+        * Inspired by the work of andreas fink more work was spended on the
+          AVData-Controller, the new backbone for managing mulitple video files
+        * The GUI was slightly modified to fullifill the requirements of handling
+          multiple video in one session
+
+0.20.1: * TTCut runs stable under OS X (with plastic style)
+        * TTCut runs stable under Linux; again ;-)
+        * The existing code gets heavy refactored
+        * Use Phonon for preview under OS X
+        * Introduces unit tests
+        * Using valgrind to improve stability
+        * Fixed: Memory leaks and buffer overflows
+        * Fixed: Wrong encode handling after refactoring
+        * Fixed: Wrong stream positioning in current-frame window
+        * Base implementation of AVData controller and support for
+          multiple input videos (inspired by andreas fink)
+        * New project-file format (xml)
+
+0.20.0: * TTCut should compile and work under OS X (see README_OSX for details)
+        * New TTFileBuffer fully based on QT-Framework methods
+        * Fixed some layout issues
+        * Video-stream analyzing speed improved (work goes on)
+        * Memory usage reduced (work goes on)
+        * Fixed: Hanging preview when closing window by windows x-button
+
+0.19.6: * Fixed: Borken layout under Qt version 4.3.x
+        * Memory usage reduced (memory usage is still high and under construction)
+        * Append extension mpv to the list of valid video extensions 
+          (for the pvastrumento users)
+        * Removed TTMpeg2 from project
+        * The 'play-button' is temporary hidden
+        * Fixed: Settings aren't saved on exit
+        * Increase IDD read performance a litle bit (stil under construction)
+        * Fixed: Save settings after exit via window close
+
+0.19.5: * Fixed: Audio and video are asynchron after a few cut's
+        * Fixed: Append project  file extension if missing
+
+0.19.4: * Fixed: freeing resources after loading new video/project
+        * Fixed: crash while loading a long video file after a short one
+        * User-Setting will now be saved on window close regardeless of using
+          the menu exit or the window close button
+        * May fixed broken preview button ???
+        * Fixed: setting for "Create cut video index file" wasn't saved
+        * Fixed: Segmentation fault during preview and cut with enabled encoder;
+          caused by an invalid mpeg2enc command line
+          Attention: please make sure, that you build transcode with --enable-mjpegtools!
+
+0.19.3: * Delete elementary cut stream after mplex action
+        * Read all audiofiles to a given videofile (videofile_name*.mpa, 
+          videofile_name*.m2v, videofile_name*.ac3)
+        * Implement cut audio only feature
+        * Fixed: TTCut crashed after reading video without sound
+ 
+0.19.2: * Fixed German Umlaut handling in console output
+        * Fixed spelling and implement a nicer look in about-dialog
+        * Set the video output directory as default directory for mplex
+          output (only if mplex output path doesn't exists!)
+        * Progressbar and action text added during AC3 and DTS audio-headerlist
+          creation
+        * Fixed: Append trailing / at cut/mplex output path
+        * Implement user abort during video cut
+        * Fixed: Broken percent and progress reporting while cutting large files
+
+0.19.1: * Removed QT3-Support depencies from TTMpeg2 (the whole project should
+          now compile without the need for any Qt3-support libs
+        * Fixed wrong handling of aspect-ratio changes (4:3 -> 16:9) at closed 
+          GOP's
+        * Fixed german umlaut handling
+        * Fixed handling of spaces in filenames with muxscript
+        * Make muxscript executeable by owner/user
+        * Implement direct mplexing after cut
+        * Implement basic mplex options in settings dialog
+
+
+
+Version 0.11.x (just in alpha state)
+------------------------------------
+
+0.11.4: * minor bugfixes
+0.11.3: * minor bugfixes
+0.11.2: * Qt3 support completely removed
+        * GUI exists now in ui files for easier editing
+        * GUI looks nicer
+        * Append stream navigator for cut visualisation
+          (will later be used for setting the chapters)
+        * Fixed cut list bug: When insert a new cut-range while a cut entry in
+          cut-list is selected, the selected cut-out position changed to the
+          newly added cut entry
+
+

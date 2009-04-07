@@ -1,0 +1,6 @@
+Radme for running TTCut under OS X (10.4 and above)
+
+qmake -spec macx-g++ ttcut.pro
+
+You need the mpeg plugin for Quicktime to preview the cuts.
+

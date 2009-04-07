@@ -1,0 +1,308 @@
+<ui version="4.0" >
+ <class>TTCurrentFrameWidget</class>
+ <widget class="QWidget" name="TTCurrentFrameWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>280</width>
+    <height>260</height>
+   </rect>
+  </property>
+  <property name="sizePolicy" >
+   <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+    <horstretch>2</horstretch>
+    <verstretch>8</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>280</width>
+    <height>260</height>
+   </size>
+  </property>
+  <property name="sizeIncrement" >
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>0</number>
+   </property>
+   <property name="spacing" >
+    <number>0</number>
+   </property>
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="gbCurrentFrame" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="sizeIncrement" >
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="title" >
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout" >
+      <property name="leftMargin" >
+       <number>2</number>
+      </property>
+      <property name="topMargin" >
+       <number>2</number>
+      </property>
+      <property name="rightMargin" >
+       <number>2</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>2</number>
+      </property>
+      <item row="0" column="0" >
+       <widget class="TTMPEG2Window2" name="mpegWindow" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+          <horstretch>2</horstretch>
+          <verstretch>2</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize" >
+         <size>
+          <width>100</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="frameShape" >
+         <enum>QFrame::Panel</enum>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Plain</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <layout class="QHBoxLayout" name="horizontalLayout" >
+        <property name="spacing" >
+         <number>4</number>
+        </property>
+        <property name="sizeConstraint" >
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <item>
+         <widget class="QPushButton" name="pbPlayVideo" >
+          <property name="enabled" >
+           <bool>true</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>50</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>50</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+          <property name="icon" >
+           <iconset resource="currentframewidget.qrc" >
+            <normaloff>:/pixmaps/pixmaps/play_18.xpm</normaloff>:/pixmaps/pixmaps/play_18.xpm</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>4</width>
+            <height>21</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="laCurrentPosition" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>0</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>16777215</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>00:00:00,000 (000000)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer" >
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>2</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbSetMarker" >
+          <property name="minimumSize" >
+           <size>
+            <width>60</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>0</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string comment="Add current position to marker list" />
+          </property>
+          <property name="icon" >
+           <iconset resource="currentframewidget.qrc" >
+            <normaloff>:/pixmaps/pixmaps/note_18.xpm</normaloff>:/pixmaps/pixmaps/note_18.xpm</iconset>
+          </property>
+          <property name="iconSize" >
+           <size>
+            <width>18</width>
+            <height>18</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2" >
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>6</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbPrevFrame" >
+          <property name="minimumSize" >
+           <size>
+            <width>50</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>32</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string comment="Go to previous frame" />
+          </property>
+          <property name="icon" >
+           <iconset resource="currentframewidget.qrc" >
+            <normaloff>:/pixmaps/pixmaps/goto-prev.png</normaloff>:/pixmaps/pixmaps/goto-prev.png</iconset>
+          </property>
+          <property name="iconSize" >
+           <size>
+            <width>11</width>
+            <height>11</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pbNextFrame" >
+          <property name="minimumSize" >
+           <size>
+            <width>50</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>32</width>
+            <height>24</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string comment="Go to next frame" />
+          </property>
+          <property name="icon" >
+           <iconset resource="currentframewidget.qrc" >
+            <normaloff>:/pixmaps/pixmaps/goto-next.png</normaloff>:/pixmaps/pixmaps/goto-next.png</iconset>
+          </property>
+          <property name="iconSize" >
+           <size>
+            <width>11</width>
+            <height>11</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TTMPEG2Window2</class>
+   <extends>QFrame</extends>
+   <header>../mpeg2window/ttmpeg2window2.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="currentframewidget.qrc" />
+ </resources>
+ <connections/>
+</ui>

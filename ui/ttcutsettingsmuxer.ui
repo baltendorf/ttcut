@@ -1,0 +1,203 @@
+<ui version="4.0" >
+ <class>TTCutSettingsMuxer</class>
+ <widget class="QWidget" name="TTCutSettingsMuxer" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>598</width>
+    <height>427</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form2</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="3" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>574</width>
+       <height>151</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>Muxer Settings</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="2" column="5" >
+       <widget class="QPushButton" name="btnOutputPath" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize" >
+         <size>
+          <width>54</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize" >
+         <size>
+          <width>54</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="icon" >
+         <iconset resource="ttcutsettingsmuxer.qrc" >
+          <normaloff>:/pixmaps/pixmaps/fileopen_24.xpm</normaloff>:/pixmaps/pixmaps/fileopen_24.xpm</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QComboBox" name="cbMuxTarget" />
+      </item>
+      <item row="1" column="4" colspan="2" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType" >
+         <enum>QSizePolicy::Expanding</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>50</width>
+          <height>17</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QLabel" name="laOutputPath" >
+        <property name="text" >
+         <string>Output path</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType" >
+         <enum>QSizePolicy::Expanding</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>248</width>
+          <height>17</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="1" colspan="4" >
+       <widget class="QLineEdit" name="leOutputPath" />
+      </item>
+      <item row="1" column="1" colspan="2" >
+       <widget class="QComboBox" name="cbMuxerProg" />
+      </item>
+      <item row="1" column="3" >
+       <widget class="QPushButton" name="pbConfigureMuxer" >
+        <property name="minimumSize" >
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize" >
+         <size>
+          <width>32767</width>
+          <height>32767</height>
+         </size>
+        </property>
+        <property name="text" >
+         <string>configure...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="laMuxerProg" >
+        <property name="text" >
+         <string>Used muxer</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QLabel" name="laMuxTarget" >
+        <property name="text" >
+         <string>MPEG-2 target</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="bgMuxOptions" >
+     <property name="title" >
+      <string>Multiplex Options</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="1" >
+       <widget class="QRadioButton" name="rbCreateMuxScript" >
+        <property name="text" >
+         <string>Create mux script for batch muxing</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QRadioButton" name="rbMuxStreams" >
+        <property name="text" >
+         <string>Finally mux result streams</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QGroupBox" name="groupBox_2" >
+     <property name="title" >
+      <string>Action after multiplexing</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="1" column="0" >
+       <widget class="QCheckBox" name="cbDeleteES" >
+        <property name="text" >
+         <string>Delete elemtary streams</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QCheckBox" name="cbPause" >
+        <property name="text" >
+         <string>Pause</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="ttcutsettingsmuxer.qrc" />
+ </resources>
+ <connections/>
+</ui>

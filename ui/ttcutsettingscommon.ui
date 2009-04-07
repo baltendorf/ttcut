@@ -1,0 +1,579 @@
+<ui version="4.0" >
+ <class>TTCutSettingsCommon</class>
+ <widget class="QWidget" name="TTCutSettingsCommon" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>660</width>
+    <height>468</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Common</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="leftMargin" >
+    <number>9</number>
+   </property>
+   <property name="topMargin" >
+    <number>9</number>
+   </property>
+   <property name="rightMargin" >
+    <number>9</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>9</number>
+   </property>
+   <property name="horizontalSpacing" >
+    <number>6</number>
+   </property>
+   <property name="verticalSpacing" >
+    <number>6</number>
+   </property>
+   <item row="3" column="0" colspan="2" >
+    <widget class="QGroupBox" name="gbFilesDirectories" >
+     <property name="title" >
+      <string>Files / Directories</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="leftMargin" >
+       <number>9</number>
+      </property>
+      <property name="topMargin" >
+       <number>9</number>
+      </property>
+      <property name="rightMargin" >
+       <number>9</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>9</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="2" >
+       <widget class="QPushButton" name="btnDirOpen" >
+        <property name="minimumSize" >
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="maximumSize" >
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="icon" >
+         <iconset resource="ttcutsettingscommon.qrc" >:/pixmaps/pixmaps/fileopen_24.xpm</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QLabel" name="laTempDir" >
+        <property name="text" >
+         <string>Temp directory</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QLineEdit" name="leTempDirectory" />
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item rowspan="2" row="0" column="0" >
+    <widget class="QGroupBox" name="gbNavigation" >
+     <property name="title" >
+      <string>Navigation</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="leftMargin" >
+       <number>9</number>
+      </property>
+      <property name="topMargin" >
+       <number>9</number>
+      </property>
+      <property name="rightMargin" >
+       <number>9</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>9</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
+       <number>6</number>
+      </property>
+      <item row="1" column="0" colspan="3" >
+       <widget class="QCheckBox" name="cbQuickSearch" >
+        <property name="text" >
+         <string>Use quick seek (slider positioned only on I-Frames)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <layout class="QVBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>0</number>
+        </property>
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QSpinBox" name="sbSliderClickPlacement" >
+          <property name="minimum" >
+           <number>5</number>
+          </property>
+          <property name="maximum" >
+           <number>200</number>
+          </property>
+          <property name="singleStep" >
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sbPgUpDown" >
+          <property name="minimum" >
+           <number>5</number>
+          </property>
+          <property name="maximum" >
+           <number>200</number>
+          </property>
+          <property name="singleStep" >
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sbArrowKeyPlacement" >
+          <property name="minimum" >
+           <number>5</number>
+          </property>
+          <property name="maximum" >
+           <number>200</number>
+          </property>
+          <property name="singleStep" >
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sbAltDistance" >
+          <property name="minimum" >
+           <number>5</number>
+          </property>
+          <property name="maximum" >
+           <number>200</number>
+          </property>
+          <property name="singleStep" >
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sbCtrlDistance" >
+          <property name="minimum" >
+           <number>5</number>
+          </property>
+          <property name="maximum" >
+           <number>200</number>
+          </property>
+          <property name="singleStep" >
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sbQuickJumpDistance" >
+          <property name="minimum" >
+           <number>5</number>
+          </property>
+          <property name="maximum" >
+           <number>200</number>
+          </property>
+          <property name="singleStep" >
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sbMouseWheel" >
+          <property name="minimum" >
+           <number>1</number>
+          </property>
+          <property name="maximum" >
+           <number>500</number>
+          </property>
+          <property name="singleStep" >
+           <number>5</number>
+          </property>
+          <property name="value" >
+           <number>120</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>6</number>
+        </property>
+        <property name="topMargin" >
+         <number>6</number>
+        </property>
+        <property name="rightMargin" >
+         <number>6</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>6</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="laSliderClick" >
+          <property name="text" >
+           <string>Slider click placement</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laPgUpDown" >
+          <property name="text" >
+           <string>Page up/down placement</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laArrowPlacement" >
+          <property name="text" >
+           <string>Arrow keys placement</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laAltJump" >
+          <property name="text" >
+           <string>'Alt' key jump distance</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laCtrlJump" >
+          <property name="text" >
+           <string>'Ctrl' key jump distance</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laQuickJump" >
+          <property name="text" >
+           <string>Quick jump distance</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laQuickJump_2" >
+          <property name="text" >
+           <string>Mouse wheel distance</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="2" >
+       <layout class="QVBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>0</number>
+        </property>
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="laFrames1" >
+          <property name="text" >
+           <string>frames</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laFrames2" >
+          <property name="text" >
+           <string>frames</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laFrames3" >
+          <property name="text" >
+           <string>frames</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laFrames4" >
+          <property name="text" >
+           <string>frames</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laFrames5" >
+          <property name="text" >
+           <string>frames</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laSeconds1" >
+          <property name="text" >
+           <string>seconds</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laSeconds1_2" >
+          <property name="text" >
+           <string>frames</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1" >
+    <widget class="QGroupBox" name="gbSearchPlay" >
+     <property name="title" >
+      <string>Search / Play</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="leftMargin" >
+       <number>9</number>
+      </property>
+      <property name="topMargin" >
+       <number>9</number>
+      </property>
+      <property name="rightMargin" >
+       <number>9</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>9</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="2" >
+       <layout class="QVBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>0</number>
+        </property>
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="laSeconds2" >
+          <property name="text" >
+           <string>seconds</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laSeconds3" >
+          <property name="text" >
+           <string>seconds</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laFrame6" >
+          <property name="text" >
+           <string>frames</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1" >
+       <layout class="QVBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>0</number>
+        </property>
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QSpinBox" name="sbSearchIntervall" >
+          <property name="minimum" >
+           <number>5</number>
+          </property>
+          <property name="maximum" >
+           <number>200</number>
+          </property>
+          <property name="singleStep" >
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spPreviewLength" >
+          <property name="minimum" >
+           <number>5</number>
+          </property>
+          <property name="maximum" >
+           <number>200</number>
+          </property>
+          <property name="singleStep" >
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="sbSkipFrames" >
+          <property name="minimum" >
+           <number>5</number>
+          </property>
+          <property name="maximum" >
+           <number>200</number>
+          </property>
+          <property name="singleStep" >
+           <number>5</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <property name="leftMargin" >
+         <number>0</number>
+        </property>
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="laSearch" >
+          <property name="text" >
+           <string>Search CutOut Frame within</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laPreview" >
+          <property name="text" >
+           <string>Preview each Cut</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="laSkip" >
+          <property name="text" >
+           <string>Skip while playing</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="ttcutsettingscommon.qrc" />
+ </resources>
+ <connections/>
+</ui>

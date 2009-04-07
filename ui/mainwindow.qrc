@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="/pixmaps" >
+    <file>pixmaps/ttcut_logo_001.png</file>
+    <file>pixmaps/addtolist_18.xpm</file>
+    <file>pixmaps/chapter_18.xpm</file>
+    <file>pixmaps/clock_18.xpm</file>
+    <file>pixmaps/cutaudio_18.xpm</file>
+    <file>pixmaps/cutav_18.xpm</file>
+    <file>pixmaps/exit_16.xpm</file>
+    <file>pixmaps/filenew_16.xpm</file>
+    <file>pixmaps/fileopen_16.xpm</file>
+    <file>pixmaps/fileopen_24.xpm</file>
+    <file>pixmaps/filesave_16.xpm</file>
+    <file>pixmaps/filesaveas_16.xpm</file>
+    <file>pixmaps/saveimage_16.xpm</file>
+    <file>pixmaps/settings_16.xpm</file>
+    <file>pixmaps/tv.png</file>
+  </qresource>
+</RCC>

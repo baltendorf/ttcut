@@ -1,0 +1,21 @@
+-------------------------------------------------------------------------------
+TODO list for project TTCut
+-------------------------------------------------------------------------------
+
+* Prepare long term processes for user cancellation
+* New GUI layout for video and audio list, consider new multi-input-stream feat.
+* Remove some unused settings and buttons without function
+* Find a solution for realtime playback demuxed video stream (play-button)
+* Add option settings for transcode and mplex
+* Implement plugin interface for external tools (transcode, mplex, mplayer)
+* Write a FAQ
+  1) If mplayer don't work properly check your default -vo settings. 
+     TTCut assumes that you use -vo x11.
+     Also check that you have the right permissons to /dev/dsp
+* Make the current frame position clickable (enter current frame positon)
+* More keyboard short cuts
+* Internationalisation
+* User warning when click "New Project" an video stream is loaded
+* Display the resulting stream lengths after cut
+* Find solution for chapter marks
+* Find a logo 

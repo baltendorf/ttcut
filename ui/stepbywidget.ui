@@ -1,0 +1,201 @@
+<ui version="4.0" >
+ <class>StepByWidget</class>
+ <widget class="QWidget" name="StepByWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>239</width>
+    <height>122</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>0</number>
+   </property>
+   <property name="spacing" >
+    <number>0</number>
+   </property>
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="gbStep" >
+     <property name="title" >
+      <string>Step by</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>2</number>
+      </property>
+      <property name="spacing" >
+       <number>2</number>
+      </property>
+      <item row="0" column="3" >
+       <widget class="QGroupBox" name="gbOrder" >
+        <property name="title" >
+         <string>Order</string>
+        </property>
+        <property name="flat" >
+         <bool>false</bool>
+        </property>
+        <layout class="QVBoxLayout" >
+         <property name="margin" >
+          <number>1</number>
+         </property>
+         <property name="spacing" >
+          <number>1</number>
+         </property>
+         <item>
+          <widget class="QRadioButton" name="rbOrderDisplay" >
+           <property name="text" >
+            <string>Display</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbOrderStream" >
+           <property name="text" >
+            <string>Stream</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QPushButton" name="btnPrev" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>0</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize" >
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize" >
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="icon" >
+         <iconset resource="stepbywidget.qrc" >:/pixmaps/pixmaps/prev_18.xpm</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QPushButton" name="btnNext" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>0</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize" >
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize" >
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="icon" >
+         <iconset resource="stepbywidget.qrc" >:/pixmaps/pixmaps/next_18.xpm</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2" >
+       <widget class="QGroupBox" name="gbFrameStep" >
+        <property name="title" >
+         <string>Frame</string>
+        </property>
+        <property name="flat" >
+         <bool>false</bool>
+        </property>
+        <layout class="QVBoxLayout" >
+         <property name="margin" >
+          <number>1</number>
+         </property>
+         <property name="spacing" >
+          <number>1</number>
+         </property>
+         <item>
+          <widget class="QRadioButton" name="rbIFrame" >
+           <property name="text" >
+            <string/>
+           </property>
+           <property name="icon" >
+            <iconset resource="stepbywidget.qrc" >:/pixmaps/pixmaps/iframe_18.xpm</iconset>
+           </property>
+           <property name="iconSize" >
+            <size>
+             <width>14</width>
+             <height>14</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbPFrame" >
+           <property name="text" >
+            <string/>
+           </property>
+           <property name="icon" >
+            <iconset resource="stepbywidget.qrc" >:/pixmaps/pixmaps/pframe_18.xpm</iconset>
+           </property>
+           <property name="iconSize" >
+            <size>
+             <width>14</width>
+             <height>14</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QRadioButton" name="rbBFrame" >
+           <property name="text" >
+            <string/>
+           </property>
+           <property name="icon" >
+            <iconset resource="stepbywidget.qrc" >:/pixmaps/pixmaps/bframe_18.xpm</iconset>
+           </property>
+           <property name="iconSize" >
+            <size>
+             <width>14</width>
+             <height>14</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="stepbywidget.qrc" />
+ </resources>
+ <connections/>
+</ui>

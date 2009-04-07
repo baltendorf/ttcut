@@ -1,0 +1,71 @@
+-------------------------------------------------------------------------------
+TTCut - Installation
+-------------------------------------------------------------------------------
+
+Eine kurze Anleitung um TTCut unter LINUX zu uebersetzen.
+
+
+1. Benoetigte Bibliotheken (dev- und runtime-Packete)
+-----------------------------------------------------
+
+Trolltech's Qt-Bibliothek (4.1 und OpenGL Unterstuetzung) 
+libmpeg-dec               (>= 0.4.0)                      
+
+
+2. Benoetigte Hilfsprogramme
+----------------------------
+
+mplayer       fuer die Schnitt-Vorschau
+mplex         fuer die Schnitt-Vorschau
+transcode     fuer frame-genauen Schnitt
+ffmpeg        fuer frame-genauen Schnitt
+
+3. Uebersetzung
+---------------
+
+Mit qmake aus der Projektdatei "ttcut.pro" mit
+
+>$ qmake ttcut.pro -o Makefile.ttcut
+
+das makefile fuer TTCut erstellen.
+
+
+Anschliessend mit 
+
+>$ make -f Makefile.ttcut
+
+TTCut uebersetzen.
+
+
+Das sollte alles sein.
+
+Eventuell habe ich vergessen in der Datei "ttcut.pro" unter CONFIG
+debug gegen release zu tauschen. Das ist nicht weiter tragisch.
+Die Quellen werden dann mit der Option -g (Debug) uebersetz. Jedoch
+erreicht TTCut mit der Standard-Optimierung -O2 des g++ eine etwas hoehere
+Geschwindigkeit beim Analysieren des Videos.
+
+3. Installation
+---------------
+
+TTCut entweder im lokalen Verzeichnis ausfuehren oder z.B nach
+/usr/local/bin kopieren.
+
+4. Bedienung
+------------
+
+http://ttcut.tritime.org
+
+4. Probleme
+-----------
+
+Sollte etwas nicht funktionieren bitte kurze Problembeschreibung an
+
+ttcut@tritime.org oder b.altendorf@tritime.de
+
+5. Update
+---------
+
+Letzte Release:       https://developer.berlios.de/projects/ttcut/
+
+Aktuelle Entwicklung: svn checkout svn://svn.berlios.de/trunk/trunk 
