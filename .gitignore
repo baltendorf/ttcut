@@ -2,6 +2,7 @@
 # ignore some special files
 Make*
 ttcut*
+logfile*
 
 # ignore pattern for common files to ignore
 *.o
