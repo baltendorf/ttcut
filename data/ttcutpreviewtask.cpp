@@ -52,6 +52,9 @@ TTCutPreviewTask::TTCutPreviewTask(TTAVData* avData, TTCutList* cutList) :
 	mpAVData  = avData;
 	mpCutList = cutList;
 	mAbort    = false;
+
+  cutVideoTask = 0;
+  cutAudioTask = 0;
 }
 
 //! Operation abort requested
