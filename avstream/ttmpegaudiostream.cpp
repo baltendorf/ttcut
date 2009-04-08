@@ -226,6 +226,7 @@ int TTMPEGAudioStream::createHeaderList( )
     {
     	if (mAbort) {
     		mAbort = false;
+        qDebug("TTMpegAudioStream::createHeaderList -> user abort");
     		throw new TTAbortException(tr("Index list creation aborted!"));
     	}
 

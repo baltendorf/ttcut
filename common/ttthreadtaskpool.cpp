@@ -38,6 +38,7 @@
 #include "../gui/ttprogressbar.h"
 
 #include <QThreadPool>
+#include <QDebug>
 
 //! Constructor
 TTThreadTaskPool::TTThreadTaskPool() : QObject()
@@ -172,10 +173,9 @@ void TTThreadTaskPool::onStatusReport(TTThreadTask* task, int state, const QStri
 //! User request to abort all current operations
 void TTThreadTaskPool::onUserAbortRequest()
 {
-	//qDebug("TTThreadTaskPool::onUserAbortRequest");
-
 	for (int i=0; i < mTaskQueue.count(); i++) {
 		TTThreadTask* task = mTaskQueue.at(i);
+
 		task->onUserAbort();
 		qApp->processEvents();
 	}

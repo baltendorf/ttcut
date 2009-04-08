@@ -326,6 +326,7 @@ void TTAVData::doOpenAudioStream(TTAVItem* avItem, const QString& filePath, int 
  */
 void TTAVData::onOpenVideoFinished(TTAVItem* avItem, TTVideoStream* vStream, int)
 {
+  qDebug("TTAVData::onOpenVideoFinished");
   avItem->setVideoStream(vStream);
 
   mpAVList->append(avItem);
@@ -340,6 +341,7 @@ void TTAVData::onOpenVideoFinished(TTAVItem* avItem, TTVideoStream* vStream, int
 
 void TTAVData::onOpenAVStreamsAborted()
 {
+  qDebug("TTAVData::onOpenAVStreamsAborted");
   disconnect(mpThreadTaskPool, SIGNAL(aborted()),
              this,             SLOT(onOpenAVStreamsAborted()));
 
@@ -352,6 +354,7 @@ void TTAVData::onOpenAVStreamsAborted()
  */
 void TTAVData::onOpenAudioFinished(TTAVItem* avItem, TTAudioStream* aStream, int order)
 {
+  qDebug("TTAVData::onOpenAudioFinished");
   if (avItem  == 0) return;
   if (aStream == 0) return;
 

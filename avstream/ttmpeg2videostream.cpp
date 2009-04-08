@@ -158,6 +158,7 @@ int TTMpeg2VideoStream::createIndexList()
   {
   	if (mAbort) {
   		mAbort = false;
+      qDebug("abort in createIndexList");
   		throw new TTAbortException("Index list creation aborted!");
   	}
 
@@ -271,7 +272,8 @@ bool TTMpeg2VideoStream::createHeaderListFromMpeg2()
     {
     	if (mAbort) {
     		mAbort = false;
-    		throw new TTAbortException("Index list creation aborted!");
+        qDebug("abort in createHeaderList");
+    		throw new TTAbortException("Headerlist creation aborted by user!");
     	}
 
       headerType = 0xFF;
@@ -316,11 +318,10 @@ bool TTMpeg2VideoStream::createHeaderListFromMpeg2()
     }
     log->debugMsg(__FILE__, __LINE__, QString("time for creating header list %1ms").
         arg(time.elapsed()));
-}
-  catch (...)
+  }
+  catch (TTFileBufferException* ex)
   {
-    //FIXME: maybe show some information about occured exception;
-    //       but not for StreamEOF exceptions
+    qDebug("ttfilebuffer exception...");
   }
 
   emit statusReport(StatusReportArgs::Finished, tr("Mpeg2-Header list created"), stream_buffer->size());

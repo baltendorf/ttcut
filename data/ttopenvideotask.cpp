@@ -46,13 +46,21 @@ TTOpenVideoTask::TTOpenVideoTask(TTAVItem* avItem, QString fileName, int order) 
 //! Request for aborting current operation
 void TTOpenVideoTask::onUserAbort()
 {
-	if (mpVideoStream == 0)
-		throw new TTAbortException("OpenVideoTask aborted!");
+  qDebug("TTOpenVideoTask::onUserAbort called");
+	if (mpVideoStream == 0) {
+    qDebug("no video stream allocated!");
+		//throw new TTAbortException("OpenVideoTask aborted!");
+    emit aborted(this);
+    return;
+  }
 
 	if (!mpAVItem->isInList())
 		delete mpAVItem;
 
+  qDebug("TTOpenVideoTask::onUserAbort -> setAbort");
 	mpVideoStream->setAbort(true);
+
+  qDebug("after setAbort..");
 }
 
 //! Clean up after operation
@@ -89,11 +97,13 @@ void TTOpenVideoTask::operation()
 	connect(mpVideoStream, SIGNAL(statusReport(int, const QString&, quint64)),
 					this,          SLOT(onStatusReport(int, const QString&, quint64)));
 
-	mpVideoStream->createHeaderList();
-	mpVideoStream->createIndexList();
+  qDebug("start creating header and index lists");
+  mpVideoStream->createHeaderList();
+ 	mpVideoStream->createIndexList();
 
 	mpVideoStream->indexList()->sortDisplayOrder();
 
+  qDebug("emit finished signal...");
 	emit finished(mpAVItem, mpVideoStream, mOrder);
 }
 

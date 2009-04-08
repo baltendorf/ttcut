@@ -1,0 +1,16 @@
+
+# ignore some special files
+Make*
+ttcut*
+
+# ignore pattern for common files to ignore
+*.o
+*.tmp
+*~
+
+# ignore some special directories
+res
+obj
+moc
+ui_h
+testing

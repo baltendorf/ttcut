@@ -35,6 +35,7 @@
 #include "../gui/ttprogressbar.h"
 
 #include <QThread>
+#include <QDebug>
 
 //! Constructor
 TTThreadTask::TTThreadTask(QString name) : QObject()
@@ -128,12 +129,14 @@ void TTThreadTask::run()
   }
   catch(TTAbortException* ex)
   {
+    qDebug("TTThreadTask::run -> catched TTAbortException");
     emit aborted(this);
     qApp->processEvents();
     cleanUp();
   }
   catch(TTException* ex)
   {
+    qDebug("TTThreadTask::run -> catched TTException");
     emit aborted(this);
     qApp->processEvents();
     cleanUp();
