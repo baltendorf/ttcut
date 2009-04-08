@@ -50,8 +50,10 @@ TTCutAudioTask::TTCutAudioTask(QString tgtFilePath, TTCutList* cutList, int srcA
 //! Operation abort request
 void TTCutAudioTask::onUserAbort()
 {
-  if (mpCutStream == 0)
-  	throw new TTAbortException("CutAudioTask aborted!");
+  if (mpCutStream == 0) {
+    emit aborted(this);
+    return;
+  }
 
    mpCutStream->setAbort(true);
 }

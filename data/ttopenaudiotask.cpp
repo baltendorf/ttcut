@@ -49,10 +49,7 @@ TTOpenAudioTask::TTOpenAudioTask(TTAVItem* avItem, QString filePath, int order) 
 //! Operation abort request
 void TTOpenAudioTask::onUserAbort()
 {
-  qDebug("TTOpenAudioTask::onUserAbort");
 	if (mpAudioStream == 0) {
-    qDebug("no audioStream object allocated now!");
-		//throw new TTAbortException("OpenAudioTask aborted!");
     emit aborted(this);
     return;
   }

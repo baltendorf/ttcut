@@ -50,8 +50,10 @@ TTCutVideoTask::TTCutVideoTask(QString tgtFilePath, TTCutList* cutList) :
 //! Operation abort request
 void TTCutVideoTask::onUserAbort()
 {
-  if (mpCutStream == 0)
-  	throw new TTAbortException("CutVideoTask aborted");
+  if (mpCutStream == 0) {
+    emit aborted(this);
+    return;
+  }
 
    mpCutStream->setAbort(true);
 }

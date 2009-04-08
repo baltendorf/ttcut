@@ -46,10 +46,7 @@ TTOpenVideoTask::TTOpenVideoTask(TTAVItem* avItem, QString fileName, int order) 
 //! Request for aborting current operation
 void TTOpenVideoTask::onUserAbort()
 {
-  qDebug("TTOpenVideoTask::onUserAbort called");
 	if (mpVideoStream == 0) {
-    qDebug("no video stream allocated!");
-		//throw new TTAbortException("OpenVideoTask aborted!");
     emit aborted(this);
     return;
   }
@@ -57,10 +54,7 @@ void TTOpenVideoTask::onUserAbort()
 	if (!mpAVItem->isInList())
 		delete mpAVItem;
 
-  qDebug("TTOpenVideoTask::onUserAbort -> setAbort");
 	mpVideoStream->setAbort(true);
-
-  qDebug("after setAbort..");
 }
 
 //! Clean up after operation
