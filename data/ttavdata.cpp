@@ -599,7 +599,8 @@ void TTAVData::onDoCut(QString tgtFileName, TTCutList* cutList)
 
   cutVideoTask = new TTCutVideoTask(tgtFileName, cutList);
 
-  connect(mpThreadTaskPool, SIGNAL(exit()), this, SLOT(onCutFinished()));
+  connect(mpThreadTaskPool, SIGNAL(exit()),    this, SLOT(onCutFinished()));
+  connect(mpThreadTaskPool, SIGNAL(aborted()), this, SLOT(onCutAborted()));
 
   mpThreadTaskPool->start(cutVideoTask);
 
@@ -649,6 +650,16 @@ void TTAVData::onCutFinished()
    mplexProvider->mplexPart(mpMuxList->count()-1);
 
  delete mplexProvider;
+}
+
+void TTAVData::onCutAborted()
+{
+  qDebug("TTAVData::onCutAborted -> cut process aborted");
+
+  disconnect(mpThreadTaskPool, SIGNAL(exit()),    this, SLOT(onCutFinished()));
+  disconnect(mpThreadTaskPool, SIGNAL(aborted()), this, SLOT(onCutAborted()));
+
+
 }
 
 void TTAVData::onStatusReport(int state, const QString& msg, quint64 value)

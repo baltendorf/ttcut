@@ -127,6 +127,7 @@ class TTAVData : public QObject
 
     void onDoCut(QString tgtFileName, TTCutList* cutList);
     void onCutFinished();
+    void onCutAborted();
 
     void onMplexStep(const QString& msg, quint64 value);
 
