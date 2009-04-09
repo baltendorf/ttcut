@@ -80,7 +80,6 @@ quint64 TTFrameSearchTask::compareFrames(TFrameInfo* frameInfo, quint8* refData,
 //! Clean up after operation
 void TTFrameSearchTask::cleanUp()
 {
-	if (searchDecoder   != 0) delete searchDecoder;
   if (mpReferenceData != 0) delete mpReferenceData;
   if (mpSearchData    != 0) delete mpSearchData;
 }
@@ -96,7 +95,7 @@ void TTFrameSearchTask::operation()
 {
   initFrameSearch();
 
-  searchDecoder = new TTMpeg2Decoder(
+  TTMpeg2Decoder* searchDecoder = new TTMpeg2Decoder(
       mpSearchStream->filePath(),
       mpSearchStream->indexList(),
       mpSearchStream->headerList(),
@@ -116,7 +115,10 @@ void TTFrameSearchTask::operation()
   do
   {
   	if (mAbort)
+    {
+      delete searchDecoder;
   		throw new TTAbortException("User abort in TTFrameSearchTask!");
+    }
 
 
     TFrameInfo* frameInfo = searchDecoder->getFrameInfo();

@@ -57,7 +57,6 @@ class TTFrameSearchTask : public TTThreadTask
     void finished(int index);
 
   private:
-  	TTMpeg2Decoder* searchDecoder;
     TTVideoStream*  mpReferenceStream;
     TTVideoStream*  mpSearchStream;
     TFrameInfo*     mpRefFrameInfo;
