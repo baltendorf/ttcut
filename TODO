@@ -2,6 +2,9 @@
 TODO list for project TTCut
 -------------------------------------------------------------------------------
 
+* Show a warning if audio and video length are different
+
+
 * Prepare long term processes for user cancellation
 * New GUI layout for video and audio list, consider new multi-input-stream feat.
 * Remove some unused settings and buttons without function

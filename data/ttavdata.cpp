@@ -545,6 +545,7 @@ void TTAVData::onReadProjectFileAborted()
 void TTAVData::doCutPreview(TTCutList* cutList)
 {
 	qDebug("doCutPreview...");
+  if (cutPreviewTask != 0) delete cutPreviewTask;
   cutPreviewTask = new TTCutPreviewTask(this, cutList);
 
   connect(cutPreviewTask,   SIGNAL(finished(TTCutList*)),
@@ -559,7 +560,6 @@ void TTAVData::doCutPreview(TTCutList* cutList)
 void TTAVData::onCutPreviewFinished(TTCutList* cutList)
 {
 	qDebug("onCutPreviewFinished...");
-  if (cutPreviewTask != 0) delete cutPreviewTask;
 
 	emit cutPreviewFinished(cutList);
 }

@@ -575,6 +575,7 @@ void TTCutMainWindow::onCutPreviewFinished(TTCutList* cutList)
 {
   TTCutPreview* cutPreview = new TTCutPreview(this);
 
+  qDebug("MainWindow::oncutPreviewFinished");
   cutPreview->initPreview(cutList);
   cutPreview->exec();
 

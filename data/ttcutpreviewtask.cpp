@@ -44,6 +44,7 @@
 #include <QCoreApplication>
 #include <QFileInfo>
 #include <QDir>
+#include <QDebug>
 
 //! Create cut preview clips task
 TTCutPreviewTask::TTCutPreviewTask(TTAVData* avData, TTCutList* cutList) :
@@ -146,6 +147,9 @@ void TTCutPreviewTask::operation()
       : QString("mv %1 %2 2>/dev/null").
 						arg(createPreviewFileName(i + 1, "m2v")).
 						arg(createPreviewFileName(i + 1, "mpg"));
+
+    qDebug() << "mplex command string "
+             << mplex_command;
 
     system(qPrintable(mplex_command));
   }
