@@ -47,6 +47,7 @@ TTMPEG2Window2::TTMPEG2Window2(QWidget *parent )
   picBuffer     = 0;
   videoWidth    = 0;
   videoHeight   = 0;
+  frameInfo     = 0;
 }
 
 /*!
@@ -65,7 +66,6 @@ void TTMPEG2Window2::showVideoFrame()
 	if (mpeg2Decoder == 0) return;
 	if (frameInfo    == 0) return;
 
-   //frameInfo = mpeg2_decoder->getFrameInfo();
    if (frameInfo->type != mpeg2Decoder->desiredFrameType) {
     	  qDebug("decode frame is %d / desired was %d", frameInfo->type, mpeg2Decoder->desiredFrameType);
 
