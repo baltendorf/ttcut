@@ -2,7 +2,7 @@
 TTCut-Changelog
 --------------------------------------------------------------------------------
 
-0.20.4: * New TTCut official release candidat
+0.20.4: * New TTCut official release candidat for upcoming release 0.21.0
         * Thread support and thread abort should work
         * Minor fixes
 
