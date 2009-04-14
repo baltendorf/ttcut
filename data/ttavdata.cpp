@@ -573,7 +573,10 @@ void TTAVData::onCutPreviewAborted()
   disconnect(mpThreadTaskPool, SIGNAL(aborted()),
 			   		 this,             SLOT(onCutPreviewAborted()));
 
-	if (cutPreviewTask != 0) delete cutPreviewTask;
+	if (cutPreviewTask != 0) {
+    delete cutPreviewTask;
+    cutPreviewTask = 0;
+  }
 }
 
 /*!

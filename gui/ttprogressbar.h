@@ -34,24 +34,14 @@
 
 #include <QDialog>
 #include <QDateTime>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QGridLayout>
 
+#include "ui_ttprogressform.h"
 #include "../common/ttcut.h"
 #include "ttprocessform.h"
 
-class QVBoxLayout;
-class QHBoxLayout;
-class QGridLayout;
-class QLabel;
-class QProgressBar;
-class QPushButton;
-
 class TTThreadTask;
 
-class TTProgressBar : public QDialog
+class TTProgressBar : public QDialog, Ui::TTProgressForm
 {
     Q_OBJECT
 
@@ -88,18 +78,7 @@ private:
     void hideProcessForm();
 
  private:
-    QGridLayout*  TTProgressBarLayout;
-    QHBoxLayout*  Layout1;
-    QHBoxLayout*  Layout2;
-    QLabel*       laAction;
-    QLabel*       actionString;
-    QLabel*       laElapsedTime;
-    QLabel*       elapsedTimeString;
-    QLabel*       laPercentage;
-    QLabel*       percentageString;
-    QProgressBar* progressBar;
     TTProcessForm* processForm;
-    QPushButton*  pbCancel;
 
     bool          userCancel;
     QTime         elapsedTime;

@@ -998,7 +998,8 @@ void TTMpeg2VideoStream::encodePart(int start, int end, TTCutParameter* cr)
   TTTranscodeProvider* transcode_prov = new TTTranscodeProvider(encParams);
 
   connect(transcode_prov, SIGNAL(statusReport(int, const QString&, quint64)),
-          this,           SIGNAL(statusReport(int, const QString&, quint64)));
+          this,           SIGNAL(statusReport(int, const QString&, quint64)),
+          Qt::DirectConnection);
 
   qApp->processEvents();
   bool success = transcode_prov->encodePart((TTVideoStream*)this, start, end);

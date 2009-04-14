@@ -81,11 +81,14 @@ void TTCutPreviewTask::operation()
 	bool hasAudio   = false;
 	int  numPreview = mpPreviewCutList->count() / 2 + 1;
 
-	emit statusReport(this, StatusReportArgs::Start, tr("create cut preview clips"), 2*numPreview);
+	onStatusReport(this, StatusReportArgs::Start, tr("create cut preview clips"), 2*numPreview);
 
   for (int i = 0; i < numPreview; i++) {
   	if (mAbort)
   		throw new TTAbortException("User abort request in TTCutPreviewTask!");
+
+    onStatusReport(this, StatusReportArgs::Step, QString("create preview cut %1 from %2").
+        arg(i+1).arg(numPreview), i+1);
 
     TTCutList* tmpCutList = new TTCutList();
 
@@ -131,14 +134,14 @@ void TTCutPreviewTask::operation()
 
     qDebug() << "preview cut " << i+1 << " from " << numPreview << " created";
 
-    emit statusReport(this, StatusReportArgs::Step, QString("preview cut %1 from %2 created").
+    onStatusReport(this, StatusReportArgs::Step, QString("preview cut %1 from %2 created").
         arg(i+1).arg(numPreview), i+1);
     delete tmpCutList;
   }
 
   for (int i = 0; i < numPreview; i++) {
-  	emit statusReport(this, StatusReportArgs::Step, QString("mplexing preview cut %1 from %2").
-      arg(i+1).arg(numPreview), i+4);
+  	onStatusReport(this, StatusReportArgs::Step, QString("mplexing preview cut %1 from %2").
+      arg(i+1).arg(numPreview), numPreview+i+1);
   	qApp->processEvents();
 
     QString mplex_command = hasAudio
@@ -156,7 +159,7 @@ void TTCutPreviewTask::operation()
     system(qPrintable(mplex_command));
   }
 
-  emit statusReport(this, StatusReportArgs::Finished, tr("preview cuts done"), 0);
+  onStatusReport(this, StatusReportArgs::Finished, tr("preview cuts done"), 0);
   emit finished(mpPreviewCutList);
 }
 

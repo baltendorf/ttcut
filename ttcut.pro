@@ -69,10 +69,11 @@ FORMS       = ui/audiofilelistwidget.ui\
               ui/avcutdialog.ui\
               ui/aboutdlg.ui\
               ui/ttmessagewindow.ui\
-#              ui/mainwindow.ui\
+#             ui/mainwindow.ui\
               ui/ttcutmainwnd_new.ui\
               ui/ttcutvideoinfowidget.ui\
-              ui/ttcutframenavigationwidget.ui
+              ui/ttcutframenavigationwidget.ui\
+              ui/ttprogressform.ui
 HEADERS     = common/ttcut.h\
               common/ttthreadtask.h\
               common/ttthreadtaskpool.h\

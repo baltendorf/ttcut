@@ -102,11 +102,6 @@ void TTThreadTask::onStatusReport(TTThreadTask* task, int state, const QString& 
   		state == StatusReportArgs::Finished)
     mStepCount = value;
 
-
-  if (state == StatusReportArgs::ShowProcessForm ||
-  		state == StatusReportArgs::HideProcessForm)
-  	qDebug("process form event...");
-
   emit statusReport(task, state, msg, value);
 }
 

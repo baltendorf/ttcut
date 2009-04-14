@@ -62,82 +62,25 @@
  * COnstructor
  */
 TTProgressBar::TTProgressBar(QWidget* parent)
-    : QDialog(parent)
+              : QDialog(parent)
 {
+  setupUi(this);
+
   // initialize variables
   userCancel = false;
 
-  resize( 640, 100 );
-    setMinimumSize( QSize( 640, 100 ) );
-    setMaximumSize( QSize( 640, 100 ) );
-    setBaseSize( QSize( 640, 100 ) );
+  // signals and slot connection
+  connect( pbCancel, SIGNAL( clicked() ), SLOT( slotCancel() ) );
 
-    setWindowTitle( tr( "Progress Info" ) );
+  // initialize
+  elapsedMsec = 0;
+  elapsedTime.start();
 
-    TTProgressBarLayout = new QGridLayout( this );
-    TTProgressBarLayout->setSpacing( 6 );
-    TTProgressBarLayout->setMargin( 11 );
+  totalSteps     = 0;
+  normTotalSteps = 1000;
 
-    Layout1 = new QHBoxLayout;
-    Layout1->setSpacing( 6 );
-    Layout1->setMargin( 0 );
-
-    laAction = new QLabel( this );
-    laAction->setText( tr( "Action:" ) );
-    Layout1->addWidget( laAction );
-
-    actionString = new QLabel( this );
-    actionString->setMinimumSize( QSize( 250, 0 ) );
-    actionString->setText( tr( "TextLabel2" ) );
-    Layout1->addWidget( actionString );
-
-    laElapsedTime = new QLabel( this );
-    laElapsedTime->setText( tr( "Elapsed time:" ) );
-    Layout1->addWidget( laElapsedTime );
-
-    elapsedTimeString = new QLabel( this );
-    elapsedTimeString->setText( tr( "00:00:00" ) );
-    Layout1->addWidget( elapsedTimeString );
-    QSpacerItem* spacer = new QSpacerItem( 20, 20, QSizePolicy::Expanding, QSizePolicy::Minimum );
-    Layout1->addItem( spacer );
-
-    laPercentage = new QLabel( this );
-    laPercentage->setText( tr( "Percentage complete:" ) );
-    Layout1->addWidget( laPercentage );
-
-    percentageString = new QLabel( this );
-    percentageString->setText( tr( "0%" ) );
-    Layout1->addWidget( percentageString );
-
-    TTProgressBarLayout->addLayout( Layout1, 0, 0 );
-
-    Layout2 = new QHBoxLayout;
-    Layout2->setSpacing( 6 );
-    Layout2->setMargin( 0 );
-
-    progressBar = new QProgressBar( this );
-    progressBar->setTextVisible( false );
-    Layout2->addWidget( progressBar );
-
-    // TODO: find a way for canceling operations
-    pbCancel = new QPushButton( this );
-    pbCancel->setText( tr( "Cancel" ) );
-    Layout2->addWidget( pbCancel );
-
-    TTProgressBarLayout->addLayout( Layout2, 1, 0 );
-
-    // signals and slot connection
-    connect( pbCancel, SIGNAL( clicked() ), SLOT( slotCancel() ) );
-
-    // initialize
-    elapsedMsec = 0;
-    elapsedTime.start();
-
-    totalSteps     = 0;
-    normTotalSteps = 1000;
-
-    progressBar->setMinimum( 0 );
-    progressBar->setMaximum( normTotalSteps );
+  progressBar->setMinimum( 0 );
+  progressBar->setMaximum( normTotalSteps );
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -299,8 +242,8 @@ bool TTProgressBar::isCanceled()
  */
 void TTProgressBar::showProcessForm()
 {
-	qDebug("TTProgressBar::showProcessForm");
-	//hide();
+  if (processForm != 0) return;
+
 	processForm = new TTProcessForm(TTCut::mainWindow);
 	processForm->setModal(true);
 	processForm->showCancelButton(false);
@@ -322,13 +265,9 @@ void TTProgressBar::addProcessLine(const QString& line)
  */
 void TTProgressBar::hideProcessForm()
 {
-	qDebug("TTProgressBar::hideProcessForm");
 	if (processForm != 0) {
 		processForm->hide();
 		delete processForm;
 		processForm = 0;
-		//qApp->processEvents();
 	}
-
-  //show();
 }

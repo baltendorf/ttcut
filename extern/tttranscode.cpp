@@ -34,6 +34,7 @@
 
 #include "../avstream/ttaviwriter.h"
 
+#include <QDebug>
 #include <QCoreApplication>
 #include <QTimer>
 #include <QTextStream>
@@ -104,7 +105,6 @@ void TTTranscodeProvider::writeAVIFile(TTVideoStream* vs, int start, int end)
  */
 bool TTTranscodeProvider::encodePart(TTVideoStream* vStream, int start, int end)
 {
-	qDebug("emit show process form...");
 	emit statusReport(StatusReportArgs::ShowProcessForm, "encode part", 0);
 	qApp->processEvents();
 
@@ -135,7 +135,6 @@ bool TTTranscodeProvider::encodePart(TTVideoStream* vStream, int start, int end)
      }
    }
 
-   qDebug("emit hide process form...");
   emit statusReport(StatusReportArgs::HideProcessForm, "encode finished", 0);
   qApp->processEvents();
 
@@ -279,7 +278,7 @@ int count = 0;
   while (1) {//!out.atEnd()) {
     QString line = out.readLine();
     count++;
-    log->infoMsg(__FILE__, __LINE__, QString("%1").arg(line));
+    //log->infoMsg(__FILE__, __LINE__, QString("%1").arg(line));
     //emit processOutput(line);
     emit statusReport(StatusReportArgs::AddProcessLine, line, 0);
     qApp->processEvents();

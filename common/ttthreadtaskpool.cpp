@@ -86,11 +86,12 @@ void TTThreadTaskPool::start(TTThreadTask* task, bool runSyncron, int priority)
 
   mActiveThreadCount++;
 
-  log->debugMsg(__FILE__, __LINE__, QString("enqueue task %1, current taks count %2").
-      arg(task->taskName()).
-      arg(mActiveThreadCount));
-
   mTaskQueue.enqueue(task);
+
+  log->debugMsg(__FILE__, __LINE__, QString("enqueue task %1, current task count %2").
+      arg(task->taskName()).
+      //arg(mActiveThreadCount));
+      arg(mTaskQueue.count()));
 
   if (runSyncron)
   	task->run();
@@ -197,6 +198,7 @@ int TTThreadTaskPool::overallPercentage()
 
     mOverallStepCount += task->processValue();
   }
+
 
   return (mOverallStepCount > 0)
       ? (int)((double)mOverallStepCount / (double)(100000.0*mTaskQueue.count()) * 1000.0)
