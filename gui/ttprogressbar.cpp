@@ -36,6 +36,7 @@
 #include "../common/istatusreporter.h"
 #include "../common/ttthreadtask.h"
 
+#include <QDebug>
 #include <QApplication>
 #include <QLabel>
 #include <QProgressBar>
@@ -71,6 +72,8 @@ TTProgressBar::TTProgressBar(QWidget* parent)
 
   // signals and slot connection
   connect( pbCancel, SIGNAL( clicked() ), SLOT( slotCancel() ) );
+
+  processForm = 0;
 
   // initialize
   elapsedMsec = 0;
@@ -167,9 +170,9 @@ void TTProgressBar::slotCancel()
   //qApp->processEvents();
 }
 
-void TTProgressBar::setProgress2(int state, const QString& msg, int progress, QTime time)
+void TTProgressBar::setProgress2(QUuid id, int state, const QString& msg, int progress, QTime time)
 {
-  //qDebug("setProgress: %d / %s / %lld", state, qPrintable(msg), value);
+  //qDebug("setProgress: %d / %s / %lld", state, qPrintable(msg), progress);
   if (state == StatusReportArgs::Init)
   {
   	resetProgress();
@@ -177,6 +180,7 @@ void TTProgressBar::setProgress2(int state, const QString& msg, int progress, QT
   }
 
   if (state == StatusReportArgs::Start) {
+    qDebug() <<  "init progress for taskID " << id;
   	setActionText(msg);
   }
 

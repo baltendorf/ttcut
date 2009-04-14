@@ -29,6 +29,7 @@
 
 #include <QtGui>
 #include <QPixmap>
+#include <QDebug>
 
 #include "ttcutmainwindow.h"
 
@@ -747,7 +748,7 @@ void TTCutMainWindow::onSetCutOut(int index)
 /* /////////////////////////////////////////////////////////////////////////////
  * onStatusReport;
  */
-void TTCutMainWindow::onStatusReport(TTThreadTask*, int state, const QString& msg, quint64)
+void TTCutMainWindow::onStatusReport(TTThreadTask* task, int state, const QString& msg, quint64)
 {
 	switch(state) {
 		case StatusReportArgs::Init:
@@ -795,8 +796,8 @@ void TTCutMainWindow::onStatusReport(TTThreadTask*, int state, const QString& ms
 			break;
 	}
 
-    if (progressBar != 0)
-    	progressBar->setProgress2(state, msg, mpAVData->totalProcess(), mpAVData->totalTime());
+    if (progressBar != 0 && task != 0)
+    	progressBar->setProgress2(task->taskID(), state, msg, mpAVData->totalProcess(), mpAVData->totalTime());
  }
 
 /* /////////////////////////////////////////////////////////////////////////////

@@ -34,6 +34,7 @@
 
 #include <QDialog>
 #include <QDateTime>
+#include <QUuid>
 
 #include "ui_ttprogressform.h"
 #include "../common/ttcut.h"
@@ -66,7 +67,7 @@ public:
 
     public slots:
     void slotCancel();
-    void setProgress2(int state, const QString& msg, int progress, QTime time);
+    void setProgress2(const QUuid id, int state, const QString& msg, int progress, QTime time);
 
     signals:
       void cancel();
