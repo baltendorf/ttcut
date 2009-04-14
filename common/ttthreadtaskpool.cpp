@@ -189,7 +189,11 @@ int TTThreadTaskPool::overallPercentage()
   for (int i=0; i < mTaskQueue.count(); i++) {
     TTThreadTask* task = mTaskQueue.at(i);
 
-    if (task == 0) continue;
+    if (task == 0) {
+      qDebug() << "task was already finished; current overall step count "
+               << mOverallStepCount;
+      continue;
+    } 
 
     mOverallStepCount += task->processValue();
   }

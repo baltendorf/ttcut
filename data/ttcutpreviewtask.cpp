@@ -129,6 +129,8 @@ void TTCutPreviewTask::operation()
     	throw ex;
     }
 
+    qDebug() << "preview cut " << i+1 << " from " << numPreview << " created";
+
     emit statusReport(this, StatusReportArgs::Step, QString("preview cut %1 from %2 created").
         arg(i+1).arg(numPreview), i+1);
     delete tmpCutList;
