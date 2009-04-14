@@ -31,6 +31,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "ttprogressbar.h"
+#include "tttaskprogress.h"
 
 #include "../common/ttexception.h"
 #include "../common/istatusreporter.h"
@@ -157,6 +158,8 @@ void TTProgressBar::resetProgress()
 	totalSteps = 0;
 
   progressBar->reset();
+
+
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -181,6 +184,10 @@ void TTProgressBar::setProgress2(QUuid id, int state, const QString& msg, int pr
 
   if (state == StatusReportArgs::Start) {
     qDebug() <<  "init progress for taskID " << id;
+
+    TTTaskProgress* task = new TTTaskProgress(this);
+    verticalLayout->addWidget(task);
+
   	setActionText(msg);
   }
 

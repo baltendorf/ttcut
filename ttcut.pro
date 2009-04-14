@@ -73,7 +73,8 @@ FORMS       = ui/audiofilelistwidget.ui\
               ui/ttcutmainwnd_new.ui\
               ui/ttcutvideoinfowidget.ui\
               ui/ttcutframenavigationwidget.ui\
-              ui/ttprogressform.ui
+              ui/ttprogressform.ui\
+              ui/tttaskprogresswidget.ui
 HEADERS     = common/ttcut.h\
               common/ttthreadtask.h\
               common/ttthreadtaskpool.h\
@@ -137,6 +138,7 @@ HEADERS     = common/ttcut.h\
               gui/ttcuttreeview.h\
               gui/ttprogressbar.h\
               gui/ttprocessform.h\
+              gui/tttaskprogress.h\
               gui/ttcutpreview.h\
               gui/ttvideoplayer.h\
               gui/ttphononwidget.h\
@@ -204,6 +206,7 @@ SOURCES     = common/ttcut.cpp\
               gui/ttstreamnavigator.cpp\
               gui/ttcuttreeview.cpp\
               gui/ttprogressbar.cpp\
+              gui/tttaskprogress.cpp\
               gui/ttprocessform.cpp\
               gui/ttcutpreview.cpp\
               gui/ttvideoplayer.cpp\

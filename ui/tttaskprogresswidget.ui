@@ -1,0 +1,50 @@
+<ui version="4.0" >
+ <class>TTTaskProgressWidget</class>
+ <widget class="QFrame" name="TTTaskProgressWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>518</width>
+    <height>69</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>TaskProgressWidget</string>
+  </property>
+  <property name="frameShape" >
+   <enum>QFrame::Panel</enum>
+  </property>
+  <property name="frameShadow" >
+   <enum>QFrame::Plain</enum>
+  </property>
+  <layout class="QGridLayout" name="gridLayout" >
+   <item row="0" column="0" >
+    <widget class="QLabel" name="lblAction" >
+     <property name="text" >
+      <string>Action</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" >
+    <widget class="QLabel" name="lblPercent" >
+     <property name="layoutDirection" >
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="text" >
+      <string>Percent</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2" >
+    <widget class="QProgressBar" name="progressBar" >
+     <property name="value" >
+      <number>24</number>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
