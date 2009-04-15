@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de">
+<!DOCTYPE TS>
+<TS version="2.0" language="de">
 <defaultcodec></defaultcodec>
 <context>
     <name>ProcessViewWidget</name>
@@ -590,12 +591,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/ttcutmainwnd_new.ui" line="556"/>
         <source>Settings...</source>
-        <translation type="unfinished">Einstellungen...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/ttcutmainwnd_new.ui" line="564"/>
         <source>About</source>
-        <translation type="unfinished">Über</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/ttcutmainwnd_new.ui" line="579"/>
@@ -1129,7 +1130,7 @@ p, li { white-space: pre-wrap; }
         <source>TTMainWindow</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../ui/ttmessagewindow.ui" line="76"/>
         <source>ljg dfjk gsdklöfjglskdfjg dkföjglsdjf gdföjgksdjfg dfjgöksldf dköfgjsdlfjg djfgkjd fdjgkldfj gdjfgkljkdfj gkdfjgldöjflgö dkföjgkdfj gödjfkgjdöfkfdjg ödfjkglsjdf gdklsfjkglsdjf gködjflgjsdfl gjödfjkgjdf gökdfg</source>
         <translation type="unfinished"></translation>
