@@ -162,7 +162,7 @@ void TTMPEGAudioStream::parseAudioHeader( quint8* data, int offset, TTMpegAudioH
       frame_length = (int)trunc(72*audio_header->bitRate()/audio_header->sampleRate()+audio_header->padding_bit);
     break;
   default:
-    log->errorMsg(__FILE__, __LINE__, "error parsing audio header!");
+    log->errorMsg(__FILE__, __LINE__, QString("Reserved MPEG audio verion %1!").arg(audio_header->version));
     frame_length = 0;
     frame_time   = (double)0.0;
     break;
