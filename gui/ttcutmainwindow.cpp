@@ -750,55 +750,32 @@ void TTCutMainWindow::onSetCutOut(int index)
  */
 void TTCutMainWindow::onStatusReport(TTThreadTask* task, int state, const QString& msg, quint64)
 {
-	switch(state) {
-		case StatusReportArgs::Init:
-			if (progressBar == 0) {
-				//qDebug("init progress bar -> create new progress bar");
-				progressBar = new TTProgressBar(this);
-				connect(progressBar, SIGNAL(cancel()), mpAVData, SLOT(onUserAbortRequest()));
-			}
-			if (progressBar == 0) {
-				//qDebug("progress is null!");
-				return;
-			}
-			//qDebug("INIT -> show progress bar");
-			progressBar->setActionText(msg);
-			progressBar->showBar();
+  switch(state) {
+    case StatusReportArgs::Init:
+      if (progressBar == 0) {
+        progressBar = new TTProgressBar(this);
+        connect(progressBar, SIGNAL(cancel()), mpAVData, SLOT(onUserAbortRequest()));
+      }
+      break;
 
-			statusBar()->showMessage("Begin progress");
-			break;
+    case StatusReportArgs::Start:
+      if (progressBar != 0)
+        progressBar->showBar();
+      break;
 
-		case StatusReportArgs::Start:
-			if (progressBar != 0)
-				progressBar->showBar();
-			break;
+    case StatusReportArgs::Exit:
+    case StatusReportArgs::Error:
+    case StatusReportArgs::Canceled:
+      if (progressBar != 0) {
+        progressBar->hideBar();
+      }
+      statusBar()->showMessage("ready");
+      break;
+  }
 
-		case StatusReportArgs::Step:
-			break;
-
-		case StatusReportArgs::Finished:
-			break;
-
-		case StatusReportArgs::ShowProcessForm:
-		case StatusReportArgs::AddProcessLine:
-		case StatusReportArgs::HideProcessForm:
-			break;
-		case StatusReportArgs::Exit:
-		case StatusReportArgs::Error:
-		case StatusReportArgs::Canceled:
-			if (progressBar != 0) {
-				//qDebug("exit progress bar / delete progress bar");
-				progressBar->hideBar();
-				//delete progressBar;
-				//progressBar = 0;
-			}
-			statusBar()->showMessage("ready");
-			break;
-	}
-
-    if (progressBar != 0 && task != 0)
-    	progressBar->setProgress2(task->taskID(), state, msg, mpAVData->totalProcess(), mpAVData->totalTime());
- }
+  if (progressBar != 0)
+    progressBar->onSetProgress(task, state, msg, mpAVData->totalProcess(), mpAVData->totalTime());
+}
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Update recent file menu actions

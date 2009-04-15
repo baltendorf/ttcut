@@ -35,13 +35,21 @@
 #include "ui_tttaskprogresswidget.h"
 #include "../common/ttcut.h"
 
+class TTThreadTask;
+
 class TTTaskProgress : public QFrame, Ui::TTTaskProgressWidget
 {
   Q_OBJECT
 
   public:
-    TTTaskProgress(QWidget* parent = 0);
+    TTTaskProgress(QWidget* parent, TTThreadTask* task);
     ~TTTaskProgress();
+
+  public slots:
+    void onRefreshProgress(const QString& msg);
+
+  private:
+    TTThreadTask* mpTask;
 };
 
 #endif // TTTASKPROGRESS_H

@@ -1,13 +1,10 @@
 /*----------------------------------------------------------------------------*/
-/* COPYRIGHT: TriTime (c) 2003/2005 / www.tritime.org                         */
+/* COPYRIGHT: TriTime (c) 2003/2010 / www.tritime.org                         */
 /*----------------------------------------------------------------------------*/
-/* PROJEKT  : TTCUT 2005                                                      */
+/* PROJEKT  : TTCUT 2009                                                      */
 /* FILE     : ttprogressbar.cpp                                               */
 /*----------------------------------------------------------------------------*/
 /* AUTHOR  : b. altendorf (E-Mail: b.altendorf@tritime.de)   DATE: 03/11/2005 */
-/* MODIFIED: b. altendorf                                    DATE: 06/05/2005 */
-/* MODIFIED: b. altendorf                                    DATE: 06/02/2006 */
-/* MODIFIED: b. altendorf                                    DATE: 04/24/2007 */
 /*----------------------------------------------------------------------------*/
 
 // ----------------------------------------------------------------------------
@@ -39,213 +36,196 @@
 
 #include <QDebug>
 #include <QApplication>
-#include <QLabel>
-#include <QProgressBar>
-#include <QPushButton>
-#include <QLayout>
-#include <QVariant>
-#include <QToolTip>
-#include <QDateTime>
-#include <QHBoxLayout>
-#include <QGridLayout>
 
-	 /*  static const int Init = 0x01;
-	   static const int Start = 0x02;
-	   static const int Step = 0x03;
-	   static const int Finished = 0x04;
-	  static const int  Exit = 0x05;
-	  static const int  Canceled = 0x06;
-	  static const int  Error = 0x07;
-	  static const int  ShowProcessForm = 0x08;
-	  static const int  AddProcessLine = 0x09;
-	  static const int  HideProcessForm = 0x10;*/
-
-/* /////////////////////////////////////////////////////////////////////////////
- * COnstructor
+/**
+ * Constructor
  */
 TTProgressBar::TTProgressBar(QWidget* parent)
               : QDialog(parent)
 {
   setupUi(this);
 
-  // initialize variables
-  userCancel = false;
+  scrollArea->hide();
+  this->adjustSize();
 
-  // signals and slot connection
-  connect( pbCancel, SIGNAL( clicked() ), SLOT( slotCancel() ) );
-
-  processForm = 0;
-
-  // initialize
-  elapsedMsec = 0;
-  elapsedTime.start();
-
-  totalSteps     = 0;
+  processForm    = 0;
   normTotalSteps = 1000;
 
   progressBar->setMinimum( 0 );
   progressBar->setMaximum( normTotalSteps );
+
+  taskProgressHash = new QHash<QUuid, TTTaskProgress*>;
+
+  connect(pbCancel,  SIGNAL(clicked()),         this,  SLOT(onBtnCancelClicked()));
+  connect(cbDetails, SIGNAL(stateChanged(int)), this, SLOT(onDetailsStateChanged(int)));
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
- *  Destroys the object and frees any allocated resources
+/**
+ * Destructor
  */
 TTProgressBar::~TTProgressBar()
 {
- //elapsedTime.elapsed();
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Set the displayed action text
+/**
+ * Show the progress form
+ */
+void TTProgressBar::showBar()
+{
+  setModal(false);
+  show();
+
+  qApp->processEvents();
+}
+
+/**
+ * Hide the progress form
+ */
+void TTProgressBar::hideBar()
+{
+  setModal(true);
+  hide();
+  
+  qApp->processEvents();
+}
+
+/**
+ * Set the action text
  */
 void TTProgressBar::setActionText( QString action )
 {
   actionString->setText( action );
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Set the displayed elapsed time
+/**
+ * Set the current total progress values
  */
-void TTProgressBar::setElapsedTime( __attribute__ ((unused))QTime time )
+void TTProgressBar::setTotalProgress(int progress, QTime time)
 {
-
-}
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Set the displayed percent value
- */
-void TTProgressBar::setPercentages( __attribute__ ((unused))float percent )
-{
-
-}
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Initialize the progress bar with the total number of steps
- */
-//TODO: Remove second parameter for refresh intervall
-void TTProgressBar::setTotalSteps(quint64 t_steps, int )
-{
-  totalSteps += t_steps;
-
-  //int currentProgress = progressBar->value();
-}
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Set the current progress
- */
-void TTProgressBar::setProgress(int progress, QTime time)
-{
-    strPercentage.sprintf( "%02.0lf%%", (float)progress/10.0);
-
-    percentageString->setText(strPercentage);
+    percentageString->setText(QString("%1%").arg((float)progress/10.0, 0, 'f', 0));
     progressBar->setValue(progress);
     elapsedTimeString->setText(time.toString("hh:mm:ss"));
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Set the progress bar to 100%
+/**
+ * Set the task's progress value
+ */
+void TTProgressBar::setTaskProgress(TTThreadTask* task, const QString& msg)
+{
+  if (task == 0) return;
+  if (!taskProgressHash->contains(task->taskID())) return;
+
+  TTTaskProgress* tp = taskProgressHash->value(task->taskID());
+
+  if (tp == 0) return;
+
+  tp->onRefreshProgress(msg);
+}
+
+/**
+ * Set the progress value to 100%
  */
 void TTProgressBar::setComplete()
 {
 	progressBar->setValue(normTotalSteps);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Reset the progress bar
+/**
+ * Reset the progress bar and remove all taskprogress widgets
  */
 void TTProgressBar::resetProgress()
 {
-	totalSteps = 0;
-
   progressBar->reset();
 
+  foreach (TTTaskProgress* value, *taskProgressHash) {
+    if (value == 0) continue;
 
+    verticalLayout->removeWidget(value);
+    delete value;
+    value = 0;
+  }
+  taskProgressHash->clear();
+  scrollArea->adjustSize();
+  this->adjustSize();
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/**
+ * Show/hide the details view
+ */
+void TTProgressBar::onDetailsStateChanged(int)
+{
+  if (cbDetails->isChecked()) {
+    scrollArea->show();
+  } else {
+    scrollArea->hide();
+  }
+  this->adjustSize();
+}
+
+/**
  * Button cancel clicked
  */
-void TTProgressBar::slotCancel()
+void TTProgressBar::onBtnCancelClicked()
 {
-  qDebug("TTProgressBar::slotCancel");
-  userCancel = true;
   emit cancel();
-  //qApp->processEvents();
 }
 
-void TTProgressBar::setProgress2(QUuid id, int state, const QString& msg, int progress, QTime time)
+/**
+ * Set progress values
+ */
+void TTProgressBar::onSetProgress(TTThreadTask* task, int state, const QString& msg, int totalProgress, QTime totalTime)
 {
-  //qDebug("setProgress: %d / %s / %lld", state, qPrintable(msg), progress);
-  if (state == StatusReportArgs::Init)
-  {
-  	resetProgress();
-    setActionText(msg);
+  switch (state) {
+    case StatusReportArgs::Init:
+      qDebug("onSetProgress::Init");
+      resetProgress();
+      setActionText(msg);
+      break;
+
+    case StatusReportArgs::Start:
+      qDebug("onSetProgress::Start");      
+      setActionText(msg);
+      addTaskProgress(task);
+      break;
+
+    case StatusReportArgs::Step:
+      setTotalProgress(totalProgress, totalTime);
+      setTaskProgress(task, msg);
+      break;
+
+    case StatusReportArgs::Finished:
+      qDebug("onSetProgress::Finished");
+      break;
+
+    case StatusReportArgs::ShowProcessForm:
+      showProcessForm();
+      break;
+
+    case StatusReportArgs::AddProcessLine:
+      addProcessLine(msg);
+      break;
+
+    case StatusReportArgs::HideProcessForm:
+      hideProcessForm();
+      break;
+
+    default:
+      break;
   }
-
-  if (state == StatusReportArgs::Start) {
-    qDebug() <<  "init progress for taskID " << id;
-
-    TTTaskProgress* task = new TTTaskProgress(this);
-    verticalLayout->addWidget(task);
-
-  	setActionText(msg);
-  }
-
-  if (state == StatusReportArgs::ShowProcessForm)
-  	showProcessForm();
-
-  if (state == StatusReportArgs::HideProcessForm)
-  	hideProcessForm();
-
-  if (state == StatusReportArgs::Step)
-    setProgress(progress, time);
-
-  if (state == StatusReportArgs::AddProcessLine)
-  	addProcessLine(msg);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Hide the progress bar
+/**
+ * Add progress bar for the given task
  */
-void TTProgressBar::hideBar()
+void TTProgressBar::addTaskProgress(TTThreadTask* task)
 {
-  //if ( isVisible() )
-  //{
-    hide();
-    setModal( true );
-  //}
-  //else
-  //{
-  //  show();
-  //  setModal( false );
-  //}
-  qApp->processEvents();
-}
+  if (task == 0) return;
+  if (taskProgressHash->contains(task->taskID())) return;
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Show the progress bar
- */
-void TTProgressBar::showBar()
-{
-  //if ( !isVisible() )
-  //{
-    setModal( false );
-    show();
-  //}
-  //else
-  //{
-  //  hide();
-  //  setModal( true );
-  //}
-  qApp->processEvents();
-}
+  TTTaskProgress* taskProgress = new TTTaskProgress(this, task);
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Property for user cancel action
- */
-bool TTProgressBar::isCanceled()
-{
-  return userCancel;
+  taskProgressHash->insert(task->taskID(), taskProgress);
+  verticalLayout->addWidget(taskProgress);
 }
 
 /*!
@@ -255,8 +235,10 @@ void TTProgressBar::showProcessForm()
 {
   if (processForm != 0) return;
 
+  //hideBar();
+
 	processForm = new TTProcessForm(TTCut::mainWindow);
-	processForm->setModal(true);
+	processForm->setModal(false);
 	processForm->showCancelButton(false);
 	processForm->show();
 }
@@ -281,4 +263,6 @@ void TTProgressBar::hideProcessForm()
 		delete processForm;
 		processForm = 0;
 	}
+
+  //showBar();
 }

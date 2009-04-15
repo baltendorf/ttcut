@@ -30,16 +30,30 @@
 
 #include "tttaskprogress.h"
 
+#include "../common/ttthreadtask.h"
 
-TTTaskProgress::TTTaskProgress(QWidget* parent)
+#include <QDebug>
+
+TTTaskProgress::TTTaskProgress(QWidget* parent, TTThreadTask* task)
     : QFrame(parent)
 {
-
   setupUi( this );
+
+  progressBar->setMinimum(0);
+  progressBar->setMaximum(1000);
+
+  mpTask = task;
 }
 
 TTTaskProgress::~TTTaskProgress()
 {
 
+}
+
+void TTTaskProgress::onRefreshProgress(const QString& msg)
+{
+  lblAction->setText(msg);
+  lblPercent->setText(QString("%1%").arg(mpTask->processValue()/1000.0, 0, 'f', 0));
+  progressBar->setValue(mpTask->processValue()/100);
 }
 

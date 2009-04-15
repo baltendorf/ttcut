@@ -1,12 +1,10 @@
 /*----------------------------------------------------------------------------*/
-/* COPYRIGHT: TriTime (c) 2003/2005 / www.tritime.org                         */
+/* COPYRIGHT: TriTime (c) 2003/2010 / www.tritime.org                         */
 /*----------------------------------------------------------------------------*/
-/* PROJEKT  : TTCUT 2005                                                      */
+/* PROJEKT  : TTCUT 2009                                                      */
 /* FILE     : ttprogressbar.h                                                 */
 /*----------------------------------------------------------------------------*/
 /* AUTHOR  : b. altendorf (E-Mail: b.altendorf@tritime.de)   DATE: 03/11/2005 */
-/* MODIFIED: b. altendorf                                    DATE: 06/05/2005 */
-/* MODIFIED: b. altendorf                                    DATE: 04/24/2007 */
 /*----------------------------------------------------------------------------*/
 
 // ----------------------------------------------------------------------------
@@ -35,62 +33,53 @@
 #include <QDialog>
 #include <QDateTime>
 #include <QUuid>
+#include <QHash>
 
 #include "ui_ttprogressform.h"
 #include "../common/ttcut.h"
 #include "ttprocessform.h"
 
 class TTThreadTask;
+class TTTaskProgress;
 
 class TTProgressBar : public QDialog, Ui::TTProgressForm
 {
-    Q_OBJECT
+  Q_OBJECT
 
-public:
+  public:
     TTProgressBar(QWidget* parent = 0);
     ~TTProgressBar();
 
-    // public methods
     void setActionText( QString action );
-    void setElapsedTime( QTime time );
-    void setPercentages( float percent );
-
-    void setTotalSteps(quint64  t_steps, int r_int=0);
-    void setProgress(int progress, QTime time);
-    void setComplete();
-    void resetProgress();
-
     void showBar();
     void hideBar();
 
-    bool isCanceled();
-
     public slots:
-    void slotCancel();
-    void setProgress2(const QUuid id, int state, const QString& msg, int progress, QTime time);
+      void onDetailsStateChanged(int);
+      void onBtnCancelClicked();
+      void onSetProgress(TTThreadTask* task, int state, const QString& msg, int totalProgress, QTime totalTime);
 
     signals:
       void cancel();
 
-private:
-    void updateProgressBar();
-    void showProcessForm();
-    void addProcessLine(const QString& line);
-    void hideProcessForm();
+    private:
+      void addTaskProgress(TTThreadTask* task);
+      void setTotalSteps(quint64  t_steps, int r_int=0);
+      void setTotalProgress(int progress, QTime time);
+      void setTaskProgress(TTThreadTask* task, const QString& msg);
 
- private:
+      void setComplete();
+      void resetProgress();
+
+      void updateProgressBar();
+      void showProcessForm();
+      void addProcessLine(const QString& line);
+      void hideProcessForm();
+
+  private:
     TTProcessForm* processForm;
-
-    bool          userCancel;
-    QTime         elapsedTime;
-    int           elapsedMsec;
-    QString       strPercentage;
-    quint64      totalSteps;
-    int           refresh_intervall;
-    int           refresh;
-    int           normTotalSteps;
-    int           normProgress;
-    double        progressPercent;
+    QHash<QUuid, TTTaskProgress*>* taskProgressHash;
+    int            normTotalSteps;
 
 };
 #endif // TTPROGRESSBAR_H
