@@ -66,14 +66,12 @@ void TTMPEG2Window2::showVideoFrame()
 	if (mpeg2Decoder == 0) return;
 	if (frameInfo    == 0) return;
 
-   if (frameInfo->type != mpeg2Decoder->desiredFrameType) {
-    	  qDebug("decode frame is %d / desired was %d", frameInfo->type, mpeg2Decoder->desiredFrameType);
-
+   /*if (frameInfo->type != mpeg2Decoder->desiredFrameType) {
     	  TTMessageLogger::getInstance()->errorMsg(__FILE__, __LINE__,
     			  QString("decoded frame is %1 / desired was %2").
     			  arg(frameInfo->type).
     			  arg(mpeg2Decoder->desiredFrameType));
-   }
+   }*/
 
    float scaleFactorY = 1.0;
 
