@@ -28,7 +28,11 @@
 // Qt headers
 #include <QApplication>
 #include <QMessageBox>
-//#include <QPlastiqueStyle>
+#include <QTranslator>
+#include <QLibraryInfo>
+#include <QLocale>
+#include <QDebug>
+
 #ifdef MACX
 #include <QMacStyle>
 #endif
@@ -49,6 +53,20 @@ int main( int argc, char **argv )
     QApplication a( argc, argv );
 
     a.setApplicationName("TTCut");
+
+    QTranslator qtTranslator;
+    qtTranslator.load("qt_" + QLocale::system().name(),
+                    QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+
+    a.installTranslator(&qtTranslator);
+
+    qDebug() << "local " << QLocale::system().name();
+
+    QTranslator appTranslator;
+    if (!appTranslator.load("ttcut_" + QLocale::system().name(), "trans"))
+      qDebug("Translation file not found!");
+
+    a.installTranslator(&appTranslator);
 
     // Application main widget
     TTCutMainWindow* mainWnd = new TTCutMainWindow();
