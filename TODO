@@ -2,6 +2,7 @@
 TODO list for project TTCut
 -------------------------------------------------------------------------------
 
+* Wrong error message about wrong frametype (if cut-in frametype is not equal cut-out frametype)
 * Show a warning if audio and video length are different
 
 
