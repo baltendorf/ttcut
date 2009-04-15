@@ -31,6 +31,7 @@
 #include "ttavdata.h"
 #include "ttavdata.h"
 #include "../avstream/ttavstream.h"
+#include "../common/ttexception.h"
 
 #include <QFileInfo>
 #include <QtXml>
@@ -63,6 +64,21 @@ TTCutProjectData::~TTCutProjectData()
   if (xmlRoot     != 0)  delete xmlRoot;
 }
 
+/**
+ * Returns the xml filename
+ */
+QString TTCutProjectData::fileName()
+{
+  return xmlFileInfo->fileName();
+}
+
+/**
+ * Returns the xml filepath
+ */
+QString TTCutProjectData::filePath()
+{
+  return xmlFileInfo->absoluteFilePath();
+}
 /* /////////////////////////////////////////////////////////////////////////////
  * Serialize an AVDataItem to xml
  */
@@ -303,13 +319,11 @@ void TTCutProjectData::readXml()
   QFile xmlFile(xmlFileInfo->absoluteFilePath());
 
   if (!xmlFile.open(QIODevice::ReadOnly)) {
-    qDebug("Error opening project file!");
-    return;
+    throw new TTDataFormatException(QString("Error opening project file %1!").arg(xmlFileInfo->filePath()));
   }
 
   if (!xmlDocument->setContent(&xmlFile)) {
-    qDebug("Error parsing xml project file!");
-    return;
+    throw new TTDataFormatException(QString("Error parsing xml project file %1!").arg(xmlFileInfo->filePath()));
   }
 
   xmlFile.close();

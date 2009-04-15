@@ -103,7 +103,7 @@ class TTCutMainWindow: public QMainWindow, Ui::TTCutMainWindowForm
     void onPrevAVData();
 		void onAVItemChanged(TTAVItem* avItem);
 
-    void onOpenProjectFileFinished();
+    void onOpenProjectFileFinished(const QString&);
 
 		void onStatusReport(TTThreadTask* task, int state, const QString& msg,	quint64 value);
 

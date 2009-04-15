@@ -458,9 +458,6 @@ void TTCutMainWindow::onHelpAbout()
 void TTCutMainWindow::onReadVideoStream(QString fName)
 {
   mpAVData->openAVStreams(fName);
-
-  //if (mpCurrentAVDataItem->audioCount() == 0)
-  //  onOpenAudioFile();
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -576,7 +573,6 @@ void TTCutMainWindow::onCutPreviewFinished(TTCutList* cutList)
 {
   TTCutPreview* cutPreview = new TTCutPreview(this);
 
-  qDebug("MainWindow::oncutPreviewFinished");
   cutPreview->initPreview(cutList);
   cutPreview->exec();
 
@@ -658,8 +654,12 @@ void TTCutMainWindow::navigationEnabled( bool enabled )
   markerList->controlEnabled(enabled);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Open project file
+/*! //////////////////////////////////////////////////////////////////////////////////////
+ * Opening TTCut project file
+ */
+
+/**
+ * Open ttcut project file
  */
 void TTCutMainWindow::openProjectFile(QString fName)
 {
@@ -670,18 +670,19 @@ void TTCutMainWindow::openProjectFile(QString fName)
   QFileInfo fInfo(fName );
   TTCut::lastDirPath = fInfo.absolutePath();
 
+  connect(mpAVData, SIGNAL(readProjectFileFinished(const QString&)), this, SLOT(onOpenProjectFileFinished(const QString&)));
   mpAVData->readProjectFile(fInfo);
-
-  //TODO: catch read project finished signal and update recent file info
-  //insertRecentFile(fName);
 }
 
-//! Open project file finished
-void TTCutMainWindow::onOpenProjectFileFinished()
+/**
+ * Open project file finished
+ */
+void TTCutMainWindow::onOpenProjectFileFinished(const QString& fName)
 {
   if (mpCurrentAVDataItem == 0) return;
 
-  insertRecentFile(mpCurrentAVDataItem->videoStream()->fileName());
+  insertRecentFile(fName);
+  disconnect(mpAVData, SIGNAL(readProjectFileFinished(const QString&)), this, SLOT(onOpenProjectFileFinished(const QString&)));
 }
 
 
@@ -756,7 +757,7 @@ void TTCutMainWindow::onStatusReport(TTThreadTask* task, int state, const QStrin
         progressBar = new TTProgressBar(this);
         connect(progressBar, SIGNAL(cancel()), mpAVData, SLOT(onUserAbortRequest()));
       }
-      navigationEnabled(false);
+      this->setEnabled(false);
       break;
 
     case StatusReportArgs::Start:
@@ -770,7 +771,7 @@ void TTCutMainWindow::onStatusReport(TTThreadTask* task, int state, const QStrin
       if (progressBar != 0) {
         progressBar->hideBar();
       }
-      navigationEnabled(true);
+      this->setEnabled(true);
       break;
   }
 

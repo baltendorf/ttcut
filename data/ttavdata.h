@@ -155,6 +155,8 @@ class TTAVData : public QObject
     void statusReport(TTThreadTask* task, int state, const QString& msg, quint64 value);
     void dataReady();
 
+    void readProjectFileFinished(const QString&);
+
     void avItemAppended(const TTAVItem& item);
     void avItemRemoved(int index);
     void avItemsSwapped(int oldIndex, int newIndex);

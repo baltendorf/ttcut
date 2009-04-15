@@ -52,6 +52,9 @@ class TTCutProjectData
     void serializeAVDataItem(TTAVItem* vitem);
     void deserializeAVDataItem(TTAVData* avData);
 
+    QString fileName();
+    QString filePath();
+
     void clear();
     void writeXml();
     void readXml();

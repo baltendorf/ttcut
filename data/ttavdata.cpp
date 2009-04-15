@@ -326,7 +326,6 @@ void TTAVData::doOpenAudioStream(TTAVItem* avItem, const QString& filePath, int 
  */
 void TTAVData::onOpenVideoFinished(TTAVItem* avItem, TTVideoStream* vStream, int)
 {
-  qDebug("TTAVData::onOpenVideoFinished");
   avItem->setVideoStream(vStream);
 
   mpAVList->append(avItem);
@@ -341,7 +340,6 @@ void TTAVData::onOpenVideoFinished(TTAVItem* avItem, TTVideoStream* vStream, int
 
 void TTAVData::onOpenAVStreamsAborted()
 {
-  qDebug("TTAVData::onOpenAVStreamsAborted");
   disconnect(mpThreadTaskPool, SIGNAL(aborted()),
              this,             SLOT(onOpenAVStreamsAborted()));
 
@@ -354,7 +352,6 @@ void TTAVData::onOpenAVStreamsAborted()
  */
 void TTAVData::onOpenAudioFinished(TTAVItem* avItem, TTAudioStream* aStream, int order)
 {
-  qDebug("TTAVData::onOpenAudioFinished");
   if (avItem  == 0) return;
   if (aStream == 0) return;
 
@@ -366,7 +363,6 @@ void TTAVData::onOpenAudioFinished(TTAVItem* avItem, TTAudioStream* aStream, int
  */
 void TTAVData::onOpenAudioAborted(TTAVItem*)
 {
-  qDebug("TTAVData::onOpenAudioAborted");
 }
 
 /*  ////////////////////////////////////////////////////////////////////////////
@@ -502,7 +498,9 @@ void TTAVData::writeProjectFile(const QFileInfo& fInfo)
 	delete prj;
 }
 
-//! Read the TTCut xml project file
+/**
+ * Read the TTCut xml project file
+ */
 void TTAVData::readProjectFile(const QFileInfo& fInfo)
 {
   connect(mpThreadTaskPool, SIGNAL(exit()),    this, SLOT(onReadProjectFileFinished()));
@@ -510,32 +508,51 @@ void TTAVData::readProjectFile(const QFileInfo& fInfo)
 
   mpProjectData = new TTCutProjectData(fInfo);
 
-	mpProjectData->readXml();
-	mpProjectData->deserializeAVDataItem(this);
+  try
+  {
+	  mpProjectData->readXml();
+	  mpProjectData->deserializeAVDataItem(this);
+  }
+  catch (TTException* ex)
+  {
+		log->errorMsg(__FILE__, __LINE__, ex->getMessage());
+    onReadProjectFileAborted();
+  }
 }
 
+/**
+ * Reading TTCut project file finished
+ */
 void TTAVData::onReadProjectFileFinished()
 {
   disconnect(mpThreadTaskPool, SIGNAL(aborted()), this, SLOT(onReadProjectFileAborted()));
-  disconnect(mpThreadTaskPool, SIGNAL(exit()), this, SLOT(onReadProjectFileFinished()));
+  disconnect(mpThreadTaskPool, SIGNAL(exit()),    this, SLOT(onReadProjectFileFinished()));
 
   emit avDataReloaded();
 
   if (avCount() > 0)
     emit currentAVItemChanged(avItemAt(0));
 
-  if (mpProjectData != 0) {
-    delete mpProjectData;
-    mpProjectData = 0;
-  }
+  emit readProjectFileFinished(mpProjectData->filePath());
+  
+  delete mpProjectData;
+  mpProjectData = 0;
 }
 
+/**
+ * Reading TTCut project file aborted or error reading project file
+ */
 void TTAVData::onReadProjectFileAborted()
 {
   disconnect(mpThreadTaskPool, SIGNAL(exit()), this, SLOT(onReadProjectFileFinished()));
   disconnect(mpThreadTaskPool, SIGNAL(aborted()), this, SLOT(onReadProjectFileAborted()));
 
   emit currentAVItemChanged(0);
+
+  if (mpProjectData != 0) {
+    delete mpProjectData;
+    mpProjectData = 0;
+  }
 }
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -544,7 +561,6 @@ void TTAVData::onReadProjectFileAborted()
 //! Create the cut preview clips
 void TTAVData::doCutPreview(TTCutList* cutList)
 {
-	qDebug("doCutPreview...");
   if (cutPreviewTask != 0) delete cutPreviewTask;
   cutPreviewTask = new TTCutPreviewTask(this, cutList);
 
@@ -559,15 +575,12 @@ void TTAVData::doCutPreview(TTCutList* cutList)
 //! Finished creating cut preview clips
 void TTAVData::onCutPreviewFinished(TTCutList* cutList)
 {
-	qDebug("onCutPreviewFinished...");
-
 	emit cutPreviewFinished(cutList);
 }
 
 //! Cut preview aborted by user
 void TTAVData::onCutPreviewAborted()
 {
-	qDebug("onCutPreviewAborted...");
   disconnect(cutPreviewTask,   SIGNAL(finished(TTCutList*)),
              this,             SLOT(onCutPreviewFinished(TTCutList*)));
   disconnect(mpThreadTaskPool, SIGNAL(aborted()),
@@ -657,12 +670,8 @@ void TTAVData::onCutFinished()
 
 void TTAVData::onCutAborted()
 {
-  qDebug("TTAVData::onCutAborted -> cut process aborted");
-
   disconnect(mpThreadTaskPool, SIGNAL(exit()),    this, SLOT(onCutFinished()));
   disconnect(mpThreadTaskPool, SIGNAL(aborted()), this, SLOT(onCutAborted()));
-
-
 }
 
 void TTAVData::onStatusReport(int state, const QString& msg, quint64 value)

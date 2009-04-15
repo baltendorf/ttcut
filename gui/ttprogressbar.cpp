@@ -188,6 +188,7 @@ void TTProgressBar::onSetProgress(TTThreadTask* task, int state, const QString& 
     case StatusReportArgs::Init:
       resetProgress();
       setActionText(msg);
+      this->setEnabled(true);
       break;
 
     case StatusReportArgs::Start:
