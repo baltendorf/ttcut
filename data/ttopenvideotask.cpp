@@ -91,13 +91,11 @@ void TTOpenVideoTask::operation()
 	connect(mpVideoStream, SIGNAL(statusReport(int, const QString&, quint64)),
 					this,          SLOT(onStatusReport(int, const QString&, quint64)));
 
-  qDebug("start creating header and index lists");
   mpVideoStream->createHeaderList();
  	mpVideoStream->createIndexList();
 
 	mpVideoStream->indexList()->sortDisplayOrder();
 
-  qDebug("emit finished signal...");
 	emit finished(mpAVItem, mpVideoStream, mOrder);
 }
 

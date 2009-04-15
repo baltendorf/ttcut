@@ -61,7 +61,6 @@ TTCutPreviewTask::TTCutPreviewTask(TTAVData* avData, TTCutList* cutList) :
 //! Operation abort requested
 void TTCutPreviewTask::onUserAbort()
 {
-	qDebug("TTCutPreviewTask::onUserAbort");
 	if (cutVideoTask != 0) cutVideoTask->onUserAbort();
 	if (cutAudioTask != 0) cutAudioTask->onUserAbort();
 	mAbort = true;
@@ -132,8 +131,6 @@ void TTCutPreviewTask::operation()
     	throw ex;
     }
 
-    qDebug() << "preview cut " << i+1 << " from " << numPreview << " created";
-
     onStatusReport(this, StatusReportArgs::Step, QString("preview cut %1 from %2 created").
         arg(i+1).arg(numPreview), i+1);
     delete tmpCutList;
@@ -152,9 +149,6 @@ void TTCutPreviewTask::operation()
       : QString("mv %1 %2 2>/dev/null").
 						arg(createPreviewFileName(i + 1, "m2v")).
 						arg(createPreviewFileName(i + 1, "mpg"));
-
-    qDebug() << "mplex command string "
-             << mplex_command;
 
     system(qPrintable(mplex_command));
   }
