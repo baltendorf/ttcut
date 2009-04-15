@@ -1,8 +1,8 @@
 
 # ignore some special files
 Make*
-ttcut*
-logfile*
+ttcut
+logfile.log
 
 # ignore pattern for common files to ignore
 *.o
@@ -14,4 +14,5 @@ res
 obj
 moc
 ui_h
+ttcut.app
 testing
