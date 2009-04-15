@@ -2,12 +2,8 @@
 TODO list for project TTCut
 -------------------------------------------------------------------------------
 
-* Wrong error message about wrong frametype (if cut-in frametype is not equal cut-out frametype)
 * Show a warning if audio and video length are different
 
-
-* Prepare long term processes for user cancellation
-* New GUI layout for video and audio list, consider new multi-input-stream feat.
 * Remove some unused settings and buttons without function
 * Find a solution for realtime playback demuxed video stream (play-button)
 * Add option settings for transcode and mplex
@@ -18,8 +14,5 @@ TODO list for project TTCut
      Also check that you have the right permissons to /dev/dsp
 * Make the current frame position clickable (enter current frame positon)
 * More keyboard short cuts
-* Internationalisation
 * User warning when click "New Project" an video stream is loaded
 * Display the resulting stream lengths after cut
-* Find solution for chapter marks
-* Find a logo 
