@@ -756,6 +756,7 @@ void TTCutMainWindow::onStatusReport(TTThreadTask* task, int state, const QStrin
         progressBar = new TTProgressBar(this);
         connect(progressBar, SIGNAL(cancel()), mpAVData, SLOT(onUserAbortRequest()));
       }
+      navigationEnabled(false);
       break;
 
     case StatusReportArgs::Start:
@@ -769,7 +770,7 @@ void TTCutMainWindow::onStatusReport(TTThreadTask* task, int state, const QStrin
       if (progressBar != 0) {
         progressBar->hideBar();
       }
-      statusBar()->showMessage("ready");
+      navigationEnabled(true);
       break;
   }
 

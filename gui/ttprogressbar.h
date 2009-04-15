@@ -67,6 +67,7 @@ class TTProgressBar : public QDialog, Ui::TTProgressForm
       void setTotalSteps(quint64  t_steps, int r_int=0);
       void setTotalProgress(int progress, QTime time);
       void setTaskProgress(TTThreadTask* task, const QString& msg);
+      void setTaskFinished(TTThreadTask* task, const QString& msg);
 
       void setComplete();
       void resetProgress();

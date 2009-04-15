@@ -34,6 +34,9 @@
 
 #include <QDebug>
 
+/**
+ * Constructor
+ */
 TTTaskProgress::TTTaskProgress(QWidget* parent, TTThreadTask* task)
     : QFrame(parent)
 {
@@ -45,15 +48,32 @@ TTTaskProgress::TTTaskProgress(QWidget* parent, TTThreadTask* task)
   mpTask = task;
 }
 
+/**
+ * Destructor
+ */
 TTTaskProgress::~TTTaskProgress()
 {
 
 }
 
+/**
+ * Set progress to complete
+ */
+void TTTaskProgress::onTaskFinished(const QString& msg)
+{
+  lblAction->setText(msg);
+  lblPercent->setText(tr("completed"));
+  progressBar->setValue(progressBar->maximum());
+}
+
+/**
+ * Refresh progress value
+ */
 void TTTaskProgress::onRefreshProgress(const QString& msg)
 {
   lblAction->setText(msg);
   lblPercent->setText(QString("%1%").arg(mpTask->processValue()/1000.0, 0, 'f', 0));
   progressBar->setValue(mpTask->processValue()/100);
 }
+
 

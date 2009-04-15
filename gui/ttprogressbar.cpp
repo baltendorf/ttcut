@@ -116,10 +116,19 @@ void TTProgressBar::setTaskProgress(TTThreadTask* task, const QString& msg)
   if (!taskProgressHash->contains(task->taskID())) return;
 
   TTTaskProgress* tp = taskProgressHash->value(task->taskID());
-
-  if (tp == 0) return;
-
   tp->onRefreshProgress(msg);
+}
+
+/**
+ * Set task finished
+ */
+void TTProgressBar::setTaskFinished(TTThreadTask* task, const QString& msg)
+{
+  if (task == 0) return;
+  if (!taskProgressHash->contains(task->taskID())) return;
+
+  TTTaskProgress* tp = taskProgressHash->value(task->taskID());
+  tp->onTaskFinished(msg);
 }
 
 /**
@@ -177,13 +186,11 @@ void TTProgressBar::onSetProgress(TTThreadTask* task, int state, const QString& 
 {
   switch (state) {
     case StatusReportArgs::Init:
-      qDebug("onSetProgress::Init");
       resetProgress();
       setActionText(msg);
       break;
 
     case StatusReportArgs::Start:
-      qDebug("onSetProgress::Start");      
       setActionText(msg);
       addTaskProgress(task);
       break;
@@ -194,7 +201,7 @@ void TTProgressBar::onSetProgress(TTThreadTask* task, int state, const QString& 
       break;
 
     case StatusReportArgs::Finished:
-      qDebug("onSetProgress::Finished");
+      setTaskFinished(task, msg);
       break;
 
     case StatusReportArgs::ShowProcessForm:

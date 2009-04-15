@@ -47,6 +47,7 @@ class TTTaskProgress : public QFrame, Ui::TTTaskProgressWidget
 
   public slots:
     void onRefreshProgress(const QString& msg);
+    void onTaskFinished(const QString& msg);
 
   private:
     TTThreadTask* mpTask;
