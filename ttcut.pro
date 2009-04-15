@@ -32,8 +32,8 @@ OBJECTS_DIR = obj
 MOC_DIR     = moc
 UI_DIR      = ui_h 
 RCC_DIR     = res
-TRANSLATIONS = ttcut_de.ts\
-               ttcut_en.ts
+TRANSLATIONS = trans/ttcut_de.ts\
+               trans/ttcut_en.ts
 RESOURCES   = ui/ttcutvideoinfowidget.qrc\
               ui/audiofilelistwidget.qrc\
               ui/videofilelistwidget.qrc\

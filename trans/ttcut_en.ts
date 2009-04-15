@@ -3,17 +3,17 @@
 <context>
     <name>ProcessViewWidget</name>
     <message>
-        <location filename="ui/processviewwidget.ui" line="31"/>
+        <location filename="../ui/processviewwidget.ui" line="31"/>
         <source>TTCut - Process output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/processviewwidget.ui" line="43"/>
+        <location filename="../ui/processviewwidget.ui" line="43"/>
         <source>Process output</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/processviewwidget.ui" line="101"/>
+        <location filename="../ui/processviewwidget.ui" line="101"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -21,22 +21,22 @@
 <context>
     <name>TTAVData</name>
     <message>
-        <location filename="data/ttavdata.cpp" line="255"/>
+        <location filename="../data/ttavdata.cpp" line="255"/>
         <source>exception in createAVDataItem!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttavdata.cpp" line="460"/>
+        <location filename="../data/ttavdata.cpp" line="456"/>
         <source>starting thread pool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttavdata.cpp" line="465"/>
+        <location filename="../data/ttavdata.cpp" line="461"/>
         <source>exiting thread pool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttavdata.cpp" line="619"/>
+        <location filename="../data/ttavdata.cpp" line="635"/>
         <source>deleting existing audio cut file: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -44,42 +44,42 @@
 <context>
     <name>TTAVItem</name>
     <message>
-        <location filename="data/ttavlist.cpp" line="188"/>
+        <location filename="../data/ttavlist.cpp" line="188"/>
         <source>Video files to cut must have the same framerate!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttavlist.cpp" line="191"/>
+        <location filename="../data/ttavlist.cpp" line="191"/>
         <source>Video files to cut must have the same count of audio files!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttavlist.cpp" line="203"/>
+        <location filename="../data/ttavlist.cpp" line="203"/>
         <source>Video files to cut must have the same aspect ratio!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttavlist.cpp" line="206"/>
+        <location filename="../data/ttavlist.cpp" line="206"/>
         <source>Video files to cut must have the same horizontal size!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttavlist.cpp" line="209"/>
+        <location filename="../data/ttavlist.cpp" line="209"/>
         <source>Video files to cut must have the same vertical size!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttavlist.cpp" line="217"/>
+        <location filename="../data/ttavlist.cpp" line="217"/>
         <source>Audio files to cut must have the same bitrate!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttavlist.cpp" line="220"/>
+        <location filename="../data/ttavlist.cpp" line="220"/>
         <source>Audio files to cut must have the same samplerate!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttavlist.cpp" line="223"/>
+        <location filename="../data/ttavlist.cpp" line="223"/>
         <source>Audio files to cut must have the same version!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -87,42 +87,42 @@
 <context>
     <name>TTAudioFileListWidget</name>
     <message>
-        <location filename="ui/audiofilelistwidget.ui" line="31"/>
+        <location filename="../ui/audiofilelistwidget.ui" line="31"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/audiofilelistwidget.ui" line="68"/>
+        <location filename="../ui/audiofilelistwidget.ui" line="68"/>
         <source>Filname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/audiofilelistwidget.ui" line="73"/>
+        <location filename="../ui/audiofilelistwidget.ui" line="73"/>
         <source>Length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/audiofilelistwidget.ui" line="78"/>
+        <location filename="../ui/audiofilelistwidget.ui" line="78"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/audiofilelistwidget.ui" line="83"/>
+        <location filename="../ui/audiofilelistwidget.ui" line="83"/>
         <source>Bitrate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/audiofilelistwidget.ui" line="88"/>
+        <location filename="../ui/audiofilelistwidget.ui" line="88"/>
         <source>Samplerate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/audiofilelistwidget.ui" line="93"/>
+        <location filename="../ui/audiofilelistwidget.ui" line="93"/>
         <source>Channel mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/audiofilelistwidget.ui" line="98"/>
+        <location filename="../ui/audiofilelistwidget.ui" line="98"/>
         <source>Delay</source>
         <translation type="unfinished"></translation>
     </message>
@@ -130,42 +130,42 @@
 <context>
     <name>TTAudioTreeView</name>
     <message>
-        <location filename="gui/ttaudiotreeview.cpp" line="244"/>
+        <location filename="../gui/ttaudiotreeview.cpp" line="244"/>
         <source>&amp;Insert audiofile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttaudiotreeview.cpp" line="247"/>
+        <location filename="../gui/ttaudiotreeview.cpp" line="247"/>
         <source>Open a new audiofile and insert to list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttaudiotreeview.cpp" line="250"/>
+        <location filename="../gui/ttaudiotreeview.cpp" line="250"/>
         <source>Move &amp;up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttaudiotreeview.cpp" line="253"/>
+        <location filename="../gui/ttaudiotreeview.cpp" line="253"/>
         <source>Move selected audiofile one position upward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttaudiotreeview.cpp" line="256"/>
+        <location filename="../gui/ttaudiotreeview.cpp" line="256"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttaudiotreeview.cpp" line="259"/>
+        <location filename="../gui/ttaudiotreeview.cpp" line="259"/>
         <source>Remove selected audiofile from list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttaudiotreeview.cpp" line="262"/>
+        <location filename="../gui/ttaudiotreeview.cpp" line="262"/>
         <source>Move d&amp;own</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttaudiotreeview.cpp" line="265"/>
+        <location filename="../gui/ttaudiotreeview.cpp" line="265"/>
         <source>Move selected audiofile one position downward</source>
         <translation type="unfinished"></translation>
     </message>
@@ -173,12 +173,12 @@
 <context>
     <name>TTCurrentFrameWidget</name>
     <message>
-        <location filename="ui/currentframewidget.ui" line="31"/>
+        <location filename="../ui/currentframewidget.ui" line="31"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/currentframewidget.ui" line="172"/>
+        <location filename="../ui/currentframewidget.ui" line="172"/>
         <source>00:00:00,000 (000000)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -186,102 +186,102 @@
 <context>
     <name>TTCutAVCutDlg</name>
     <message>
-        <location filename="ui/avcutdialog.ui" line="13"/>
+        <location filename="../ui/avcutdialog.ui" line="13"/>
         <source>TTCut - Video Cut Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="46"/>
+        <location filename="../ui/avcutdialog.ui" line="46"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="53"/>
+        <location filename="../ui/avcutdialog.ui" line="53"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="69"/>
+        <location filename="../ui/avcutdialog.ui" line="69"/>
         <source>Common</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="91"/>
+        <location filename="../ui/avcutdialog.ui" line="91"/>
         <source>Free Drive Space</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="227"/>
+        <location filename="../ui/avcutdialog.ui" line="227"/>
         <source>Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="234"/>
+        <location filename="../ui/avcutdialog.ui" line="234"/>
         <source>Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="241"/>
+        <location filename="../ui/avcutdialog.ui" line="241"/>
         <source>Used</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="255"/>
+        <location filename="../ui/avcutdialog.ui" line="255"/>
         <source>Free</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="173"/>
+        <location filename="../ui/avcutdialog.ui" line="173"/>
         <source>Used %</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="265"/>
+        <location filename="../ui/avcutdialog.ui" line="265"/>
         <source>Cut Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="280"/>
+        <location filename="../ui/avcutdialog.ui" line="280"/>
         <source>Write Sequence End Code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="290"/>
+        <location filename="../ui/avcutdialog.ui" line="290"/>
         <source>Write max bitrate to first sequence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="306"/>
+        <location filename="../ui/avcutdialog.ui" line="306"/>
         <source>Cut Output Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="315"/>
+        <location filename="../ui/avcutdialog.ui" line="315"/>
         <source>Output file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="332"/>
+        <location filename="../ui/avcutdialog.ui" line="332"/>
         <source>Output path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="410"/>
+        <location filename="../ui/avcutdialog.ui" line="410"/>
         <source>Encoding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="483"/>
+        <location filename="../ui/avcutdialog.ui" line="483"/>
         <source>GroupBox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="437"/>
+        <location filename="../ui/avcutdialog.ui" line="437"/>
         <source>Muxing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/avcutdialog.ui" line="464"/>
+        <location filename="../ui/avcutdialog.ui" line="464"/>
         <source>Chapters</source>
         <translation type="unfinished"></translation>
     </message>
@@ -289,17 +289,17 @@
 <context>
     <name>TTCutAboutDlg</name>
     <message>
-        <location filename="ui/aboutdlg.ui" line="31"/>
+        <location filename="../ui/aboutdlg.ui" line="31"/>
         <source>TTCut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/aboutdlg.ui" line="61"/>
+        <location filename="../ui/aboutdlg.ui" line="61"/>
         <source>GPL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/aboutdlg.ui" line="470"/>
+        <location filename="../ui/aboutdlg.ui" line="470"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -309,17 +309,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/aboutdlg.ui" line="515"/>
+        <location filename="../ui/aboutdlg.ui" line="515"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/aboutdlg.ui" line="543"/>
+        <location filename="../ui/aboutdlg.ui" line="543"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/aboutdlg.ui" line="964"/>
+        <location filename="../ui/aboutdlg.ui" line="964"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -340,12 +340,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutFrameNavigation</name>
     <message>
-        <location filename="gui/ttcutframenavigation.cpp" line="314"/>
+        <location filename="../gui/ttcutframenavigation.cpp" line="314"/>
         <source>Add range to cut list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcutframenavigation.cpp" line="364"/>
+        <location filename="../gui/ttcutframenavigation.cpp" line="364"/>
         <source>Update range in cut list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -353,37 +353,37 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutFrameNavigationWidget</name>
     <message>
-        <location filename="ui/ttcutframenavigationwidget.ui" line="31"/>
+        <location filename="../ui/ttcutframenavigationwidget.ui" line="31"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutframenavigationwidget.ui" line="162"/>
+        <location filename="../ui/ttcutframenavigationwidget.ui" line="162"/>
         <source>Set cut-in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutframenavigationwidget.ui" line="289"/>
+        <location filename="../ui/ttcutframenavigationwidget.ui" line="289"/>
         <source>Set cut-out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutframenavigationwidget.ui" line="337"/>
+        <location filename="../ui/ttcutframenavigationwidget.ui" line="337"/>
         <source>In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutframenavigationwidget.ui" line="465"/>
+        <location filename="../ui/ttcutframenavigationwidget.ui" line="465"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutframenavigationwidget.ui" line="420"/>
+        <location filename="../ui/ttcutframenavigationwidget.ui" line="420"/>
         <source>Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutframenavigationwidget.ui" line="513"/>
+        <location filename="../ui/ttcutframenavigationwidget.ui" line="513"/>
         <source>Add range to cut list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -391,42 +391,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutListWidget</name>
     <message>
-        <location filename="ui/cutlistwidget.ui" line="31"/>
+        <location filename="../ui/cutlistwidget.ui" line="31"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/cutlistwidget.ui" line="80"/>
+        <location filename="../ui/cutlistwidget.ui" line="80"/>
         <source>Videofile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/cutlistwidget.ui" line="85"/>
+        <location filename="../ui/cutlistwidget.ui" line="85"/>
         <source>Cut-In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/cutlistwidget.ui" line="90"/>
+        <location filename="../ui/cutlistwidget.ui" line="90"/>
         <source>Cut-Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/cutlistwidget.ui" line="95"/>
+        <location filename="../ui/cutlistwidget.ui" line="95"/>
         <source>Length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/cutlistwidget.ui" line="100"/>
+        <location filename="../ui/cutlistwidget.ui" line="100"/>
         <source>Audiooffset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/cutlistwidget.ui" line="238"/>
+        <location filename="../ui/cutlistwidget.ui" line="238"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/cutlistwidget.ui" line="267"/>
+        <location filename="../ui/cutlistwidget.ui" line="267"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
@@ -434,37 +434,37 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutMainWindow</name>
     <message>
-        <location filename="gui/ttcutmainwindow.cpp" line="254"/>
+        <location filename="../gui/ttcutmainwindow.cpp" line="255"/>
         <source>Open video file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcutmainwindow.cpp" line="273"/>
+        <location filename="../gui/ttcutmainwindow.cpp" line="274"/>
         <source>Open audio file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcutmainwindow.cpp" line="301"/>
+        <location filename="../gui/ttcutmainwindow.cpp" line="302"/>
         <source>Open project-file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcutmainwindow.cpp" line="324"/>
+        <location filename="../gui/ttcutmainwindow.cpp" line="325"/>
         <source>Save project-file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcutmainwindow.cpp" line="343"/>
+        <location filename="../gui/ttcutmainwindow.cpp" line="344"/>
         <source>error save project file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcutmainwindow.cpp" line="362"/>
+        <location filename="../gui/ttcutmainwindow.cpp" line="363"/>
         <source>Save project-file as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcutmainwindow.cpp" line="810"/>
+        <location filename="../gui/ttcutmainwindow.cpp" line="790"/>
         <source>&amp;%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -472,137 +472,137 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutMainWindowForm</name>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="19"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="19"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="54"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="54"/>
         <source>Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="236"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="236"/>
         <source>Cut-Points</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="259"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="259"/>
         <source>Marker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="309"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="309"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="344"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="344"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="365"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="365"/>
         <source>Video Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="389"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="389"/>
         <source>Audio Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="421"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="421"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="427"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="427"/>
         <source>Action</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="436"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="436"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="445"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="445"/>
         <source>Recent Projects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="477"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="481"/>
         <source>New Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="489"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="493"/>
         <source>Open Project...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="492"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="496"/>
         <source>Open Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="495"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="499"/>
         <source>Open Project file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="507"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="511"/>
         <source>Save Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="510"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="514"/>
         <source>Save Project file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="519"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="523"/>
         <source>Save Project as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="522"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="526"/>
         <source>Save Project as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="525"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="529"/>
         <source>Save Project under new file name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="534"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="538"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="543"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="547"/>
         <source>Save current frame...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="552"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="556"/>
         <source>Settings...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="560"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="564"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="575"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="579"/>
         <source>Open Video...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutmainwnd_new.ui" line="590"/>
+        <location filename="../ui/ttcutmainwnd_new.ui" line="594"/>
         <source>Open Audio...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -610,17 +610,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutOutFrameWidget</name>
     <message>
-        <location filename="ui/cutoutframewidget.ui" line="31"/>
+        <location filename="../ui/cutoutframewidget.ui" line="31"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/cutoutframewidget.ui" line="115"/>
+        <location filename="../ui/cutoutframewidget.ui" line="115"/>
         <source>00:00:00,000 (000000)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/cutoutframewidget.ui" line="207"/>
+        <location filename="../ui/cutoutframewidget.ui" line="207"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -628,12 +628,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutPreview</name>
     <message>
-        <location filename="gui/ttcutpreview.cpp" line="192"/>
+        <location filename="../gui/ttcutpreview.cpp" line="192"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcutpreview.cpp" line="179"/>
+        <location filename="../gui/ttcutpreview.cpp" line="179"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
@@ -641,12 +641,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutPreviewTask</name>
     <message>
-        <location filename="data/ttcutpreviewtask.cpp" line="84"/>
+        <location filename="../data/ttcutpreviewtask.cpp" line="83"/>
         <source>create cut preview clips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttcutpreviewtask.cpp" line="159"/>
+        <location filename="../data/ttcutpreviewtask.cpp" line="156"/>
         <source>preview cuts done</source>
         <translation type="unfinished"></translation>
     </message>
@@ -654,12 +654,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutSettingsChapter</name>
     <message>
-        <location filename="ui/ttcutsettingschapter.ui" line="13"/>
+        <location filename="../ui/ttcutsettingschapter.ui" line="13"/>
         <source>Form3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingschapter.ui" line="25"/>
+        <location filename="../ui/ttcutsettingschapter.ui" line="25"/>
         <source>Write spumux (XML) chapter-list</source>
         <translation type="unfinished"></translation>
     </message>
@@ -667,92 +667,92 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutSettingsCommon</name>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="13"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="13"/>
         <source>Common</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="37"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="37"/>
         <source>Files / Directories</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="83"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="83"/>
         <source>Temp directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="128"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="128"/>
         <source>Navigation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="152"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="152"/>
         <source>Use quick seek (slider positioned only on I-Frames)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="289"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="289"/>
         <source>Slider click placement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="296"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="296"/>
         <source>Page up/down placement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="303"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="303"/>
         <source>Arrow keys placement</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="310"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="310"/>
         <source>&apos;Alt&apos; key jump distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="317"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="317"/>
         <source>&apos;Ctrl&apos; key jump distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="324"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="324"/>
         <source>Quick jump distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="331"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="331"/>
         <source>Mouse wheel distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="466"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="466"/>
         <source>frames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="459"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="459"/>
         <source>seconds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="411"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="411"/>
         <source>Search / Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="550"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="550"/>
         <source>Search CutOut Frame within</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="557"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="557"/>
         <source>Preview each Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingscommon.ui" line="564"/>
+        <location filename="../ui/ttcutsettingscommon.ui" line="564"/>
         <source>Skip while playing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -760,12 +760,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutSettingsEncoder</name>
     <message>
-        <location filename="ui/ttcutsettingsencoder.ui" line="13"/>
+        <location filename="../ui/ttcutsettingsencoder.ui" line="13"/>
         <source>Form1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsencoder.ui" line="25"/>
+        <location filename="../ui/ttcutsettingsencoder.ui" line="25"/>
         <source>Use encoding mode</source>
         <translation type="unfinished"></translation>
     </message>
@@ -773,67 +773,67 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutSettingsFiles</name>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="13"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="13"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="37"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="37"/>
         <source>MPEG2Schnitt Index Files (*.idd)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="58"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="58"/>
         <source>Create video index file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="65"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="65"/>
         <source>Read video index file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="72"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="72"/>
         <source>Create audio index file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="79"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="79"/>
         <source>Read audio index file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="86"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="86"/>
         <source>Create cut video index file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="109"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="109"/>
         <source>Logfile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="133"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="133"/>
         <source>Logfile Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="157"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="157"/>
         <source>Video index information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="164"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="164"/>
         <source>Extended messages and informations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="171"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="171"/>
         <source>Write to console</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsfiles.ui" line="181"/>
+        <location filename="../ui/ttcutsettingsfiles.ui" line="181"/>
         <source>Create logfile</source>
         <translation type="unfinished"></translation>
     </message>
@@ -841,67 +841,67 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutSettingsMuxer</name>
     <message>
-        <location filename="gui/ttcutsettingsmuxer.cpp" line="150"/>
+        <location filename="../gui/ttcutsettingsmuxer.cpp" line="150"/>
         <source>Select directory for mplex result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="13"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="13"/>
         <source>Form2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="35"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="35"/>
         <source>Muxer Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="89"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="89"/>
         <source>Output path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="130"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="130"/>
         <source>configure...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="137"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="137"/>
         <source>Used muxer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="144"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="144"/>
         <source>MPEG-2 target</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="154"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="154"/>
         <source>Multiplex Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="160"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="160"/>
         <source>Create mux script for batch muxing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="167"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="167"/>
         <source>Finally mux result streams</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="177"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="177"/>
         <source>Action after multiplexing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="183"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="183"/>
         <source>Delete elemtary streams</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutsettingsmuxer.ui" line="190"/>
+        <location filename="../ui/ttcutsettingsmuxer.ui" line="190"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
@@ -909,102 +909,102 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutTreeView</name>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="513"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="513"/>
         <source>Move &amp;up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="515"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="515"/>
         <source>Move selected cut one position upward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="518"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="518"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="520"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="520"/>
         <source>Remove selected cut from list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="523"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="523"/>
         <source>Duplicate Cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="525"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="525"/>
         <source>Duplicate the selected cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="528"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="528"/>
         <source>Move d&amp;own</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="530"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="530"/>
         <source>Move selected cut one position downward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="533"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="533"/>
         <source>Edit &amp;cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="535"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="535"/>
         <source>Edit selected cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="538"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="538"/>
         <source>Preview cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="540"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="540"/>
         <source>Preview selected cut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="543"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="543"/>
         <source>Cut selected entries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="544"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="544"/>
         <source>Cut the selected entries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="547"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="547"/>
         <source>Goto Cut-In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="549"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="549"/>
         <source>Goto selected cut-in position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="552"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="552"/>
         <source>Goto Cut-Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="554"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="554"/>
         <source>Goto selected cut-out position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="557"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="557"/>
         <source>Set Cut-Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttcuttreeview.cpp" line="558"/>
+        <location filename="../gui/ttcuttreeview.cpp" line="558"/>
         <source>Show selected cut-out frame in cut-out window</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1012,37 +1012,37 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTCutVideoInfoWidget</name>
     <message>
-        <location filename="ui/ttcutvideoinfowidget.ui" line="37"/>
+        <location filename="../ui/ttcutvideoinfowidget.ui" line="37"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutvideoinfowidget.ui" line="131"/>
+        <location filename="../ui/ttcutvideoinfowidget.ui" line="131"/>
         <source>Filename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutvideoinfowidget.ui" line="288"/>
+        <location filename="../ui/ttcutvideoinfowidget.ui" line="288"/>
         <source>---</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutvideoinfowidget.ui" line="173"/>
+        <location filename="../ui/ttcutvideoinfowidget.ui" line="173"/>
         <source>Length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutvideoinfowidget.ui" line="215"/>
+        <location filename="../ui/ttcutvideoinfowidget.ui" line="215"/>
         <source>Resolution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutvideoinfowidget.ui" line="263"/>
+        <location filename="../ui/ttcutvideoinfowidget.ui" line="263"/>
         <source>Ratio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttcutvideoinfowidget.ui" line="331"/>
+        <location filename="../ui/ttcutvideoinfowidget.ui" line="331"/>
         <source>0/0</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1050,7 +1050,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTMPEGAudioStream</name>
     <message>
-        <location filename="avstream/ttmpegaudiostream.cpp" line="230"/>
+        <location filename="../avstream/ttmpegaudiostream.cpp" line="230"/>
         <source>Index list creation aborted!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1058,27 +1058,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTMarkerListWidget</name>
     <message>
-        <location filename="ui/markerlistwidget.ui" line="31"/>
+        <location filename="../ui/markerlistwidget.ui" line="31"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/markerlistwidget.ui" line="68"/>
+        <location filename="../ui/markerlistwidget.ui" line="68"/>
         <source>Filname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/markerlistwidget.ui" line="73"/>
+        <location filename="../ui/markerlistwidget.ui" line="73"/>
         <source>Frame</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/markerlistwidget.ui" line="78"/>
+        <location filename="../ui/markerlistwidget.ui" line="78"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/markerlistwidget.ui" line="83"/>
+        <location filename="../ui/markerlistwidget.ui" line="83"/>
         <source>UUID</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1086,32 +1086,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTMarkerTreeView</name>
     <message>
-        <location filename="gui/ttmarkertreeview.cpp" line="260"/>
+        <location filename="../gui/ttmarkertreeview.cpp" line="260"/>
         <source>Move &amp;up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttmarkertreeview.cpp" line="263"/>
+        <location filename="../gui/ttmarkertreeview.cpp" line="263"/>
         <source>Move selected audiofile one position upward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttmarkertreeview.cpp" line="266"/>
+        <location filename="../gui/ttmarkertreeview.cpp" line="266"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttmarkertreeview.cpp" line="269"/>
+        <location filename="../gui/ttmarkertreeview.cpp" line="269"/>
         <source>Remove selected audiofile from list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttmarkertreeview.cpp" line="272"/>
+        <location filename="../gui/ttmarkertreeview.cpp" line="272"/>
         <source>Move d&amp;own</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttmarkertreeview.cpp" line="275"/>
+        <location filename="../gui/ttmarkertreeview.cpp" line="275"/>
         <source>Move selected audiofile one position downward</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1119,32 +1119,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTMessageWindow</name>
     <message>
-        <location filename="ui/ttmessagewindow.ui" line="13"/>
+        <location filename="../ui/ttmessagewindow.ui" line="13"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttmessagewindow.ui" line="60"/>
+        <location filename="../ui/ttmessagewindow.ui" line="60"/>
         <source>TTMainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="ui/ttmessagewindow.ui" line="76"/>
+        <location filename="../ui/ttmessagewindow.ui" line="76"/>
         <source>ljg dfjk gsdklöfjglskdfjg dkföjglsdjf gdföjgksdjfg dfjgöksldf dköfgjsdlfjg djfgkjd fdjgkldfj gdjfgkljkdfj gkdfjgldöjflgö dkföjgkdfj gödjfkgjdöfkfdjg ödfjkglsjdf gdklsfjkglsdjf gködjflgjsdfl gjödfjkgjdf gökdfg</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttmessagewindow.ui" line="117"/>
+        <location filename="../ui/ttmessagewindow.ui" line="117"/>
         <source>Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttmessagewindow.ui" line="133"/>
+        <location filename="../ui/ttmessagewindow.ui" line="133"/>
         <source>Message</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttmessagewindow.ui" line="175"/>
+        <location filename="../ui/ttmessagewindow.ui" line="175"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1152,52 +1152,52 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTMpeg2VideoStream</name>
     <message>
-        <location filename="avstream/ttmpeg2videostream.cpp" line="269"/>
+        <location filename="../avstream/ttmpeg2videostream.cpp" line="269"/>
         <source>Creating Mpeg2-Header List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="avstream/ttmpeg2videostream.cpp" line="317"/>
+        <location filename="../avstream/ttmpeg2videostream.cpp" line="317"/>
         <source>Step...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="avstream/ttmpeg2videostream.cpp" line="327"/>
+        <location filename="../avstream/ttmpeg2videostream.cpp" line="327"/>
         <source>Mpeg2-Header list created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="avstream/ttmpeg2videostream.cpp" line="364"/>
+        <location filename="../avstream/ttmpeg2videostream.cpp" line="364"/>
         <source>Create Mpeg2Schnitt IDD-file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="avstream/ttmpeg2videostream.cpp" line="406"/>
+        <location filename="../avstream/ttmpeg2videostream.cpp" line="406"/>
         <source>Create Mpeg2Schnitt IDD-File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="avstream/ttmpeg2videostream.cpp" line="409"/>
+        <location filename="../avstream/ttmpeg2videostream.cpp" line="409"/>
         <source>IDD-File created</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="avstream/ttmpeg2videostream.cpp" line="483"/>
+        <location filename="../avstream/ttmpeg2videostream.cpp" line="483"/>
         <source>Read Mpeg2Schnitt IDD-file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="avstream/ttmpeg2videostream.cpp" line="485"/>
+        <location filename="../avstream/ttmpeg2videostream.cpp" line="485"/>
         <source>Finish reading IDD-file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="avstream/ttmpeg2videostream.cpp" line="862"/>
+        <location filename="../avstream/ttmpeg2videostream.cpp" line="862"/>
         <source>Transfer objects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="avstream/ttmpeg2videostream.cpp" line="868"/>
+        <location filename="../avstream/ttmpeg2videostream.cpp" line="868"/>
         <source>Transfer complete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1205,82 +1205,82 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTMplexParamsDlg</name>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="19"/>
+        <location filename="../ui/mplexparamdlg.ui" line="19"/>
         <source>Mplex-Params</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="43"/>
+        <location filename="../ui/mplexparamdlg.ui" line="43"/>
         <source>Mplex params</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="101"/>
+        <location filename="../ui/mplexparamdlg.ui" line="101"/>
         <source>Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="108"/>
+        <location filename="../ui/mplexparamdlg.ui" line="108"/>
         <source>Packets-per-pack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="115"/>
+        <location filename="../ui/mplexparamdlg.ui" line="115"/>
         <source>Max-segment-size [Mbyte]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="122"/>
+        <location filename="../ui/mplexparamdlg.ui" line="122"/>
         <source>Split-segment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="129"/>
+        <location filename="../ui/mplexparamdlg.ui" line="129"/>
         <source>Sync-offset [ms|s|mpt]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="136"/>
+        <location filename="../ui/mplexparamdlg.ui" line="136"/>
         <source>System-headers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="239"/>
+        <location filename="../ui/mplexparamdlg.ui" line="239"/>
         <source>Verbose</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="246"/>
+        <location filename="../ui/mplexparamdlg.ui" line="246"/>
         <source>Mux-bitrate [kbit/sec]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="253"/>
+        <location filename="../ui/mplexparamdlg.ui" line="253"/>
         <source>Video-buffer [kb]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="260"/>
+        <location filename="../ui/mplexparamdlg.ui" line="260"/>
         <source>Lpcm-params</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="267"/>
+        <location filename="../ui/mplexparamdlg.ui" line="267"/>
         <source>Mux-limit [s]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="274"/>
+        <location filename="../ui/mplexparamdlg.ui" line="274"/>
         <source>Sector-size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="369"/>
+        <location filename="../ui/mplexparamdlg.ui" line="369"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/mplexparamdlg.ui" line="376"/>
+        <location filename="../ui/mplexparamdlg.ui" line="376"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1288,12 +1288,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTOpenAudioTask</name>
     <message>
-        <location filename="data/ttopenaudiotask.cpp" line="79"/>
+        <location filename="../data/ttopenaudiotask.cpp" line="79"/>
         <source>Unsupported audio type or file not found %1!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttopenaudiotask.cpp" line="86"/>
+        <location filename="../data/ttopenaudiotask.cpp" line="86"/>
         <source>Unsupported audio type %1!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1301,12 +1301,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTOpenVideoTask</name>
     <message>
-        <location filename="data/ttopenvideotask.cpp" line="76"/>
+        <location filename="../data/ttopenvideotask.cpp" line="76"/>
         <source>file %1 does not exists!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="data/ttopenvideotask.cpp" line="84"/>
+        <location filename="../data/ttopenvideotask.cpp" line="84"/>
         <source>unsupported video type %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1314,17 +1314,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTPreviewWidget</name>
     <message>
-        <location filename="ui/previewwidget.ui" line="31"/>
+        <location filename="../ui/previewwidget.ui" line="31"/>
         <source>TTCut - Preview</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/previewwidget.ui" line="61"/>
+        <location filename="../ui/previewwidget.ui" line="61"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/previewwidget.ui" line="85"/>
+        <location filename="../ui/previewwidget.ui" line="85"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1332,103 +1332,106 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTProcessForm</name>
     <message>
-        <location filename="gui/ttprocessform.cpp" line="70"/>
+        <location filename="../gui/ttprocessform.cpp" line="70"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttprocessform.cpp" line="77"/>
+        <location filename="../gui/ttprocessform.cpp" line="77"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TTProgressBar</name>
+</context>
+<context>
+    <name>TTProgressForm</name>
     <message>
-        <location filename="gui/ttprogressbar.cpp" line="75"/>
+        <location filename="../ui/ttprogressform.ui" line="25"/>
         <source>Progress Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttprogressbar.cpp" line="86"/>
-        <source>Action:</source>
+        <location filename="../ui/ttprogressform.ui" line="76"/>
+        <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttprogressbar.cpp" line="91"/>
-        <source>TextLabel2</source>
+        <location filename="../ui/ttprogressform.ui" line="89"/>
+        <source>Time elapsed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttprogressbar.cpp" line="95"/>
-        <source>Elapsed time:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="gui/ttprogressbar.cpp" line="99"/>
+        <location filename="../ui/ttprogressform.ui" line="102"/>
         <source>00:00:00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttprogressbar.cpp" line="105"/>
-        <source>Percentage complete:</source>
+        <location filename="../ui/ttprogressform.ui" line="128"/>
+        <source>Complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttprogressbar.cpp" line="109"/>
+        <location filename="../ui/ttprogressform.ui" line="141"/>
         <source>0%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttprogressbar.cpp" line="124"/>
+        <location filename="../ui/ttprogressform.ui" line="164"/>
         <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/ttprogressform.ui" line="190"/>
+        <source>Show details</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TTSettingsDialog</name>
     <message>
-        <location filename="ui/ttsettingsdialog.ui" line="13"/>
+        <location filename="../ui/ttsettingsdialog.ui" line="13"/>
         <source>TTCut - Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttsettingsdialog.ui" line="44"/>
+        <location filename="../ui/ttsettingsdialog.ui" line="44"/>
         <source>Common</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttsettingsdialog.ui" line="211"/>
+        <location filename="../ui/ttsettingsdialog.ui" line="211"/>
         <source>GroupBox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttsettingsdialog.ui" line="79"/>
+        <location filename="../ui/ttsettingsdialog.ui" line="79"/>
         <source>Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttsettingsdialog.ui" line="114"/>
+        <location filename="../ui/ttsettingsdialog.ui" line="114"/>
         <source>Encoding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttsettingsdialog.ui" line="149"/>
+        <location filename="../ui/ttsettingsdialog.ui" line="149"/>
         <source>Muxing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttsettingsdialog.ui" line="184"/>
+        <location filename="../ui/ttsettingsdialog.ui" line="184"/>
         <source>Chapters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttsettingsdialog.ui" line="252"/>
+        <location filename="../ui/ttsettingsdialog.ui" line="252"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/ttsettingsdialog.ui" line="259"/>
+        <location filename="../ui/ttsettingsdialog.ui" line="259"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1436,55 +1439,81 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTStreamNavigatorWidget</name>
     <message>
-        <location filename="ui/streamnavigationwidget.ui" line="13"/>
+        <location filename="../ui/streamnavigationwidget.ui" line="13"/>
         <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TTTaskProgress</name>
+    <message>
+        <location filename="../gui/tttaskprogress.cpp" line="65"/>
+        <source>completed</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TTTaskProgressWidget</name>
+    <message>
+        <location filename="../ui/tttaskprogresswidget.ui" line="25"/>
+        <source>TaskProgressWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/tttaskprogresswidget.ui" line="58"/>
+        <source>Percent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/tttaskprogresswidget.ui" line="83"/>
+        <source>Action</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TTTranscodeProvider</name>
     <message>
-        <location filename="extern/tttranscode.cpp" line="187"/>
+        <location filename="../extern/tttranscode.cpp" line="186"/>
         <source>Transcode exit normally ... done(0)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="extern/tttranscode.cpp" line="191"/>
+        <location filename="../extern/tttranscode.cpp" line="190"/>
         <source>Transcode crashed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="extern/tttranscode.cpp" line="195"/>
+        <location filename="../extern/tttranscode.cpp" line="194"/>
         <source>unknown process exit status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="extern/tttranscode.cpp" line="213"/>
+        <location filename="../extern/tttranscode.cpp" line="212"/>
         <source>The process failed to start.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="extern/tttranscode.cpp" line="216"/>
+        <location filename="../extern/tttranscode.cpp" line="215"/>
         <source>The process crashed some time after starting successfully.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="extern/tttranscode.cpp" line="219"/>
+        <location filename="../extern/tttranscode.cpp" line="218"/>
         <source>The last waitFor...() function timed out.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="extern/tttranscode.cpp" line="222"/>
+        <location filename="../extern/tttranscode.cpp" line="221"/>
         <source>An error occured when attempting to write to the process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="extern/tttranscode.cpp" line="225"/>
+        <location filename="../extern/tttranscode.cpp" line="224"/>
         <source>An error occured when attempting to read from the process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="extern/tttranscode.cpp" line="229"/>
+        <location filename="../extern/tttranscode.cpp" line="228"/>
         <source>An unknown error occured: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1492,22 +1521,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTVideoFileListWidget</name>
     <message>
-        <location filename="ui/videofilelistwidget.ui" line="31"/>
+        <location filename="../ui/videofilelistwidget.ui" line="31"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/videofilelistwidget.ui" line="77"/>
+        <location filename="../ui/videofilelistwidget.ui" line="77"/>
         <source>Filname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/videofilelistwidget.ui" line="82"/>
+        <location filename="../ui/videofilelistwidget.ui" line="82"/>
         <source>Length</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ui/videofilelistwidget.ui" line="87"/>
+        <location filename="../ui/videofilelistwidget.ui" line="87"/>
         <source>Framerate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1515,42 +1544,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TTVideoTreeView</name>
     <message>
-        <location filename="gui/ttvideotreeview.cpp" line="260"/>
+        <location filename="../gui/ttvideotreeview.cpp" line="260"/>
         <source>&amp;Insert videofile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttvideotreeview.cpp" line="263"/>
+        <location filename="../gui/ttvideotreeview.cpp" line="263"/>
         <source>Open a new videofile and insert to list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttvideotreeview.cpp" line="266"/>
+        <location filename="../gui/ttvideotreeview.cpp" line="266"/>
         <source>Move &amp;up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttvideotreeview.cpp" line="269"/>
+        <location filename="../gui/ttvideotreeview.cpp" line="269"/>
         <source>Move selected file one position upward</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttvideotreeview.cpp" line="272"/>
+        <location filename="../gui/ttvideotreeview.cpp" line="272"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttvideotreeview.cpp" line="275"/>
+        <location filename="../gui/ttvideotreeview.cpp" line="275"/>
         <source>Remove selected file from list</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttvideotreeview.cpp" line="278"/>
+        <location filename="../gui/ttvideotreeview.cpp" line="278"/>
         <source>Move d&amp;own</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="gui/ttvideotreeview.cpp" line="281"/>
+        <location filename="../gui/ttvideotreeview.cpp" line="281"/>
         <source>Move selected file one position downward</source>
         <translation type="unfinished"></translation>
     </message>
