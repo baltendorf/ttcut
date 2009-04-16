@@ -47,7 +47,6 @@ RESOURCES   = ui/ttcutvideoinfowidget.qrc\
               ui/previewwidget.qrc\
               ui/avcutdialog.qrc\
               ui/processviewwidget.qrc\
-              ui/ttmessagewindow.qrc\
               ui/mainwindow.qrc
 FORMS       = ui/audiofilelistwidget.ui\
               ui/videofilelistwidget.ui\
@@ -68,7 +67,6 @@ FORMS       = ui/audiofilelistwidget.ui\
               ui/processviewwidget.ui\
               ui/avcutdialog.ui\
               ui/aboutdlg.ui\
-              ui/ttmessagewindow.ui\
 #             ui/mainwindow.ui\
               ui/ttcutmainwnd_new.ui\
               ui/ttcutvideoinfowidget.ui\
@@ -79,7 +77,7 @@ HEADERS     = common/ttcut.h\
               common/ttthreadtask.h\
               common/ttthreadtaskpool.h\
               common/ttmessagelogger.h\
-              common/ttmessagewindow.h\
+              common/ttmessagebox.h\
               common/ttexception.h\
               common/istatusreporter.h\
               data/ttaudiolist.h\
@@ -150,7 +148,7 @@ SOURCES     = common/ttcut.cpp\
               common/ttthreadtask.cpp\
               common/ttthreadtaskpool.cpp\  
               common/ttmessagelogger.cpp\
-              common/ttmessagewindow.cpp\
+              common/ttmessagebox.cpp\
               common/ttexception.cpp\
               common/istatusreporter.cpp\
               data/ttaudiolist.cpp \
