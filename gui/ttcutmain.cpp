@@ -59,7 +59,7 @@ int main( int argc, char **argv )
     QTranslator qtTranslator;
     if (!qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
       TTMessageLogger* log = TTMessageLogger::getInstance();
-      log->errorMsg(__FILE__, __LINE__,
+      log->warningMsg(__FILE__, __LINE__,
                     QString("Qt translation file %1 for locale %2 could not be found!").
                     arg("qt_" + QLocale::system().name()).
                     arg(QLocale::system().name()));
