@@ -69,11 +69,11 @@ class TTThreadTaskPool : public QObject
 
 	private:
 		void cleanUpQueue();
+    int  runningTaskCount();
 
 	private:
     QQueue<TTThreadTask*> mTaskQueue;
     TTMessageLogger*      log;
-		int                   mActiveThreadCount;
     QTime                 mOverallTotalTime;
     quint64               mOverallTotalSteps;
     quint64               mOverallStepCount;

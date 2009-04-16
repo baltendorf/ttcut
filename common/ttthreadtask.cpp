@@ -47,6 +47,7 @@ TTThreadTask::TTThreadTask(QString name) : QObject()
   mTaskID     = QUuid::createUuid();
   mTotalSteps = 0;
   mStepCount  = 0;
+  mIsRunning  = false;
 }
 
 //! Destructor
@@ -84,6 +85,11 @@ quint64 TTThreadTask::stepCount() const
   return mStepCount;
 }
 
+bool TTThreadTask::isRunning() const
+{
+  return mIsRunning;
+}
+
 //! Wrap status report signal and append reference to task
 void TTThreadTask::onStatusReport(int state, const QString& msg, quint64 value)
 {
@@ -112,11 +118,13 @@ void TTThreadTask::run()
 
   try
   {
+    mIsRunning = true;
     emit started(this);
     qApp->processEvents();
 
     operation();
 
+    mIsRunning = false;
     emit finished(this);
     qApp->processEvents();
 
@@ -125,6 +133,7 @@ void TTThreadTask::run()
   catch(TTAbortException* ex)
   {
     qDebug("TTThreadTask::run -> catched TTAbortException");
+    mIsRunning = false;
     emit aborted(this);
     qApp->processEvents();
     cleanUp();
@@ -132,6 +141,7 @@ void TTThreadTask::run()
   catch(TTException* ex)
   {
     qDebug("TTThreadTask::run -> catched TTException");
+    mIsRunning = false;
     emit aborted(this);
     qApp->processEvents();
     cleanUp();

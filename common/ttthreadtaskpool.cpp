@@ -46,7 +46,6 @@ TTThreadTaskPool::TTThreadTaskPool() : QObject()
   QThreadPool::globalInstance()->setExpiryTimeout(100);
 
   log                = TTMessageLogger::getInstance();
-	mActiveThreadCount = 0;
 }
 
 //! Destructor
@@ -80,29 +79,29 @@ void TTThreadTaskPool::start(TTThreadTask* task, bool runSyncron, int priority)
   connect(task, SIGNAL(statusReport(TTThreadTask*, int, const QString&, quint64)),
           this, SLOT(onStatusReport(TTThreadTask*, int, const QString&, quint64)));
 
-  if (mActiveThreadCount == 0) {
+  if (runningTaskCount() == 0) {
     emit init();
   }
 
-  mActiveThreadCount++;
-
-  if (!mTaskQueue.contains(task))
+  if (!mTaskQueue.contains(task)) 
     mTaskQueue.enqueue(task);
+
 
   log->debugMsg(__FILE__, __LINE__, QString("enqueue task %1, current task count %2").
       arg(task->taskName()).
-      //arg(mActiveThreadCount));
       arg(mTaskQueue.count()));
 
   if (runSyncron)
   	task->run();
   else
   	QThreadPool::globalInstance()->start(task, priority);
+  
 }
 
 //! Thread task started
 void TTThreadTaskPool::onThreadTaskStarted(TTThreadTask*)
 {
+  qDebug() << "start: active threads " << runningTaskCount() << " queue count " << mTaskQueue.count();
 }
 
 //! Thread task finished
@@ -115,16 +114,10 @@ void TTThreadTaskPool::onThreadTaskFinished(TTThreadTask* task)
   disconnect(task, SIGNAL(statusReport(TTThreadTask*, int, const QString&, quint64)),
              this, SLOT(onStatusReport(TTThreadTask*, int, const QString&, quint64)));
 
-	mActiveThreadCount--;
 
-  if (mActiveThreadCount < 0) {
-    qDebug("Thread count gets negative!");
-  	throw new TTInvalidOperationException(
-				QString("Exception during task abort %1. Active thread count gets invalid!").
-				arg(task->taskName()));
-  }
+  qDebug() << "finished: active threads " << runningTaskCount() << " queue count " << mTaskQueue.count();
 
-  if (mActiveThreadCount == 0) {
+  if (runningTaskCount() == 0) {
     cleanUpQueue();
     emit exit();
   }
@@ -136,14 +129,8 @@ void TTThreadTaskPool::onThreadTaskAborted(TTThreadTask* task)
   qDebug(qPrintable(QString("TTThreadTaskPool::Task %1 with uuid %2 aborted").
 					arg(task->taskName()).
   				arg(task->taskID())));
-	mActiveThreadCount--;
 
-	if (mActiveThreadCount < 0)
-			throw new TTInvalidOperationException(
-						QString("Exception during task abort %1. Active thread count gets invalid!").
-						arg(task->taskName()));
-
-	if (mActiveThreadCount == 0) {
+	if (runningTaskCount() == 0) {
     cleanUpQueue();
     emit aborted();
     emit exit();
@@ -197,22 +184,20 @@ void TTThreadTaskPool::onUserAbortRequest()
 int TTThreadTaskPool::overallPercentage()
 {
   mOverallStepCount  = 0;
+  quint64 mTotalStepCount    = 0;
 
   for (int i=0; i < mTaskQueue.count(); i++) {
     TTThreadTask* task = mTaskQueue.at(i);
 
-    if (task == 0) {
-      qDebug() << "task was already finished; current overall step count "
-               << mOverallStepCount;
-      continue;
-    } 
+    if (task == 0) continue;
 
-    mOverallStepCount += task->processValue();
+    mOverallStepCount += task->stepCount();
+    mTotalStepCount   += task->totalSteps();
   }
 
 
-  return (mOverallStepCount > 0)
-      ? (int)((double)mOverallStepCount / (double)(100000.0*mTaskQueue.count()) * 1000.0)
+  return  (mOverallStepCount > 0)
+      ? (int)((double)100000.0*mOverallStepCount / (double)(100000.0*mTotalStepCount) * 1000.0)
       : 0;
 }
 
@@ -233,3 +218,14 @@ QTime TTThreadTaskPool::overallTime()
   return QTime(0,0,0,0).addMSecs(totalTimeMsecs);
 }
 
+int TTThreadTaskPool::runningTaskCount()
+{
+  int runningCount = 0;
+
+  for (int i=0; i<mTaskQueue.count(); i++) {
+    TTThreadTask* task = mTaskQueue.at(i);
+    if (task == 0) continue;
+    if (task->isRunning()) runningCount++;
+  }
+  return runningCount;
+}

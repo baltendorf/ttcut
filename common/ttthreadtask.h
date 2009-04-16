@@ -55,6 +55,7 @@ class TTThreadTask : public QObject, public QRunnable
     quint64 totalSteps() const;
     quint64 stepCount() const;
     int     processValue() const;
+    bool    isRunning() const;
 
   protected:
     virtual void operation() = 0;
@@ -81,6 +82,7 @@ class TTThreadTask : public QObject, public QRunnable
     quint64          mStepCount;   /**<current step count                         */
     TTMessageLogger* log;          /**<message logger istance                     */
     QString          mTaskName;    /**<task name                                  */
+    bool             mIsRunning;
 };
 
 #endif
