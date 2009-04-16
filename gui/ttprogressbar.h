@@ -59,9 +59,6 @@ class TTProgressBar : public QDialog, Ui::TTProgressForm
       void onBtnCancelClicked();
       void onSetProgress(TTThreadTask* task, int state, const QString& msg, int totalProgress, QTime totalTime);
 
-    signals:
-      void cancel();
-
     private:
       void addTaskProgress(TTThreadTask* task);
       void setTotalSteps(quint64  t_steps, int r_int=0);
@@ -77,10 +74,14 @@ class TTProgressBar : public QDialog, Ui::TTProgressForm
       void addProcessLine(const QString& line);
       void hideProcessForm();
 
+  signals:
+    void cancel();
+
   private:
     TTProcessForm* processForm;
     QHash<QUuid, TTTaskProgress*>* taskProgressHash;
     int            normTotalSteps;
+    bool           isBlocking;
 
 };
 #endif // TTPROGRESSBAR_H

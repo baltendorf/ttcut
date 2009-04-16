@@ -82,17 +82,12 @@ TTAVStream::TTAVStream(const QFileInfo &f_info)
 
   // check if stream exists
   if (!stream_info->exists())
-  {
-    QString msg = QString("Stream does not exists: %1").arg(stream_info->filePath());
-    throw TTIOException(msg);
-  }
+    throw new TTIOException(QString(tr("Stream does not exists: %1")).arg(stream_info->filePath()));
 
   stream_buffer = new TTFileBuffer(stream_info->filePath(), QIODevice::ReadOnly);
 
-  if (!ttAssigned(stream_buffer)) {
-    QString msg = QString("Error allocating buffer for: %1").arg(stream_info->filePath());
-    throw TTIOException(msg);
-  }
+  if (!ttAssigned(stream_buffer))
+    throw new TTIOException(QString(tr("Error allocating buffer for: %1")).arg(stream_info->filePath()));
 
   stream_type = TTAVTypes::unknown;
 }
@@ -102,15 +97,15 @@ TTAVStream::TTAVStream(const QFileInfo &f_info)
  */
 TTAVStream::~TTAVStream()
 {
-	if (ttAssigned(stream_buffer)) {
+	if (stream_buffer != 0) {
     stream_buffer->close();
     delete stream_buffer;
-    stream_buffer = NULL;
+    stream_buffer = 0;
   }
 
-  if (ttAssigned(stream_info)) {
+  if (stream_info != 0) {
     delete stream_info;
-    stream_info = NULL;
+    stream_info = 0;
   }
 }
 
@@ -290,8 +285,8 @@ int TTAudioStream::getEndIndex(int endPos, float frameRate, float& localAudioOff
 TTVideoStream::TTVideoStream( const QFileInfo &f_info )
   : TTAVStream( f_info )
 {
-  header_list          = NULL;
-  index_list           = NULL;
+  header_list          = 0;
+  index_list           = 0;
   current_index        = 0;
   current_marker_index = 0;
 }

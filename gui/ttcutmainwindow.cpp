@@ -35,6 +35,8 @@
 
 #include "../common/ttexception.h"
 #include "../common/ttthreadtask.h"
+#include "../common/ttmessagebox.h"
+
 #include "ttcutavcutdlg.h"
 #include "ttprogressbar.h"
 #include "ttcutaboutdlg.h"
@@ -405,6 +407,10 @@ void TTCutMainWindow::onFileExit()
 void TTCutMainWindow::closeEvent(QCloseEvent* event)
 {
   if (settings != 0)  settings->writeSettings();
+
+  //TTMessageBox msgBox;
+  //msgBox.initSaveRequest("The document has been modified.", "Do you want to save your changes?");
+  //msgBox.exec();
 
   closeProject();
 

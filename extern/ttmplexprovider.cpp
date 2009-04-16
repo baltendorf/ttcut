@@ -29,6 +29,7 @@
 
 #include "ttmplexprovider.h"
 
+#include <QDebug>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -153,7 +154,9 @@ void TTMplexProvider::mplexPart(int index)
 
   log->debugMsg(__FILE__, __LINE__, QString("Mplex command string: %1").arg(mplexArgs.join(" ")));
 
-  emit statusReport(StatusReportArgs::ShowProcessForm, "Starting mplex", 0);
+  emit statusReport(
+      ((TTCut::muxPause) ? StatusReportArgs::ShowProcessFormBlocking : StatusReportArgs::ShowProcessForm), 
+      "Starting mplex", 0);
   qApp->processEvents();
   proc->start(mplexCmd, mplexArgs);
 
@@ -170,6 +173,7 @@ void TTMplexProvider::mplexPart(int index)
   }
 
   emit statusReport(StatusReportArgs::HideProcessForm, "Finished mplex", 0);
+
   qApp->processEvents();
 }
 

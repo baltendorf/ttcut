@@ -94,7 +94,7 @@ HEADERS     = common/ttcut.h\
               data/ttcutaudiotask.h\
               data/ttcutpreviewtask.h\
               data/ttframesearchtask.h\
-              data/ttthreadstatusargs.h\
+#unused              data/ttthreadstatusargs.h\
               avstream/ttcommon.h\
               avstream/ttac3audioheader.h\
               avstream/ttac3audiostream.h\

@@ -41,14 +41,11 @@ TTMessageBox::~TTMessageBox()
 
 }
 
-void TTMessageBox::onDlgClose()
+void TTMessageBox::initSaveRequest(const QString& text, const QString& infoText)
 {
+  setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+  setText(text);
+  setInformativeText(infoText);
+  setDefaultButton(QMessageBox::Save);
 }
 
-void TTMessageBox::setCallerText(QString text)
-{
-}
-
-void TTMessageBox::setMessageText(QString text)
-{
-}

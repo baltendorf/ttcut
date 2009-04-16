@@ -482,8 +482,10 @@ QFileInfoList TTAVData::getAudioNames(const QFileInfo& vFileInfo)
 	return audioDir.entryInfoList();
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
- * writeProjectFile
+// ////////////////////////////////////////////////////////////////////////////
+// Project file related methods 
+/**
+ * Write the xml project file
  */
 void TTAVData::writeProjectFile(const QFileInfo& fInfo)
 {
@@ -557,8 +559,9 @@ void TTAVData::onReadProjectFileAborted()
 
 // /////////////////////////////////////////////////////////////////////////////
 // Cut preview
-//
-//! Create the cut preview clips
+/**
+ * Create the cut preview clips
+ */
 void TTAVData::doCutPreview(TTCutList* cutList)
 {
   if (cutPreviewTask != 0) delete cutPreviewTask;
@@ -657,8 +660,6 @@ void TTAVData::onCutFinished()
 
  connect(mplexProvider, SIGNAL(statusReport(int, const QString&, quint64)), 
          this,          SLOT(onStatusReport(int, const QString&, quint64)));
-
- //connect(mplexProvider, SIGNAL(step(const QString&, quint64)), this, SLOT(onMplexStep(const QString&, quint64)));
 
  if (TTCut::muxMode == 1)
    mplexProvider->writeMuxScript();

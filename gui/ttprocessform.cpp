@@ -31,6 +31,9 @@
 #include "ttprocessform.h"
 
 
+/**
+ * Constructor
+ */
 TTProcessForm::TTProcessForm(QWidget* parent)
   : QDialog(parent)
 {
@@ -39,32 +42,43 @@ TTProcessForm::TTProcessForm(QWidget* parent)
   btnCancel->setAutoDefault(false);
   btnCancel->hide();
 
-  // signal and slot connection
   connect(btnCancel, SIGNAL(clicked(bool)), SIGNAL(btnCancelClicked()));
 }
 
+/**
+ * Destructor
+ */
 TTProcessForm::~TTProcessForm()
 {
- // for (int i=0; i < procOutputList->count(); i++) {
-  //  delete procOutputList->takeItem(i);
-  //}
 }
 
+/**
+ * Set the process window frame caption
+ */
 void TTProcessForm::setFrameCaption(QString& caption)
 {
   gbProcessView->setTitle(caption);
 }
 
+/**
+ * Enable the list control for manual scrolling
+ */
 void TTProcessForm::enableList(bool value)
 {
   procOutputList->setEnabled(value);
 }
 
+/**
+ * Enable the cancel button
+ */
 void TTProcessForm::enableButton(bool value)
 {
   btnCancel->setEnabled(value);
 }
 
+/**
+ * Show the cancel button
+ */
 void TTProcessForm::showCancelButton(bool show)
 {
   btnCancel->setText(tr("Cancel"));
@@ -72,6 +86,9 @@ void TTProcessForm::showCancelButton(bool show)
   btnCancel->setVisible(show);
 }
 
+/**
+ * Show the ok button
+ */
 void TTProcessForm::showOkButton(bool show)
 {
   btnCancel->setText(tr("Ok"));
@@ -79,6 +96,9 @@ void TTProcessForm::showOkButton(bool show)
   btnCancel->setVisible(show);
 }
 
+/**
+ * Add a line to the process output
+ */
 void TTProcessForm::addLine(const QString& str_line)
 {
 	procOutputList->addItem(str_line);

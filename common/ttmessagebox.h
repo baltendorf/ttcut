@@ -43,11 +43,7 @@ class TTMessageBox : public QMessageBox
     TTMessageBox(QWidget* parent = 0);
     ~TTMessageBox();
 
-    void setCallerText(QString text);
-    void setMessageText(QString text);
-
-  protected slots:
-    void onDlgClose();
+    void initSaveRequest(const QString& text, const QString& infoText);
 };
 
 #endif // TTMESSAGEBOX_H

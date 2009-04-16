@@ -50,6 +50,7 @@ TTProgressBar::TTProgressBar(QWidget* parent)
 
   processForm    = 0;
   normTotalSteps = 1000;
+  isBlocking     = false;
 
   progressBar->setMinimum( 0 );
   progressBar->setMaximum( normTotalSteps );
@@ -65,6 +66,7 @@ TTProgressBar::TTProgressBar(QWidget* parent)
  */
 TTProgressBar::~TTProgressBar()
 {
+  if (processForm != 0) delete processForm;
 }
 
 /**
@@ -83,6 +85,8 @@ void TTProgressBar::showBar()
  */
 void TTProgressBar::hideBar()
 {
+  if (isBlocking) return;
+
   setModal(true);
   hide();
   
@@ -177,6 +181,10 @@ void TTProgressBar::onDetailsStateChanged(int)
 void TTProgressBar::onBtnCancelClicked()
 {
   emit cancel();
+
+  isBlocking = false;
+  hideProcessForm();
+  hideBar();
 }
 
 /**
@@ -186,6 +194,7 @@ void TTProgressBar::onSetProgress(TTThreadTask* task, int state, const QString& 
 {
   switch (state) {
     case StatusReportArgs::Init:
+      isBlocking = false;
       resetProgress();
       setActionText(msg);
       this->setEnabled(true);
@@ -206,6 +215,11 @@ void TTProgressBar::onSetProgress(TTThreadTask* task, int state, const QString& 
       break;
 
     case StatusReportArgs::ShowProcessForm:
+      showProcessForm();
+      break;
+
+    case StatusReportArgs::ShowProcessFormBlocking:
+      isBlocking = true;
       showProcessForm();
       break;
 
@@ -236,22 +250,31 @@ void TTProgressBar::addTaskProgress(TTThreadTask* task)
   verticalLayout->addWidget(taskProgress);
 }
 
-/*!
+// /////////////////////////////////////////////////////////////////////////////
+// Process output form
+/**
  * showProcessForm
  */
 void TTProgressBar::showProcessForm()
 {
-  if (processForm != 0) return;
+  if (processForm != 0) {
+    delete processForm;
+  }
+  // return;
 
-  //hideBar();
+	processForm = new TTProcessForm(this);
 
-	processForm = new TTProcessForm(TTCut::mainWindow);
-	processForm->setModal(false);
-	processForm->showCancelButton(false);
+  connect(processForm, SIGNAL(btnCancelClicked()), this, SLOT(onBtnCancelClicked()));
+
+  processForm->setModal(isBlocking);
+	//processForm->showCancelButton(isBlocking);
+  processForm->showOkButton(isBlocking);
+  processForm->enableButton(false);
+
 	processForm->show();
 }
 
-/*!
+/**
  * addProcessLine
  */
 void TTProgressBar::addProcessLine(const QString& line)
@@ -261,16 +284,20 @@ void TTProgressBar::addProcessLine(const QString& line)
 	processForm->addLine(line);
 }
 
-/*!
+/**
  * hideProcessForm
  */
 void TTProgressBar::hideProcessForm()
 {
-	if (processForm != 0) {
-		processForm->hide();
-		delete processForm;
-		processForm = 0;
-	}
+  if (processForm == 0) return;
 
-  //showBar();
+  if (isBlocking) {
+    processForm->enableButton(true);
+    return;
+  }
+
+	processForm->hide();
+	//delete processForm;
+	//processForm = 0;
 }
+

@@ -38,6 +38,7 @@ class StatusReportArgs
       Canceled,
       Error,
       ShowProcessForm,
+      ShowProcessFormBlocking,
       AddProcessLine,
       HideProcessForm
     };
