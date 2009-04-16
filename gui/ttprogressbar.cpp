@@ -201,11 +201,12 @@ void TTProgressBar::onSetProgress(TTThreadTask* task, int state, const QString& 
       break;
 
     case StatusReportArgs::Start:
-      setActionText(msg);
       addTaskProgress(task);
+      setActionText(msg);
       break;
 
     case StatusReportArgs::Step:
+      setActionText(msg);
       setTotalProgress(totalProgress, totalTime);
       setTaskProgress(task, msg);
       break;
@@ -215,20 +216,20 @@ void TTProgressBar::onSetProgress(TTThreadTask* task, int state, const QString& 
       break;
 
     case StatusReportArgs::ShowProcessForm:
-      showProcessForm();
+      //showProcessForm();
       break;
 
     case StatusReportArgs::ShowProcessFormBlocking:
       isBlocking = true;
-      showProcessForm();
+      //showProcessForm();
       break;
 
     case StatusReportArgs::AddProcessLine:
-      addProcessLine(msg);
+      //addProcessLine(msg);
       break;
 
     case StatusReportArgs::HideProcessForm:
-      hideProcessForm();
+      //hideProcessForm();
       break;
 
     default:

@@ -616,7 +616,7 @@ void TTAVData::onDoCut(QString tgtFileName, TTCutList* cutList)
 {
   if (cutList == 0) cutList = mpCutList;
 
-  cutVideoTask = new TTCutVideoTask(tgtFileName, cutList);
+  cutVideoTask = new TTCutVideoTask(this, tgtFileName, cutList);
 
   connect(mpThreadTaskPool, SIGNAL(exit()),    this, SLOT(onCutFinished()));
   connect(mpThreadTaskPool, SIGNAL(aborted()), this, SLOT(onCutAborted()));

@@ -30,24 +30,31 @@
 #include "ttcutvideotask.h"
 
 #include "../common/ttexception.h"
+#include "../common/ttthreadtaskpool.h"
 #include "../avstream/ttfilebuffer.h"
 #include "../data/ttcutparameter.h"
 #include "../avstream/ttavstream.h"
 #include "../data/ttavdata.h"
 #include "../data/ttcutlist.h"
 
-//! Cut video stream task
-TTCutVideoTask::TTCutVideoTask(QString tgtFilePath, TTCutList* cutList) :
+/**
+ * Cut video stream task
+ */
+TTCutVideoTask::TTCutVideoTask(TTAVData* avData, QString tgtFilePath, TTCutList* cutList) :
                 TTThreadTask("CutVideoTask")
 {
+  mpAVData     = avData;
   mTgtFilePath = tgtFilePath;
   mpCutList    = cutList;
   mpCutStream  = 0;
+  mpCutTask    = new TTCutTask();
 
   mMuxListItem.setVideoName(tgtFilePath);
 }
 
-//! Operation abort request
+/**
+ * Operation abort request
+ */
 void TTCutVideoTask::onUserAbort()
 {
   if (mpCutStream == 0) {
@@ -58,20 +65,26 @@ void TTCutVideoTask::onUserAbort()
    mpCutStream->setAbort(true);
 }
 
-//! Clean up after operation
+/**
+ * Clean up after operation
+ */
 void TTCutVideoTask::cleanUp()
 {
   //if (mpTgtStream != 0) delete mpTgtStream;
   //if (mpCutParams != 0) delete mpCutParams;
 }
 
-//! Returns the mux list item
+/**
+ * Returns the mux list item
+ */
 TTMuxListDataItem* TTCutVideoTask::muxListItem()
 {
   return &mMuxListItem;
 }
 
-//! Task operation method
+/**
+ * Task operation method
+ */
 void TTCutVideoTask::operation()
 {
  	mpTgtStream = new TTFileBuffer(mTgtFilePath, QIODevice::WriteOnly);
@@ -80,10 +93,13 @@ void TTCutVideoTask::operation()
 	mpCutParams->setIsWriteSequenceEnd(true);
 	mpTgtStream->open();
 
+  onStatusReport(this, StatusReportArgs::Start, tr("Do video cut"), mpCutList->count());
+
   for (int i = 0; i < mpCutList->count(); i++) {
 	  TTCutItem cutItem   = mpCutList->at(i);
 	  int       cutIn     = cutItem.cutInIndex();
 	  int       cutOut    = cutItem.cutOutIndex();
+
 
     mpCutStream = cutItem.avDataItem()->videoStream();
 
@@ -95,20 +111,24 @@ void TTCutVideoTask::operation()
 		log->debugMsg(__FILE__, __LINE__, QString("VideoCut length %1").
         arg((cutOut - cutIn + 1) * 1000.0 / 25.0));
 
-		connect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
-		  			this,        SLOT(onStatusReport(int, const QString&, quint64)));
+		//connect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
+		//  			this,        SLOT(onStatusReport(int, const QString&, quint64)));
 
 		if (i == 0)
       mpCutParams->firstCall();
 
 		//FIXME: cutIn and cutOut are redundant in cutParams ?-)
-		mpCutStream->cut(cutIn, cutOut, mpCutParams);
+		//mpCutStream->cut(cutIn, cutOut, mpCutParams);
+
+    mpCutTask->init(mpCutStream, cutIn, cutOut, mpCutParams);
+    mpAVData->threadTaskPool()->start(mpCutTask, true);
 
 		if (i == mpCutList->count() - 1)
 		  mpCutParams->lastCall();
 
-    disconnect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
-	      			 this,        SLOT(onStatusReport(int, const QString&, quint64)));
+    onStatusReport(this, StatusReportArgs::Step, QString(tr("Cut %1 from %2")).arg(i+1).arg(mpCutList->count()), i+1);
+    //disconnect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
+	  //    			 this,        SLOT(onStatusReport(int, const QString&, quint64)));
 	}
 
   log->debugMsg(__FILE__, __LINE__, QString("close target stream %1").arg(mTgtFilePath));
@@ -116,5 +136,42 @@ void TTCutVideoTask::operation()
   delete mpTgtStream;
   emit finished(mMuxListItem);
 }
+
+
+TTCutTask::TTCutTask() : TTThreadTask("CutTask")
+{
+  mpCutStream    = 0;
+  mpCutParameter = 0;
+}
+
+void TTCutTask::init(TTVideoStream* cutStream, int cutIn, int cutOut, TTCutParameter* cutParameter)
+{
+  mpCutStream    = cutStream;
+  mCutIn         = cutIn;
+  mCutOut        = cutOut;
+  mpCutParameter = cutParameter;
+}
+
+void TTCutTask::cleanUp()
+{
+}
+
+void TTCutTask::onUserAbort()
+{
+}
+
+void TTCutTask::operation()
+{
+  if (mpCutStream == 0) return;
+
+	connect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
+	  			this,        SLOT(onStatusReport(int, const QString&, quint64)));
+
+  mpCutStream->cut(mCutIn, mCutOut, mpCutParameter);
+
+  disconnect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
+	    			 this,        SLOT(onStatusReport(int, const QString&, quint64)));
+}
+
 
 

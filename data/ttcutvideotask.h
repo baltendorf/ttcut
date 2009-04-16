@@ -33,10 +33,12 @@
 #include "../common/ttthreadtask.h"
 #include "../data/ttmuxlistdata.h"
 
+class TTAVData;
 class TTFileBuffer;
 class TTCutParameter;
 class TTVideoStream;
 class TTCutList;
+class TTCutTask;
 
 //! Runable task for cutting video streams
 class TTCutVideoTask : public TTThreadTask
@@ -44,7 +46,7 @@ class TTCutVideoTask : public TTThreadTask
   Q_OBJECT
 
   public:
-    TTCutVideoTask(QString tgtFilePath, TTCutList* cutList);
+    TTCutVideoTask(TTAVData* avData, QString tgtFilePath, TTCutList* cutList);
     TTMuxListDataItem* muxListItem();
 
   protected:
@@ -58,12 +60,35 @@ class TTCutVideoTask : public TTThreadTask
     void finished(const TTMuxListDataItem& muxListItem);
 
   private:
+    TTAVData*         mpAVData;
     QString           mTgtFilePath;
     TTMuxListDataItem mMuxListItem;
     TTCutList*        mpCutList;
     TTFileBuffer*     mpTgtStream;
     TTCutParameter*   mpCutParams;
     TTVideoStream*    mpCutStream;
+    TTCutTask*        mpCutTask;
 };
 
+class TTCutTask : public TTThreadTask
+{
+  Q_OBJECT
+
+  public:
+    TTCutTask();
+    void init(TTVideoStream* cutStream, int cutIn, int cutOut, TTCutParameter* cutParameter);
+
+  protected:
+    void cleanUp();;
+    void operation();
+
+  public slots:
+    void onUserAbort();
+
+  private:  
+    int             mCutIn;
+    int             mCutOut;
+    TTVideoStream*  mpCutStream;
+    TTCutParameter* mpCutParameter;
+};
 #endif

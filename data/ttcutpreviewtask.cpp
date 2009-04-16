@@ -116,7 +116,7 @@ void TTCutPreviewTask::operation()
 
     try
     {
-    	cutVideoTask = new TTCutVideoTask(createPreviewFileName(i + 1, "m2v"), tmpCutList);
+    	cutVideoTask = new TTCutVideoTask(mpAVData, createPreviewFileName(i + 1, "m2v"), tmpCutList);
     	mpAVData->threadTaskPool()->start(cutVideoTask, true);
 
     	if (tmpCutList->at(0).avDataItem()->audioCount() > 0) {

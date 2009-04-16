@@ -86,7 +86,8 @@ void TTThreadTaskPool::start(TTThreadTask* task, bool runSyncron, int priority)
 
   mActiveThreadCount++;
 
-  mTaskQueue.enqueue(task);
+  if (!mTaskQueue.contains(task))
+    mTaskQueue.enqueue(task);
 
   log->debugMsg(__FILE__, __LINE__, QString("enqueue task %1, current task count %2").
       arg(task->taskName()).
@@ -107,11 +108,21 @@ void TTThreadTaskPool::onThreadTaskStarted(TTThreadTask*)
 //! Thread task finished
 void TTThreadTaskPool::onThreadTaskFinished(TTThreadTask* task)
 {
+	disconnect(task, SIGNAL(started(TTThreadTask*)),  this, SLOT(onThreadTaskStarted(TTThreadTask*)));
+	disconnect(task, SIGNAL(finished(TTThreadTask*)), this, SLOT(onThreadTaskFinished(TTThreadTask*)));
+	disconnect(task, SIGNAL(aborted(TTThreadTask*)),  this, SLOT(onThreadTaskAborted(TTThreadTask*)));
+
+  disconnect(task, SIGNAL(statusReport(TTThreadTask*, int, const QString&, quint64)),
+             this, SLOT(onStatusReport(TTThreadTask*, int, const QString&, quint64)));
+
 	mActiveThreadCount--;
-  if (mActiveThreadCount < 0)
+
+  if (mActiveThreadCount < 0) {
+    qDebug("Thread count gets negative!");
   	throw new TTInvalidOperationException(
 				QString("Exception during task abort %1. Active thread count gets invalid!").
 				arg(task->taskName()));
+  }
 
   if (mActiveThreadCount == 0) {
     cleanUpQueue();
