@@ -158,8 +158,7 @@ int TTMpeg2VideoStream::createIndexList()
   {
   	if (mAbort) {
   		mAbort = false;
-      qDebug("abort in createIndexList");
-  		throw new TTAbortException("Index list creation aborted!");
+  		throw new TTAbortException(tr("Index list creation aborted!"));
   	}
 
     start_code = header_list->at(index)->headerType();
@@ -237,12 +236,12 @@ bool TTMpeg2VideoStream::createHeaderListFromIdd(TTFileBuffer* iddStream)
   iddStream->open();
 
   if (!iddStream->readByte(buffer4, 4))
-    throw TTIOException(QString("Error reading IDD file in %1 at line %2!").arg(__FILE__).arg(__LINE__));
+    throw TTIOException(QString(tr("Error reading IDD file in %1 at line %2!")).arg(__FILE__).arg(__LINE__));
 
   if (buffer4[0] != int('i') &&
       buffer4[1] != int('d') &&
       buffer4[2] != int('d')    ) {
-    throw TTDataFormatException(QString("No IDD file in %1 at line %2!").arg(__FILE__).arg(__LINE__));
+    throw TTDataFormatException(QString(tr("No IDD file in %1 at line %2!")).arg(__FILE__).arg(__LINE__));
     }
 
   readIDDHeader(iddStream, buffer4[3]);
@@ -272,8 +271,7 @@ bool TTMpeg2VideoStream::createHeaderListFromMpeg2()
     {
     	if (mAbort) {
     		mAbort = false;
-        qDebug("abort in createHeaderList");
-    		throw new TTAbortException("Headerlist creation aborted by user!");
+    		throw new TTAbortException(tr("Headerlist creation aborted by user!"));
     	}
 
       headerType = 0xFF;
@@ -314,7 +312,7 @@ bool TTMpeg2VideoStream::createHeaderListFromMpeg2()
         header_list->add( newHeader );
       }
 
-      emit statusReport(StatusReportArgs::Step, tr("Step..."), stream_buffer->position());
+      emit statusReport(StatusReportArgs::Step, QString(tr("Found %1 header")).arg(header_list->count()), stream_buffer->position());
     }
     log->debugMsg(__FILE__, __LINE__, QString("time for creating header list %1ms").
         arg(time.elapsed()));
@@ -432,8 +430,7 @@ void TTMpeg2VideoStream::readIDDHeader(TTFileBuffer* iddStream, quint8 iddFileVe
   TTMpeg2VideoHeader* newHeader = NULL;
 
   if (iddFileVersion < 2) {
-    QString msg = QString("IDD file version %1 not supported!").arg(iddFileVersion);
-    throw TTDataFormatException(msg);
+    throw new TTDataFormatException(QString(tr("IDD file version %1 not supported!")).arg(iddFileVersion));
   }
 
   emit statusReport(StatusReportArgs::Start, tr("Read Mpeg2Schnitt IDD-file"), iddStream->size());
@@ -444,7 +441,7 @@ void TTMpeg2VideoStream::readIDDHeader(TTFileBuffer* iddStream, quint8 iddFileVe
     {
     	if (mAbort) {
     		mAbort = false;
-     		throw new TTAbortException("Read IDD header file aborted!");
+     		throw new TTAbortException(tr("Read IDD header file aborted!"));
     	}
 
       iddStream->readByte(headerType);
@@ -486,7 +483,7 @@ void TTMpeg2VideoStream::readIDDHeader(TTFileBuffer* iddStream, quint8 iddFileVe
   }
   catch (...)
   {
-    qDebug("catch something....");
+    log->debugMsg(__FILE__, __LINE__, "catch block called!");
   }
 }
 
@@ -596,20 +593,14 @@ TTVideoHeader* TTMpeg2VideoStream::checkIFrameSequence(int iFramePos, TTCutParam
       seqHeaderIndex, TTMpeg2VideoHeader::sequence_start_code);
 
   if (!ttAssigned(seqHeader))
-  {
-    QString msg = QString("No sequence header for I-Frame at index %1").arg(iFramePos);
-    throw TTArgumentNullException(msg);
-  }
+    throw new TTArgumentException(QString(tr("No sequence header for I-Frame at index %1")).arg(iFramePos));
 
   //Check for GOP
   int gopHeaderIndex      = header_list->headerIndex((TTVideoHeader*)seqHeader) + 1;
   TTVideoHeader* gopHeader = header_list->headerAt(gopHeaderIndex);
 
   if (!ttAssigned(gopHeader))
-  {
-    QString msg = QString("No GOP Header found for I-Frame at index %1").arg(iFramePos);
-    throw TTArgumentNullException(msg);
-  }
+    throw new TTArgumentException(QString(tr("No GOP Header found for I-Frame at index %1")).arg(iFramePos));
 
   // inject the sequence header into the target stream
   copySegment(cutParams->getTargetStreamBuffer(), seqHeader->headerOffset(), gopHeader->headerOffset()-1);
@@ -617,9 +608,8 @@ TTVideoHeader* TTMpeg2VideoStream::checkIFrameSequence(int iFramePos, TTCutParam
   if (cutParams->getMaxBitrate() < seqHeader->bit_rate_value)
     cutParams->setMaxBitrate(seqHeader->bit_rate_value);
 
-  QString msg = QString("Insert missing sequence header in cut target stream!");
-  log->fatalMsg(__FILE__, __LINE__, msg);
-  throw TTMissingMethodException(msg);
+  log->fatalMsg(__FILE__, __LINE__, QString(tr("Insert missing sequence header in cut target stream!")));
+  throw new TTMissingMethodException(QString("Sequence copy-constructor not implmented yet!"));
   //TODO: here we need a sequence copy constructor!
   //TTSequenceHeader* newSequence = new TTSequenceHeader();
   //newSequence->setHeaderOffset((quint64)0);
@@ -642,10 +632,8 @@ TTVideoHeader* TTMpeg2VideoStream::getCutEndObject(int cutOutPos, TTCutParameter
   while (ipFramePos >= 0 && index_list->pictureCodingType(ipFramePos) == 3)
     ipFramePos--;
 
-  if (index_list->pictureCodingType(ipFramePos) == 3) {
-    QString msg = QString("No I- or P-Frame found at cut out position: %1").arg(cutOutPos);
-    throw TTInvalidOperationException(msg);
-  }
+  if (index_list->pictureCodingType(ipFramePos) == 3)
+    throw new TTInvalidOperationException(QString(tr("No I- or P-Frame found at cut out position: %1")).arg(cutOutPos));
 
   int headerListPos           = index_list->headerListIndex(ipFramePos);
   TTPicturesHeader* endObject = (TTPicturesHeader*)header_list->headerAt(headerListPos);
@@ -694,13 +682,13 @@ void TTMpeg2VideoStream::transferCutObjects(TTVideoHeader* startObject, TTVideoH
   quint8    buffer[65536];
   quint64   bytesToWrite      = getByteCount(startObject, endObject);
   quint64   bufferStartOffset = startObject->headerOffset();
-  int       numPicsWritten = cr->getNumPicturesWritten();
-  quint64   process        = 0;
-  bool      closeNextGOP   = true;  // remove B-frames
-  int       tempRefDelta   = 0;     // delta for temporal reference if closed GOP
-  const int watermark      = 12;    // size of header type-code (12 byte)
-  bool      objectProcessed;
-  bool      isContinue = false;
+  int       numPicsWritten    = cr->getNumPicturesWritten();
+  quint64   process           = 0;
+  bool      closeNextGOP      = true;  // remove B-frames
+  int       tempRefDelta      = 0;     // delta for temporal reference if closed GOP
+  const int watermark         = 12;    // size of header type-code (12 byte)
+  bool      objectProcessed   = false;
+  bool      isContinue        = false;
 
   log->debugMsg(__FILE__, __LINE__, QString("transferCutObjects::bytesToWrite %1").
       arg(bytesToWrite));
@@ -721,13 +709,13 @@ void TTMpeg2VideoStream::transferCutObjects(TTVideoHeader* startObject, TTVideoH
         : stream_buffer->readByte(buffer, 65536);
 
     if (bytesProcessed <= 0)
-      throw TTIOException(QString("%1 bytes from stream buffer read").arg(bytesProcessed));
+      throw TTIOException(QString(tr("%1 bytes from stream buffer read")).arg(bytesProcessed));
 
     do
     {
     	if (mAbort) {
     		mAbort = false;
-    		throw new TTAbortException("Read IDD header file aborted!");
+    		throw new TTAbortException(tr("Transfer cut objects aborted!"));
     	}
 
       isContinue = false;
@@ -864,7 +852,6 @@ void TTMpeg2VideoStream::transferCutObjects(TTVideoHeader* startObject, TTVideoH
 
   }
 
-  //qDebug("transferCutObjects -> emit finished");
   emit statusReport(StatusReportArgs::Finished, tr("Transfer complete"), process);
   qApp->processEvents();
 
@@ -1025,7 +1012,7 @@ void TTMpeg2VideoStream::encodePart(int start, int end, TTCutParameter* cr)
   QString rmCmd = QString("rm %1/encode.*").arg(mpeg2FileInfo.absolutePath());
 
   if (system(rmCmd.toAscii().data()) < 0)
-    log->errorMsg(__FILE__, __LINE__, QString("system call %1 failed!").arg(rmCmd));
+    log->errorMsg(__FILE__, __LINE__, QString(tr("system call %1 failed!")).arg(rmCmd));
 
   cr->setIsWriteMaxBitrate(savIsWriteMaxBitrate);
   cr->setIsWriteSequenceEnd(savIsWriteSequenceEnd);
