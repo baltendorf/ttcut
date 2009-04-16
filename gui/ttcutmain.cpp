@@ -40,6 +40,8 @@
 // class declaration for the main window class
 #include "ttcutmainwindow.h"
 
+#include "../common/ttmessagelogger.h"
+
 /* /////////////////////////////////////////////////////////////////////////////
  * TTCut main
  */
@@ -55,16 +57,24 @@ int main( int argc, char **argv )
     a.setApplicationName("TTCut");
 
     QTranslator qtTranslator;
-    qtTranslator.load("qt_" + QLocale::system().name(),
-                    QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    if (!qtTranslator.load("qt_" + QLocale::system().name(), QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+      TTMessageLogger* log = TTMessageLogger::getInstance();
+      log->errorMsg(__FILE__, __LINE__,
+                    QString("Qt translation file %1 for locale %2 could not be found!").
+                    arg("qt_" + QLocale::system().name()).
+                    arg(QLocale::system().name()));
+    }
 
     a.installTranslator(&qtTranslator);
 
-    qDebug() << "local " << QLocale::system().name();
-
     QTranslator appTranslator;
-    if (!appTranslator.load("ttcut_" + QLocale::system().name(), "trans"))
-      qDebug("Translation file not found!");
+    if (!appTranslator.load("ttcut_" + QLocale::system().name(), "trans")) {
+      TTMessageLogger* log = TTMessageLogger::getInstance();
+      log->errorMsg(__FILE__, __LINE__, 
+                    QString("Translation file %1 for locale %2 could not be found!").
+                    arg("ttcut_" + QLocale::system().name()).
+                    arg(QLocale::system().name()));
+    }
 
     a.installTranslator(&appTranslator);
 
