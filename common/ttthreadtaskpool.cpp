@@ -45,7 +45,7 @@ TTThreadTaskPool::TTThreadTaskPool() : QObject()
 {
   QThreadPool::globalInstance()->setExpiryTimeout(100);
 
-  log                = TTMessageLogger::getInstance();
+  log = TTMessageLogger::getInstance();
 }
 
 //! Destructor
@@ -65,6 +65,15 @@ void TTThreadTaskPool::cleanUpQueue()
 
     if (task == 0) continue;
 
+  disconnect(task, SIGNAL(started(TTThreadTask*)),  this, SLOT(onThreadTaskStarted(TTThreadTask*)));
+	disconnect(task, SIGNAL(finished(TTThreadTask*)), this, SLOT(onThreadTaskFinished(TTThreadTask*)));
+	disconnect(task, SIGNAL(aborted(TTThreadTask*)),  this, SLOT(onThreadTaskAborted(TTThreadTask*)));
+
+  disconnect(task, SIGNAL(statusReport(TTThreadTask*, int, const QString&, quint64)),
+             this, SLOT(onStatusReport(TTThreadTask*, int, const QString&, quint64)));
+
+
+    qDebug() << "remove task " << task->taskName() << " with UUID " << task->taskID();
     t.remove();
   }
 }
@@ -86,22 +95,22 @@ void TTThreadTaskPool::start(TTThreadTask* task, bool runSyncron, int priority)
   if (!mTaskQueue.contains(task)) 
     mTaskQueue.enqueue(task);
 
-
   log->debugMsg(__FILE__, __LINE__, QString("enqueue task %1, current task count %2").
       arg(task->taskName()).
       arg(mTaskQueue.count()));
+  qDebug() << "enqueue task " << (runSyncron ? "(synchron) " : "(asynchron)" ) << task->taskName() << " with UUID " << task->taskID();
+
 
   if (runSyncron)
   	task->run();
   else
   	QThreadPool::globalInstance()->start(task, priority);
-  
 }
 
 //! Thread task started
-void TTThreadTaskPool::onThreadTaskStarted(TTThreadTask*)
+void TTThreadTaskPool::onThreadTaskStarted(TTThreadTask* task)
 {
-  qDebug() << "start: active threads " << runningTaskCount() << " queue count " << mTaskQueue.count();
+  qDebug() << "start " << task->taskName() << " with UUID " << task->taskID() << " active threads " << runningTaskCount() << " queue count " << mTaskQueue.count();
 }
 
 //! Thread task finished
@@ -115,7 +124,7 @@ void TTThreadTaskPool::onThreadTaskFinished(TTThreadTask* task)
              this, SLOT(onStatusReport(TTThreadTask*, int, const QString&, quint64)));
 
 
-  qDebug() << "finished: active threads " << runningTaskCount() << " queue count " << mTaskQueue.count();
+  qDebug() << "finished " << task->taskName() << " with UUID " << task->taskID() << " active threads " << runningTaskCount() << " queue count " << mTaskQueue.count();
 
   if (runningTaskCount() == 0) {
     cleanUpQueue();
@@ -126,58 +135,59 @@ void TTThreadTaskPool::onThreadTaskFinished(TTThreadTask* task)
 //! Thread task aborted
 void TTThreadTaskPool::onThreadTaskAborted(TTThreadTask* task)
 {
-  qDebug(qPrintable(QString("TTThreadTaskPool::Task %1 with uuid %2 aborted").
+  qDebug(qPrintable(QString("TTThreadTaskPool::Task %1 with uuid %2 aborted. IsRunning %3").
 					arg(task->taskName()).
-  				arg(task->taskID())));
+  				arg(task->taskID()).
+          arg(task->isRunning())));
 
-	if (runningTaskCount() == 0) {
-    cleanUpQueue();
+	disconnect(task, SIGNAL(started(TTThreadTask*)),  this, SLOT(onThreadTaskStarted(TTThreadTask*)));
+	disconnect(task, SIGNAL(finished(TTThreadTask*)), this, SLOT(onThreadTaskFinished(TTThreadTask*)));
+	disconnect(task, SIGNAL(aborted(TTThreadTask*)),  this, SLOT(onThreadTaskAborted(TTThreadTask*)));
+
+  disconnect(task, SIGNAL(statusReport(TTThreadTask*, int, const QString&, quint64)),
+             this, SLOT(onStatusReport(TTThreadTask*, int, const QString&, quint64)));
+
+  mTaskQueue.removeAll(task);
+
+  if (mTaskQueue.count() == 0) {
+    qDebug("No more tasks in queue!");
     emit aborted();
     emit exit();
   }
+  //task->setIsRunning(false);
+  //qDebug() << "running count " << runningTaskCount();
+
+	/*if (runningTaskCount() == 0) {
+    //cleanUpQueue();
+    emit aborted();
+    emit exit();
+  }*/
 }
 
 //! Task status reporting
 void TTThreadTaskPool::onStatusReport(TTThreadTask* task, int state, const QString& msg, quint64 value)
 {
-  if (state == StatusReportArgs::Start) {
-  	//qDebug(qPrintable(QString("TTThreadTaskPool::Start value is %1").
-  	//		arg(value)));
-    /*qDebug(qPrintable(QString("TTThreadTaskPool::Start %1 in thread %2").
-        arg(task->taskName()).
-        arg((int)QThread::currentThreadId())));
-    qDebug(qPrintable(QString("TTThreadTaskPool::Start %1 percent %2 time %3").
-        arg(task->taskName()).
-        arg(overallPercentage()).
-        arg(overallTime().toString("hh:mm:ss"))));*/
-   }
-
-  //if (state == StatusReportArgs::Step) {
-    /*  qDebug(qPrintable(QString("TTThreadTaskPool::Step %1 percent %2 time %3").
-          arg(task->taskName()).
-          arg(overallPercentage()).
-          arg(overallTime().toString("hh:mm:ss"))));*/
-  	//qDebug(qPrintable(QString("task step %1 percent %2").arg(task->taskName()).arg(task->processValue())));
-   //}
-
-  if (state == StatusReportArgs::Finished) {
-      //qDebug(qPrintable(QString("TTThreadTaskPool::Finished %1 percent %2 time %3").
-      //    arg(task->taskName()).
-      //    arg(overallPercentage()).
-      //    arg(overallTime().toString("hh:mm:ss"))));
-  }
+  //qDebug() << "pool status report from task " << task->taskName() << " with UUID " << task->taskID() << " state is " << state;
   emit statusReport(task, state, msg, value);
 }
 
-//! User request to abort all current operations
+/**
+ * User request to abort all current operations
+ */
 void TTThreadTaskPool::onUserAbortRequest()
 {
+  qDebug() << "-----------------------------------------------------";
+  qDebug() << "TTThreadTaskPool -> request to abort all tasks";
+
 	for (int i=0; i < mTaskQueue.count(); i++) {
 		TTThreadTask* task = mTaskQueue.at(i);
 
-		task->onUserAbort();
+    if (task->isRunning())
+      task->onUserAbort();
 		qApp->processEvents();
 	}
+
+  qDebug() << "-----------------------------------------------------";
 }
 
 //! Calculate the total percentage progress value of all enqueued tasks

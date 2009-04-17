@@ -122,7 +122,7 @@ void TTAC3AudioStream::readAudioHeader( TTAC3AudioHeader* audio_header)
 
   audio_header->setHeaderOffset( stream_buffer->position() - 8 ); // +Syncwort
 
-  audio_header->crc1            = daten[0]<<8+daten[1];
+  audio_header->crc1            = daten[0]<<(8+daten[1]);
   audio_header->fscod           = (quint8)((daten[2]&0xc0)>>6);
   audio_header->frmsizecod      = (quint8)(daten[2]&0x3f);
   audio_header->syncframe_words = AC3FrameLength[audio_header->fscod][audio_header->frmsizecod];

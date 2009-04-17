@@ -33,7 +33,9 @@
 #include "../data/ttavlist.h"
 #include "../avstream/ttmpeg2videostream.h"
 
-//! Open video stream task
+/**
+ * Open video stream task
+ */
 TTOpenVideoTask::TTOpenVideoTask(TTAVItem* avItem, QString fileName, int order) :
                  TTThreadTask("OpenVideoTask")
 {
@@ -43,21 +45,23 @@ TTOpenVideoTask::TTOpenVideoTask(TTAVItem* avItem, QString fileName, int order) 
 	mpVideoStream = 0;
 }
 
-//! Request for aborting current operation
+/**
+ * Request for aborting current operation
+ */
 void TTOpenVideoTask::onUserAbort()
 {
-	if (mpVideoStream == 0) {
-    emit aborted(this);
-    return;
-  }
+  abort();
 
 	if (!mpAVItem->isInList())
 		delete mpAVItem;
 
-	mpVideoStream->setAbort(true);
+  if (mpVideoStream != 0)
+    mpVideoStream->setAbort(true);
 }
 
-//! Clean up after operation
+/**
+ * Clean up after operation
+ */
 void TTOpenVideoTask::cleanUp()
 {
   if (mpVideoType   != 0) delete mpVideoType;
@@ -67,24 +71,23 @@ void TTOpenVideoTask::cleanUp()
  					   this,          SLOT(onStatusReport(int, const QString&, quint64)));
 }
 
-//! Task operation method
+/**
+ * Task operation method
+ */
 void TTOpenVideoTask::operation()
 {
+  if (isAborted())
+    throw new TTAbortException(__FILE__, __LINE__, QString("task %1 with UUID % aborted").arg(taskName()).arg(taskID()));
+
 	QFileInfo fInfo(mFileName);
 
-	if (!fInfo.exists()) {
-		QString err = QString(tr("file %1 does not exists!")).arg(fInfo.filePath());
-		log->errorMsg(__FILE__, __LINE__, err);
-		throw new TTFileNotFoundException(err);
-	}
+	if (!fInfo.exists())
+		throw new TTFileNotFoundException(__FILE__, __LINE__, QString(tr("file %1 does not exists!")).arg(fInfo.filePath()));
 
 	mpVideoType = new TTVideoType(fInfo.absoluteFilePath());
 
-	if (mpVideoType->avStreamType() != TTAVTypes::mpeg2_demuxed_video) {
-		QString err = QString(tr("unsupported video type %1")).arg(fInfo.filePath());
-		log->errorMsg(__FILE__, __LINE__, err);
-		throw new TTDataFormatException(err);
-	}
+	if (mpVideoType->avStreamType() != TTAVTypes::mpeg2_demuxed_video) 
+		throw new TTDataFormatException(__FILE__, __LINE__, QString(tr("unsupported video type %1")).arg(fInfo.filePath()));
 
 	mpVideoStream = new TTMpeg2VideoStream(fInfo);
 

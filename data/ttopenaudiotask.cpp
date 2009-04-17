@@ -35,29 +35,33 @@
 #include "../avstream/ttavstream.h"
 #include "../data/ttavlist.h"
 
-//! Open audio stream task
+/**
+ * Open audio stream task
+ */
 TTOpenAudioTask::TTOpenAudioTask(TTAVItem* avItem, QString filePath, int order) :
                  TTThreadTask("OpenAudioTask")
 {
-
   mpAVItem      = avItem;
   mOrder        = order;
 	mFilePath     = filePath;
+  mpAudioType   = 0;
 	mpAudioStream = 0;
 }
 
-//! Operation abort request
+/**
+ * Operation abort request
+ */
 void TTOpenAudioTask::onUserAbort()
 {
-	if (mpAudioStream == 0) {
-    emit aborted(this);
-    return;
-  }
+  abort();
 
-	mpAudioStream->setAbort(true);
+	if (mpAudioStream != 0)
+    mpAudioStream->setAbort(true);
 }
 
-//! Clean up after operation
+/**
+ * Clean up after operation
+ */
 void TTOpenAudioTask::cleanUp()
 {
   if (mpAudioType   != 0) delete mpAudioType;
@@ -67,7 +71,9 @@ void TTOpenAudioTask::cleanUp()
 			   	   this,          SLOT(onStatusReport(int, const QString&, quint64)));
 }
 
-//! Task operation method
+/**
+ * Task operation method
+ */
 void TTOpenAudioTask::operation()
 {
 	try
@@ -76,17 +82,12 @@ void TTOpenAudioTask::operation()
 	}
 	catch (TTException* ex)
 	{
-    QString msg = QString(tr("Unsupported audio type or file not found %1!")).
-				arg(mFilePath);
-    throw new TTException(msg);
+    throw new TTException(__FILE__, __LINE__, QString(tr("Unsupported audio type or file not found %1!")).arg(mFilePath));
 	}
 
 	if (mpAudioType->avStreamType() != TTAVTypes::mpeg_audio &&
-			mpAudioType->avStreamType() != TTAVTypes::ac3_audio) {
-		QString msg = QString(tr("Unsupported audio type %1!")).
-				arg(mFilePath);
-    throw new TTException(msg);
-	}
+			mpAudioType->avStreamType() != TTAVTypes::ac3_audio) 
+    throw new TTException(__FILE__, __LINE__, QString(tr("Unsupported audio type %1!")).arg(mFilePath));
 
 	mpAudioStream = (TTAudioStream*) mpAudioType->createAudioStream();
 

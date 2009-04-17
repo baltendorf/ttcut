@@ -42,6 +42,7 @@ class TTException
   public:
     TTException();
     TTException(const QString& message);
+    TTException(const QString& caller, int line, const QString& message);
     virtual ~TTException();
 
     virtual QString getClassName() {return "TTException";};
@@ -55,6 +56,7 @@ class TTCommonException : public TTException
 {
   public:
     TTCommonException(const QString& msg) : TTException(msg){};
+    TTCommonException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
   protected:
     virtual QString getClassName() { return "TTCommonException"; };
 };
@@ -63,7 +65,8 @@ class TTMemoryAllocationException : public TTException
 {
   public:
     TTMemoryAllocationException(const QString&msg) : TTException(msg){};
-  protected:
+    TTMemoryAllocationException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+   protected:
     virtual QString getClassName() {return "TTMemoryAllocationException";}
 };
 
@@ -71,7 +74,8 @@ class TTMethodNotImplementedException : public TTException
 {
   public:
     TTMethodNotImplementedException(const QString&msg) : TTException(msg){};
-  protected:
+    TTMethodNotImplementedException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+   protected:
     virtual QString getClassName() {return "TTMethodNotImplementedException";};
 };
 
@@ -79,7 +83,8 @@ class TTMissingMethodException : public TTException
 {
   public:
     TTMissingMethodException(const QString&msg) : TTException(msg){};
-  protected:
+    TTMissingMethodException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+   protected:
     virtual QString getClassName() {return "TTMissingMethodException";};
 };
 
@@ -87,7 +92,8 @@ class TTIOException : public TTException
 {
   public:
     TTIOException(const QString& msg) : TTException(msg){};
-  protected:
+    TTIOException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+   protected:
     virtual QString getClassName() {return "TTIOException";};
 };
 
@@ -95,7 +101,8 @@ class TTDataFormatException : public TTException
 {
   public:
     TTDataFormatException(const QString& msg) : TTException(msg){};
-  protected:
+    TTDataFormatException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+   protected:
     virtual QString getClassName() {return "TTDataFormatException";};
 };
 
@@ -103,7 +110,8 @@ class TTInvalidOperationException : public TTException
 {
   public:
     TTInvalidOperationException(const QString& msg) : TTException(msg){};
-  protected:
+    TTInvalidOperationException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+   protected:
     virtual QString getClassName() {return "TTInvalidOperationException";};
 };
 
@@ -111,7 +119,8 @@ class TTArgumentException : public TTException
 {
   public:
     TTArgumentException(const QString& msg) : TTException(msg){};
-  protected:
+    TTArgumentException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+   protected:
     virtual QString getClassName() {return "TTArgumentException";};
 };
 
@@ -119,7 +128,8 @@ class TTArgumentNullException : public TTException
 {
   public:
     TTArgumentNullException(const QString& msg) : TTException(msg) {};
-  protected:
+    TTArgumentNullException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+   protected:
     virtual QString getClassName() {return "TTArgumentNullException";};
 };
 
@@ -127,7 +137,8 @@ class TTArgumentOutOfRangeException : public TTException
 {
   public:
     TTArgumentOutOfRangeException(const QString& msg) : TTException(msg) {};
-  protected:
+    TTArgumentOutOfRangeException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+   protected:
     virtual QString getClassName() {return "TTArgumentOutOfRangeException";};
 };
 
@@ -135,7 +146,8 @@ class TTIndexOutOfRangeException : public TTException
 {
   public:
     TTIndexOutOfRangeException(const QString& msg) : TTException(msg) {};
-  protected:
+    TTIndexOutOfRangeException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+   protected:
     virtual QString getClassName() {return "TTIndexOutOfRangeException";};
 };
 
@@ -143,7 +155,8 @@ class TTFileNotFoundException : public TTException
 {
 	public:
 		TTFileNotFoundException(const QString& msg) : TTException(msg) {};
-	protected:
+    TTFileNotFoundException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+ 	protected:
 		virtual QString getClassName() {return "TTFileNotFoundException";};
 };
 
@@ -151,7 +164,8 @@ class TTAbortException : public TTException
 {
 	public:
 		TTAbortException(const QString& msg) : TTException(msg) {};
-	protected:
+    TTAbortException(const QString& caller, int line, const QString& msg) : TTException(caller, line, msg){};
+ 	protected:
 		virtual QString getClassName() {return "TTAbortException";};
 };
 #endif

@@ -46,32 +46,38 @@
 #include <QDir>
 #include <QDebug>
 
-//! Create cut preview clips task
+/**
+ * Create cut preview clips task
+ */
 TTCutPreviewTask::TTCutPreviewTask(TTAVData* avData, TTCutList* cutList) :
                   TTThreadTask("CutPreviewTask")
 {
-	mpAVData  = avData;
-	mpCutList = cutList;
-	mAbort    = false;
-
-  cutVideoTask = 0;
-  cutAudioTask = 0;
+	mpAVData     = avData;
+	mpCutList    = cutList;
+ 	cutVideoTask = new TTCutVideoTask(mpAVData);
+	cutAudioTask = new TTCutAudioTask();
 }
 
-//! Operation abort requested
+/**
+ * Operation abort requested
+ */
 void TTCutPreviewTask::onUserAbort()
 {
-	if (cutVideoTask != 0) cutVideoTask->onUserAbort();
-	if (cutAudioTask != 0) cutAudioTask->onUserAbort();
-	mAbort = true;
+	//if (cutVideoTask != 0) cutVideoTask->onUserAbort();
+	//if (cutAudioTask != 0) cutAudioTask->onUserAbort();
+  abort();
 }
 
-//! Clean up after operation
+/**
+ * Clean up after operation
+ */
 void TTCutPreviewTask::cleanUp()
 {
 }
 
-//! Task operation method
+/**
+ * Task operation method
+ */
 void TTCutPreviewTask::operation()
 {
   mpPreviewCutList = createPreviewCutList(mpCutList);
@@ -83,8 +89,8 @@ void TTCutPreviewTask::operation()
 	onStatusReport(this, StatusReportArgs::Start, tr("create cut preview clips"), 2*numPreview);
 
   for (int i = 0; i < numPreview; i++) {
-  	if (mAbort)
-  		throw new TTAbortException("User abort request in TTCutPreviewTask!");
+    if (isAborted())
+  		throw new TTAbortException(__FILE__, __LINE__, "Operation aborted");
 
     onStatusReport(this, StatusReportArgs::Step, QString("create preview cut %1 from %2").
         arg(i+1).arg(numPreview), i+1);
@@ -116,12 +122,12 @@ void TTCutPreviewTask::operation()
 
     try
     {
-    	cutVideoTask = new TTCutVideoTask(mpAVData, createPreviewFileName(i + 1, "m2v"), tmpCutList);
+    	cutVideoTask->init(createPreviewFileName(i + 1, "m2v"), tmpCutList);
     	mpAVData->threadTaskPool()->start(cutVideoTask, true);
 
     	if (tmpCutList->at(0).avDataItem()->audioCount() > 0) {
     		hasAudio = true;
-    		cutAudioTask = new TTCutAudioTask(createPreviewFileName(i + 1, "mpa"), tmpCutList, 0, cutVideoTask->muxListItem());
+    		cutAudioTask->init(createPreviewFileName(i + 1, "mpa"), tmpCutList, 0, cutVideoTask->muxListItem());
     		mpAVData->threadTaskPool()->start(cutAudioTask, true);
     	}
     }
@@ -157,7 +163,9 @@ void TTCutPreviewTask::operation()
   emit finished(mpPreviewCutList);
 }
 
-//! Creates the preview cut list
+/**
+ * Creates the preview cut list
+ */
 TTCutList* TTCutPreviewTask::createPreviewCutList(TTCutList* cutList)
 {
 	TTVideoStream* vStream        = cutList->at(0).avDataItem()->videoStream();
@@ -202,7 +210,9 @@ TTCutList* TTCutPreviewTask::createPreviewCutList(TTCutList* cutList)
 	return previewCutList;
 }
 
-//! Creates the filenames used for preview clips
+/**
+ * Creates the filenames used for preview clips
+ */
 QString TTCutPreviewTask::createPreviewFileName(int index, QString extension)
 {
 	 QString   previewFileName;

@@ -61,7 +61,6 @@ class TTCutPreviewTask : public TTThreadTask
 		TTCutList* createPreviewCutList(TTCutList* cutList);
 
 	private:
-		bool            mAbort;
 		TTAVData*       mpAVData;
 		TTCutList*      mpCutList;
 		TTCutList*      mpPreviewCutList;

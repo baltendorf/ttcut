@@ -616,7 +616,8 @@ void TTAVData::onDoCut(QString tgtFileName, TTCutList* cutList)
 {
   if (cutList == 0) cutList = mpCutList;
 
-  cutVideoTask = new TTCutVideoTask(this, tgtFileName, cutList);
+  cutVideoTask = new TTCutVideoTask(this);
+  cutVideoTask->init(tgtFileName, cutList);
 
   connect(mpThreadTaskPool, SIGNAL(exit()),    this, SLOT(onCutFinished()));
   connect(mpThreadTaskPool, SIGNAL(aborted()), this, SLOT(onCutAborted()));
@@ -641,7 +642,8 @@ void TTAVData::onDoCut(QString tgtFileName, TTCutList* cutList)
       tempFile.close();
     }
 
-    cutAudioTask = new TTCutAudioTask(tgtAudioFilePath, cutList, i, cutVideoTask->muxListItem());
+    cutAudioTask = new TTCutAudioTask();
+    cutAudioTask->init(tgtAudioFilePath, cutList, i, cutVideoTask->muxListItem());
 
     mpThreadTaskPool->start(cutAudioTask);
   }

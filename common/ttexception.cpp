@@ -30,7 +30,7 @@
 
 
 #include "ttexception.h"
-
+#include "ttmessagelogger.h"
 
 TTException::TTException()
 {
@@ -42,6 +42,14 @@ TTException::~TTException()
 
 TTException::TTException(const QString& msg) : message(msg)
 {
+}
+
+TTException::TTException(const QString& caller, int line, const QString& msg)
+{
+  message = msg;
+
+  TTMessageLogger* log = TTMessageLogger::getInstance();
+  log->fatalMsg(caller, line, msg);
 }
 
 QString TTException::getMessage()

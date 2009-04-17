@@ -56,10 +56,13 @@ class TTThreadTask : public QObject, public QRunnable
     quint64 stepCount() const;
     int     processValue() const;
     bool    isRunning() const;
+    bool    isAborted() const;
+    void    setIsRunning(bool value);
 
   protected:
     virtual void operation() = 0;
     virtual void cleanUp() = 0;
+    virtual void abort();
 
 	public slots:
 		virtual void onUserAbort() = 0;
@@ -83,6 +86,7 @@ class TTThreadTask : public QObject, public QRunnable
     TTMessageLogger* log;          /**<message logger istance                     */
     QString          mTaskName;    /**<task name                                  */
     bool             mIsRunning;
+    bool             mIsAborted;
 };
 
 #endif

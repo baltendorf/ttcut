@@ -44,7 +44,8 @@ class TTCutAudioTask : public TTThreadTask
   Q_OBJECT
 
   public:
-    TTCutAudioTask(QString tgtFilePath, TTCutList* cutList, int srcAudioIndex, TTMuxListDataItem* muxListItem);
+    TTCutAudioTask();
+    void init(QString tgtFilePath, TTCutList* cutList, int srcAudioIndex, TTMuxListDataItem* muxListItem);
 
   protected:
     void cleanUp();

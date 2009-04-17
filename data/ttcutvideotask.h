@@ -46,7 +46,8 @@ class TTCutVideoTask : public TTThreadTask
   Q_OBJECT
 
   public:
-    TTCutVideoTask(TTAVData* avData, QString tgtFilePath, TTCutList* cutList);
+    TTCutVideoTask(TTAVData* avData);
+    void init(QString tgtFilePath, TTCutList* cutList);
     TTMuxListDataItem* muxListItem();
 
   protected:
@@ -76,7 +77,7 @@ class TTCutTask : public TTThreadTask
 
   public:
     TTCutTask();
-    void init(TTVideoStream* cutStream, int cutIn, int cutOut, TTCutParameter* cutParameter);
+    void init(TTVideoStream* cutStream, TTCutParameter* cutParameter);
 
   protected:
     void cleanUp();;

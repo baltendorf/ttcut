@@ -40,15 +40,24 @@
 /**
  * Cut video stream task
  */
-TTCutVideoTask::TTCutVideoTask(TTAVData* avData, QString tgtFilePath, TTCutList* cutList) :
+//TTCutVideoTask::TTCutVideoTask(TTAVData* avData, QString tgtFilePath, TTCutList* cutList) :
+TTCutVideoTask::TTCutVideoTask(TTAVData* avData) :
                 TTThreadTask("CutVideoTask")
 {
   mpAVData     = avData;
-  mTgtFilePath = tgtFilePath;
-  mpCutList    = cutList;
+  mpCutList    = 0;
   mpCutStream  = 0;
   mpCutTask    = new TTCutTask();
+}
 
+/**
+ * Init task
+ */
+void TTCutVideoTask::init(QString tgtFilePath, TTCutList* cutList)
+{
+  mTgtFilePath = tgtFilePath;
+  mpCutList    = cutList;
+  
   mMuxListItem.setVideoName(tgtFilePath);
 }
 
@@ -57,12 +66,7 @@ TTCutVideoTask::TTCutVideoTask(TTAVData* avData, QString tgtFilePath, TTCutList*
  */
 void TTCutVideoTask::onUserAbort()
 {
-  if (mpCutStream == 0) {
-    emit aborted(this);
-    return;
-  }
-
-   mpCutStream->setAbort(true);
+  abort();
 }
 
 /**
@@ -87,6 +91,9 @@ TTMuxListDataItem* TTCutVideoTask::muxListItem()
  */
 void TTCutVideoTask::operation()
 {
+  if (mTgtFilePath.isEmpty())
+    throw new TTInvalidOperationException(__FILE__, __LINE__, tr("No target file path given for video cut!"));
+
  	mpTgtStream = new TTFileBuffer(mTgtFilePath, QIODevice::WriteOnly);
   mpCutParams = new TTCutParameter(mpTgtStream);
 
@@ -96,10 +103,13 @@ void TTCutVideoTask::operation()
   onStatusReport(this, StatusReportArgs::Start, tr("Do video cut"), mpCutList->count());
 
   for (int i = 0; i < mpCutList->count(); i++) {
-	  TTCutItem cutItem   = mpCutList->at(i);
-	  int       cutIn     = cutItem.cutInIndex();
-	  int       cutOut    = cutItem.cutOutIndex();
 
+    if (isAborted())
+      throw new TTAbortException(__FILE__, __LINE__, tr("Operation aborted!"));
+
+	  TTCutItem cutItem = mpCutList->at(i);
+	  int       cutIn   = cutItem.cutInIndex();
+	  int       cutOut  = cutItem.cutOutIndex();
 
     mpCutStream = cutItem.avDataItem()->videoStream();
 
@@ -111,66 +121,85 @@ void TTCutVideoTask::operation()
 		log->debugMsg(__FILE__, __LINE__, QString("VideoCut length %1").
         arg((cutOut - cutIn + 1) * 1000.0 / 25.0));
 
-		//connect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
-		//  			this,        SLOT(onStatusReport(int, const QString&, quint64)));
-
 		if (i == 0)
       mpCutParams->firstCall();
 
-		//FIXME: cutIn and cutOut are redundant in cutParams ?-)
-		//mpCutStream->cut(cutIn, cutOut, mpCutParams);
-
-    mpCutTask->init(mpCutStream, cutIn, cutOut, mpCutParams);
+    mpCutTask->init(mpCutStream, mpCutParams);
     mpAVData->threadTaskPool()->start(mpCutTask, true);
+
+    if (mpCutTask->isAborted()) {
+      qDebug("local cut task was aborted");
+      throw new TTAbortException("abort operation!");
+    }
 
 		if (i == mpCutList->count() - 1)
 		  mpCutParams->lastCall();
 
     onStatusReport(this, StatusReportArgs::Step, QString(tr("Cut %1 from %2")).arg(i+1).arg(mpCutList->count()), i+1);
-    //disconnect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
-	  //    			 this,        SLOT(onStatusReport(int, const QString&, quint64)));
 	}
 
   log->debugMsg(__FILE__, __LINE__, QString("close target stream %1").arg(mTgtFilePath));
 
   delete mpTgtStream;
+
+  qDebug("cut video task -> emit finished signal!");
   emit finished(mMuxListItem);
 }
 
-
+/**
+ * Video cut task
+ */
 TTCutTask::TTCutTask() : TTThreadTask("CutTask")
 {
   mpCutStream    = 0;
   mpCutParameter = 0;
 }
 
-void TTCutTask::init(TTVideoStream* cutStream, int cutIn, int cutOut, TTCutParameter* cutParameter)
+/**
+ * Init the video cut task
+ */
+void TTCutTask::init(TTVideoStream* cutStream, TTCutParameter* cutParameter)
 {
   mpCutStream    = cutStream;
-  mCutIn         = cutIn;
-  mCutOut        = cutOut;
+  mCutIn         = cutParameter->getCutInIndex();
+  mCutOut        = cutParameter->getCutOutIndex();
   mpCutParameter = cutParameter;
 }
 
+/**
+ * Clean up after task operation
+ */
 void TTCutTask::cleanUp()
 {
+  if (mpCutStream == 0) return;
+
+  disconnect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
+	    			 this,        SLOT(onStatusReport(int, const QString&, quint64)));
 }
 
+/**
+ * User abort request
+ */
 void TTCutTask::onUserAbort()
 {
+  abort();
+
+  if (mpCutStream != 0)
+    mpCutStream->setAbort(true);
 }
 
+/**
+ * Task operation
+ */
 void TTCutTask::operation()
 {
-  if (mpCutStream == 0) return;
+  if (mpCutStream == 0)
+    throw new TTInvalidOperationException(__FILE__, __LINE__, tr("No cut stream specified!"));
 
 	connect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
 	  			this,        SLOT(onStatusReport(int, const QString&, quint64)));
 
   mpCutStream->cut(mCutIn, mCutOut, mpCutParameter);
-
-  disconnect(mpCutStream, SIGNAL(statusReport(int, const QString&, quint64)),
-	    			 this,        SLOT(onStatusReport(int, const QString&, quint64)));
 }
 
 

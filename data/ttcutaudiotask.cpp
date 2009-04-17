@@ -37,8 +37,19 @@
 #include "../avstream/ttavstream.h"
 
 //! Cut audio stream task
-TTCutAudioTask::TTCutAudioTask(QString tgtFilePath, TTCutList* cutList, int srcAudioIndex, TTMuxListDataItem* muxListItem) :
+TTCutAudioTask::TTCutAudioTask() :
                 TTThreadTask("CutAudioTask")
+{
+  mpCutList      = 0;
+  mpCutStream    = 0;
+  mSrcAudioIndex = 0;
+  mMuxListItem   = 0;
+}
+
+/**
+ * Init cut audio task
+ */
+void TTCutAudioTask::init(QString tgtFilePath, TTCutList* cutList, int srcAudioIndex, TTMuxListDataItem* muxListItem)
 {
   mTgtFilePath   = tgtFilePath;
   mpCutList      = cutList;
@@ -50,10 +61,8 @@ TTCutAudioTask::TTCutAudioTask(QString tgtFilePath, TTCutList* cutList, int srcA
 //! Operation abort request
 void TTCutAudioTask::onUserAbort()
 {
-  if (mpCutStream == 0) {
-    emit aborted(this);
-    return;
-  }
+  if (mpCutStream == 0) 
+    throw new TTAbortException(QString("Task %1 with UUID %2 aborted").arg(taskName()).arg(taskID()));
 
    mpCutStream->setAbort(true);
 }
@@ -68,6 +77,9 @@ void TTCutAudioTask::cleanUp()
 //! Task operation method
 void TTCutAudioTask::operation()
 {
+  if (mTgtFilePath.isEmpty())
+    throw new TTInvalidOperationException(tr("No target file path given for audio cut!"));
+
   mpTgtStream = new TTFileBuffer(mTgtFilePath, QIODevice::WriteOnly);
 	mpCutParams = new TTCutParameter(mpTgtStream);
 
