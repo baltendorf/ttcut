@@ -100,7 +100,7 @@ void TTCutVideoTask::operation()
 	mpCutParams->setIsWriteSequenceEnd(true);
 	mpTgtStream->open();
 
-  onStatusReport(this, StatusReportArgs::Start, tr("Do video cut"), mpCutList->count());
+  onStatusReport(this, StatusReportArgs::Start, QString(tr("Cut 1 from %1").arg(mpCutList->count())), mpCutList->count());
 
   for (int i = 0; i < mpCutList->count(); i++) {
 

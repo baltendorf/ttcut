@@ -230,7 +230,7 @@ void TTThreadTask::run()
 int TTThreadTask::processValue() const
 {
   int value = (mTotalSteps > 0)
-      ? (int)((double)mStepCount / (double)mTotalSteps * 100000.0)
+      ? (int)(((double)mStepCount / (double)mTotalSteps) * 100000.0)
       : 0;
 
   return value;
