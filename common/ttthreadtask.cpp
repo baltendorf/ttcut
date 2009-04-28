@@ -31,13 +31,14 @@
 #include "ttmessagelogger.h"
 #include "ttexception.h"
 
-//TODO: exctract status args from ttprogressbar
 #include "../gui/ttprogressbar.h"
 
 #include <QThread>
 #include <QDebug>
 
-//! Constructor
+/**
+ * Threadtask construtctor
+ */
 TTThreadTask::TTThreadTask(QString name) : QObject()
 {
 	setAutoDelete(false);
@@ -47,67 +48,91 @@ TTThreadTask::TTThreadTask(QString name) : QObject()
   mTaskID     = QUuid::createUuid();
   mTotalSteps = 0;
   mStepCount  = 0;
+  mIsSynchron = false;
   mIsRunning  = false;
   mIsAborted  = false;
 }
 
-//! Destructor
+/**
+ * Destructor
+ */
 TTThreadTask::~TTThreadTask()
 {
 }
 
-//! Returns the task name
+/**
+ * Returns the task name
+ */
 QString TTThreadTask::taskName() const
 {
   return mTaskName;
 }
 
-//! Returns the unique task ID
+/**
+ * Returns the unique task ID
+ */
 QUuid TTThreadTask::taskID() const
 {
   return mTaskID;
 }
 
-//! Elapsed time since task was started in msecs
+/**
+ * Elapsed time since task was started in msecs
+ */
 int TTThreadTask::elapsedTime() const
 {
   return (mTaskTime.elapsed() <= 8640000) ? mTaskTime.elapsed() : 0;
 }
 
-//! Return the estimate number of total task steps
+/**
+ * Return the estimate number of total task steps
+ */
 quint64 TTThreadTask::totalSteps() const
 {
   return mTotalSteps;
 }
 
-//! Return the current step count
+/** 
+ * Return the current step count
+ */
 quint64 TTThreadTask::stepCount() const
 {
   return mStepCount;
 }
 
+/**
+ * Returns true if task is in running state, otherwise false
+ */
 bool TTThreadTask::isRunning() const
 {
   return mIsRunning;
 }
 
+//TODO: isRunning should not be set from outside
 void TTThreadTask::setIsRunning(bool value)
 {
   mIsRunning = value;
 }
 
+/**
+ * Returns true if the task is sheduled for aborting
+ */
 bool TTThreadTask::isAborted() const 
 {
   return mIsAborted;
 }
 
-//! Wrap status report signal and append reference to task
+/**
+ * Wrap status report signal and append reference to task
+ */
 void TTThreadTask::onStatusReport(int state, const QString& msg, quint64 value)
 {
 	onStatusReport(this, state, msg, value);
 }
 
-//! Status report signal with current as task
+/**
+ * Status report signal with current as task
+ */
 void TTThreadTask::onStatusReport(TTThreadTask* task, int state, const QString& msg, quint64 value)
 {
   if (state == StatusReportArgs::Start) {
@@ -127,20 +152,43 @@ void TTThreadTask::onStatusReport(TTThreadTask* task, int state, const QString& 
  */
 void TTThreadTask::abort()
 {
-  qDebug() << "Task " << taskName() << " with UUID " << taskID() << " get's abort request. Is running " << isRunning();
-  mIsAborted = true;
+  qDebug() << "Task " << taskName() << " with UUID " << taskID() << " get's abort request. Is running " << isRunning() << " is aborted " << mIsAborted;
+
+  if (!mIsRunning && !mIsAborted) {
+    emit aborted(this);
+    qApp->processEvents();
+    cleanUp();
+  }
+
+  mIsAborted = true;  
+}
+
+/** 
+ * Run's the task operation synchronus
+ */
+void TTThreadTask::runSynchron()
+{
+  qDebug() << "running task " << taskName() << " with uuid " << taskID() << " synchron";
+  mIsSynchron = true;
+  run();
 }
 
 /**
  * Runable run method
+ * 
  */
 void TTThreadTask::run()
 {
-  mTaskTime.start();
+ mTaskTime.start();
 
   try
   {
-    qDebug() << "run task " << taskName() << " with uuid " << taskID();
+    if (mIsAborted) {
+      qDebug() << taskName() << " entering running state while already aborted!";
+      throw new TTAbortException("Aborting operation!");
+    }
+
+     //qDebug() << "run task " << taskName() << " with uuid " << taskID();
     mIsRunning = true;
     emit started(this);
     qApp->processEvents();
@@ -148,18 +196,23 @@ void TTThreadTask::run()
     operation();
 
     mIsRunning = false;
-    qDebug() << "emit finished for task " << taskName() << " with UUID " << taskID();
+    //qDebug() << "emit finished for task " << taskName() << " with UUID " << taskID();
     emit finished(this);
     qApp->processEvents();
     cleanUp();
   }
   catch(TTAbortException* ex)
   {
-    qDebug() << taskName() << "with UUID " << taskID() << " catched TTAbortException";
+    qDebug() << taskName() << " with UUID " << taskID() << " catched TTAbortException";
     mIsRunning = false;
     emit aborted(this);
     qApp->processEvents();
     cleanUp();
+
+    if (mIsSynchron) {
+      qDebug() << taskName() << " with UUID " << taskID() << " redirect TTAbortException";
+      throw ex;
+    }
   }
   catch(TTException* ex)
   {
@@ -168,12 +221,12 @@ void TTThreadTask::run()
     emit aborted(this);
     qApp->processEvents();
     cleanUp();
-
-    throw ex;
   }
 }
 
-//! Returns the current task progress in % * 1000
+/**
+ * Returns the current task progress in % * 1000
+ */
 int TTThreadTask::processValue() const
 {
   int value = (mTotalSteps > 0)

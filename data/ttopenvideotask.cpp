@@ -52,11 +52,11 @@ void TTOpenVideoTask::onUserAbort()
 {
   abort();
 
-	if (!mpAVItem->isInList())
-		delete mpAVItem;
-
   if (mpVideoStream != 0)
     mpVideoStream->setAbort(true);
+
+  if (!mpAVItem->isInList())
+		delete mpAVItem;
 }
 
 /**
@@ -76,9 +76,6 @@ void TTOpenVideoTask::cleanUp()
  */
 void TTOpenVideoTask::operation()
 {
-  if (isAborted())
-    throw new TTAbortException(__FILE__, __LINE__, QString("task %1 with UUID % aborted").arg(taskName()).arg(taskID()));
-
 	QFileInfo fInfo(mFileName);
 
 	if (!fInfo.exists())
@@ -98,6 +95,9 @@ void TTOpenVideoTask::operation()
  	mpVideoStream->createIndexList();
 
 	mpVideoStream->indexList()->sortDisplayOrder();
+
+  if (mpVideoType != 0) delete mpVideoType;
+  mpVideoType = 0;
 
 	emit finished(mpAVItem, mpVideoStream, mOrder);
 }

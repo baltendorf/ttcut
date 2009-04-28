@@ -53,6 +53,7 @@
 #include <QThreadPool>
 #include <QList>
 #include <QDir>
+#include <QDebug>
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Class TTAVData
@@ -297,11 +298,11 @@ TTCutList* TTAVData::cutList() const
  */
 TTAVItem* TTAVData::doOpenVideoStream(const QString& filePath, int order)
 {
-  TTAVItem* avItem = createAVItem();
+  TTAVItem*        avItem        = createAVItem();
   TTOpenVideoTask* openVideoTask = new TTOpenVideoTask(avItem, filePath, order);
 
-  connect(openVideoTask,    SIGNAL(finished(TTAVItem*, TTVideoStream*, int)),
-          this,             SLOT(onOpenVideoFinished(TTAVItem*, TTVideoStream*, int)));
+  connect(openVideoTask, SIGNAL(finished(TTAVItem*, TTVideoStream*, int)),
+          this,          SLOT(onOpenVideoFinished(TTAVItem*, TTVideoStream*, int)));
 
   mpThreadTaskPool->start(openVideoTask);
 
@@ -363,6 +364,7 @@ void TTAVData::onOpenAudioFinished(TTAVItem* avItem, TTAudioStream* aStream, int
  */
 void TTAVData::onOpenAudioAborted(TTAVItem*)
 {
+  qDebug("TTAVData::onOpenAudioAborted called...");
 }
 
 /*  ////////////////////////////////////////////////////////////////////////////
@@ -546,6 +548,7 @@ void TTAVData::onReadProjectFileFinished()
  */
 void TTAVData::onReadProjectFileAborted()
 {
+  qDebug() << "TAVData::onReadProjectFileAborted";
   disconnect(mpThreadTaskPool, SIGNAL(exit()), this, SLOT(onReadProjectFileFinished()));
   disconnect(mpThreadTaskPool, SIGNAL(aborted()), this, SLOT(onReadProjectFileAborted()));
 

@@ -137,8 +137,10 @@ void TTCutProjectData::parseVideoSection(QDomNodeList videoNodesList, TTAVData* 
   int     order = videoNodesList.at(0).toElement().text().toInt();
   QString name  = videoNodesList.at(1).toElement().text();
 
+  qDebug("TTCutProjectData::parseVideoSection -> doOpenVideoStream...");
   TTAVItem* avItem = avData->doOpenVideoStream(name, order);
 
+  qDebug("after doOpenVideoStream");
   //create the data item;
   for (int i = 2; i < videoNodesList.size(); i++) {
 
@@ -169,7 +171,9 @@ void TTCutProjectData::parseAudioSection(QDomNodeList audioNodesList, TTAVData* 
   QString name  = audioNodesList.at(1).toElement().text();
 
   QFileInfo fInfo(name);
+  qDebug("TTCutProjectData::parseAudioSection -> before doOpenAudioStream...");
   avData->doOpenAudioStream(avItem, name, order);
+  qDebug("after doOpenAudioStream...");
 }
 
 /* /////////////////////////////////////////////////////////////////////////////

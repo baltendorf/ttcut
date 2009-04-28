@@ -90,7 +90,7 @@ void TTCutPreviewTask::operation()
 
   for (int i = 0; i < numPreview; i++) {
     if (isAborted())
-  		throw new TTAbortException(__FILE__, __LINE__, "Operation aborted");
+  		throw new TTAbortException(__FILE__, __LINE__, "Task gets abort signal!");
 
     onStatusReport(this, StatusReportArgs::Step, QString("create preview cut %1 from %2").
         arg(i+1).arg(numPreview), i+1);
@@ -133,7 +133,9 @@ void TTCutPreviewTask::operation()
     }
     catch (TTException* ex)
     {
+      qDebug() << "catched exception from cutVideoTask!";
     	delete tmpCutList;
+      qDebug() << "redirect exception from cutVideoTask...";
     	throw ex;
     }
 

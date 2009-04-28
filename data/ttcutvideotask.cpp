@@ -127,11 +127,6 @@ void TTCutVideoTask::operation()
     mpCutTask->init(mpCutStream, mpCutParams);
     mpAVData->threadTaskPool()->start(mpCutTask, true);
 
-    if (mpCutTask->isAborted()) {
-      qDebug("local cut task was aborted");
-      throw new TTAbortException("abort operation!");
-    }
-
 		if (i == mpCutList->count() - 1)
 		  mpCutParams->lastCall();
 

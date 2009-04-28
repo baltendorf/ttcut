@@ -35,6 +35,8 @@
 #include "../avstream/ttavstream.h"
 #include "../data/ttavlist.h"
 
+#include <QDebug>
+
 /**
  * Open audio stream task
  */
@@ -55,8 +57,10 @@ void TTOpenAudioTask::onUserAbort()
 {
   abort();
 
-	if (mpAudioStream != 0)
+	if (mpAudioStream != 0) {
+    qDebug() << "open audio stream abort; audioStream is not null";
     mpAudioStream->setAbort(true);
+  }
 }
 
 /**
@@ -75,7 +79,7 @@ void TTOpenAudioTask::cleanUp()
  * Task operation method
  */
 void TTOpenAudioTask::operation()
-{
+{  
 	try
 	{
 		mpAudioType = new TTAudioType(mFilePath);

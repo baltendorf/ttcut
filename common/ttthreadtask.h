@@ -49,6 +49,7 @@ class TTThreadTask : public QObject, public QRunnable
     virtual ~TTThreadTask();
 
 		void    run();
+    void    runSynchron();
     QString taskName() const;
     QUuid   taskID() const;
     int     elapsedTime() const;
@@ -85,6 +86,7 @@ class TTThreadTask : public QObject, public QRunnable
     quint64          mStepCount;   /**<current step count                         */
     TTMessageLogger* log;          /**<message logger istance                     */
     QString          mTaskName;    /**<task name                                  */
+    bool             mIsSynchron;
     bool             mIsRunning;
     bool             mIsAborted;
 };
