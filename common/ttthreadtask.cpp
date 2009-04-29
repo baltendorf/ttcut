@@ -168,7 +168,7 @@ void TTThreadTask::abort()
  */
 void TTThreadTask::runSynchron()
 {
-  qDebug() << "running task " << taskName() << " with uuid " << taskID() << " synchron";
+  //qDebug() << "running task " << taskName() << " with uuid " << taskID() << " synchron";
   mIsSynchron = true;
   run();
 }

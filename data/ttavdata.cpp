@@ -304,6 +304,9 @@ TTAVItem* TTAVData::doOpenVideoStream(const QString& filePath, int order)
   connect(openVideoTask, SIGNAL(finished(TTAVItem*, TTVideoStream*, int)),
           this,          SLOT(onOpenVideoFinished(TTAVItem*, TTVideoStream*, int)));
 
+  int audioCount = getAudioNames(QFileInfo(filePath)).count();
+
+  mpThreadTaskPool->init(audioCount+1);
   mpThreadTaskPool->start(openVideoTask);
 
   return avItem;

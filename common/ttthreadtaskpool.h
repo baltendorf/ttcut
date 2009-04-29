@@ -78,9 +78,8 @@ class TTThreadTaskPool : public QObject
     QTime                 mOverallTotalTime;
     quint64               mOverallTotalSteps;
     quint64               mOverallStepCount;
-    quint64               mCompletedStepCount;
+    //quint64               mCompletedStepCount;
     int                   mEstimateTaskCount;
-    int refresh;
-    
+    double                mCompleted; 
 };
 #endif
