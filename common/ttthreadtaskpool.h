@@ -48,6 +48,7 @@ class TTThreadTaskPool : public QObject
 		TTThreadTaskPool();
     ~TTThreadTaskPool();
 
+    void  init(int estimateTaskCount);
 		void  start(TTThreadTask* task, bool runSyncron=false, int priority=0);
     int   overallPercentage();
     QTime overallTime();
@@ -77,5 +78,9 @@ class TTThreadTaskPool : public QObject
     QTime                 mOverallTotalTime;
     quint64               mOverallTotalSteps;
     quint64               mOverallStepCount;
+    quint64               mCompletedStepCount;
+    int                   mEstimateTaskCount;
+    int refresh;
+    
 };
 #endif

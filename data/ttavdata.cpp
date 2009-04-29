@@ -575,6 +575,7 @@ void TTAVData::doCutPreview(TTCutList* cutList)
   connect(mpThreadTaskPool, SIGNAL(aborted()),
 					this,             SLOT(onCutPreviewAborted()));
 
+  mpThreadTaskPool->init(cutList->count()*2);
   mpThreadTaskPool->start(cutPreviewTask);
 }
 
@@ -625,6 +626,7 @@ void TTAVData::onDoCut(QString tgtFileName, TTCutList* cutList)
   connect(mpThreadTaskPool, SIGNAL(exit()),    this, SLOT(onCutFinished()));
   connect(mpThreadTaskPool, SIGNAL(aborted()), this, SLOT(onCutAborted()));
 
+  mpThreadTaskPool->init(cutList->count());
   mpThreadTaskPool->start(cutVideoTask);
 
   // all video must have the same count of audio streams!

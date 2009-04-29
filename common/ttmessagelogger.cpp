@@ -312,13 +312,13 @@ void TTMessageLogger::logMsg(MsgType msgType, QString caller, int line, QString 
 
   //if (!logEnabled && msgType != ERROR) return;
 
-  if (logLevel == NONE & (msgType != ERROR & msgType != FATAL)) return;
+  if (logLevel == NONE & ((msgType != ERROR) & (msgType != FATAL))) return;
 
-  if (logLevel == MINIMAL & (msgType != ERROR & msgType != FATAL &
-                             msgType != WARNING)) return;
+  if (logLevel == MINIMAL & ((msgType != ERROR) & (msgType != FATAL) &
+                             (msgType != WARNING))) return;
 
-  if (logLevel == EXTENDED & (msgType != ERROR   & msgType != FATAL &
-                              msgType != WARNING & msgType != INFO)) return;
+  if (logLevel == EXTENDED & ((msgType != ERROR)   & (msgType != FATAL) &
+                              (msgType != WARNING) & (msgType != INFO))) return;
 
   if(msgType == INFO)
     msgTypeStr = "info";

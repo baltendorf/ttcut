@@ -37,6 +37,8 @@
 #include "../data/ttavdata.h"
 #include "../data/ttcutlist.h"
 
+#include <QDebug>
+
 /**
  * Cut video stream task
  */
@@ -102,6 +104,8 @@ void TTCutVideoTask::operation()
 
   onStatusReport(this, StatusReportArgs::Start, QString(tr("Cut 1 from %1").arg(mpCutList->count())), mpCutList->count());
 
+  qDebug() << "do cut operation for " << mpCutList->count() << " cuts";
+
   for (int i = 0; i < mpCutList->count(); i++) {
 
     if (isAborted())
@@ -130,6 +134,7 @@ void TTCutVideoTask::operation()
 		if (i == mpCutList->count() - 1)
 		  mpCutParams->lastCall();
 
+    qDebug() << "cut " << i+1 << " from " << mpCutList->count() << " finished";
     onStatusReport(this, StatusReportArgs::Step, QString(tr("Cut %1 from %2")).arg(i+1).arg(mpCutList->count()), i+1);
 	}
 
