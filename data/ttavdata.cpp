@@ -629,7 +629,7 @@ void TTAVData::onDoCut(QString tgtFileName, TTCutList* cutList)
   connect(mpThreadTaskPool, SIGNAL(exit()),    this, SLOT(onCutFinished()));
   connect(mpThreadTaskPool, SIGNAL(aborted()), this, SLOT(onCutAborted()));
 
-  mpThreadTaskPool->init(cutList->count());
+  mpThreadTaskPool->init(cutList->count()*2);
   mpThreadTaskPool->start(cutVideoTask);
 
   // all video must have the same count of audio streams!
@@ -660,7 +660,7 @@ void TTAVData::onDoCut(QString tgtFileName, TTCutList* cutList)
 //! Audio video cut finished
 void TTAVData::onCutFinished()
 {
-	disconnect(mpThreadTaskPool, SIGNAL(exit()), this, SLOT(onCutFinished()));
+  disconnect(mpThreadTaskPool, SIGNAL(exit()), this, SLOT(onCutFinished()));
 
   mpMuxList->appendItem(*(cutVideoTask->muxListItem()));
 

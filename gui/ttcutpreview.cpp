@@ -158,7 +158,7 @@ void TTCutPreview::onCutSelectionChanged( int iCut )
   preview_video_info.setFile( QDir(TTCut::tempDirPath), preview_video_name );
   current_video_file = preview_video_info.absoluteFilePath();
 
-  //qDebug("load preview %s", qPrintable(current_video_file));
+  qDebug("load preview %s", qPrintable(current_video_file));
   videoPlayer->load(current_video_file);
   pbPlay->setText(tr("Play"));
   pbPlay->setIcon(QIcon(":/pixmaps/pixmaps/play_18.xpm"));
@@ -217,5 +217,5 @@ void TTCutPreview::cleanUp()
   rmCommand += fileInfo.absoluteFilePath();
   rmCommand += " 2>/dev/null";
 
-  system(rmCommand.toAscii().data());
+  //system(rmCommand.toAscii().data());
 }
