@@ -4,3 +4,4 @@ qmake -spec macx-g++ ttcut.pro
 
 You need the mpeg plugin for Quicktime to preview the cuts.
 
+Test for gitosis repositorie
