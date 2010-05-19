@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/pixmaps" >
-        <file>pixmaps/fileclose_18.xpm</file>
-        <file>pixmaps/play_18.xpm</file>
-        <file>pixmaps/stop_18.xpm</file>
-    </qresource>
-</RCC>

@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/pixmaps" >
-        <file>pixmaps/button_ok.png</file>
-        <file>pixmaps/messagebox_critical.png</file>
-        <file>pixmaps/messagebox_info.png</file>
-    </qresource>
-</RCC>

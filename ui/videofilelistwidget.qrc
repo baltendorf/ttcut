@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/pixmaps" >
-        <file>pixmaps/cancel_18.xpm</file>
-        <file>pixmaps/downarrow_18.xpm</file>
-        <file>pixmaps/fileopen_24.xpm</file>
-        <file>pixmaps/uparrow_18.xpm</file>
-    </qresource>
-</RCC>

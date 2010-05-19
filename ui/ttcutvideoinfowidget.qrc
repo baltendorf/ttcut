@@ -1,8 +1,0 @@
-<RCC>
-  <qresource prefix="pixmaps" >
-    <file>pixmaps/folder-open.png</file>
-    <file>pixmaps/fileopen_24.xpm</file>
-    <file>pixmaps/goto-next.png</file>
-    <file>pixmaps/goto-prev.png</file>
-  </qresource>
-</RCC>

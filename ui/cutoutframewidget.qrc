@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/pixmaps" >
-        <file>pixmaps/next_18.xpm</file>
-        <file>pixmaps/prev_18.xpm</file>
-        <file>pixmaps/search_18.xpm</file>
-    </qresource>
-</RCC>

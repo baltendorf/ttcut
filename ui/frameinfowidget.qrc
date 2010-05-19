@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/pixmaps" >
-        <file>pixmaps/bframe_18.xpm</file>
-        <file>pixmaps/iframe_18.xpm</file>
-        <file>pixmaps/pframe_18.xpm</file>
-    </qresource>
-</RCC>
