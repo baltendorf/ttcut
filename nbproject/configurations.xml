@@ -128,7 +128,6 @@
         <itemPath>ui/ttmpeg2_mainwnd.ui</itemPath>
         <itemPath>ui/ttprogressform.ui</itemPath>
         <itemPath>ui/ttsettingsdialog.ui</itemPath>
-        <itemPath>ui/ttsettingsdlg.ui</itemPath>
         <itemPath>ui/tttaskprogresswidget.ui</itemPath>
         <itemPath>ui/videoStreamControl.ui</itemPath>
         <itemPath>ui/videofilelistwidget.ui</itemPath>
@@ -225,8 +224,6 @@
       </logicalFolder>
       <logicalFolder name="extern" displayName="extern" projectFiles="true">
         <itemPath>extern/imuxprovider.h</itemPath>
-        <itemPath>extern/ttencodeparameter.cpp</itemPath>
-        <itemPath>extern/ttencodeparameter.h</itemPath>
         <itemPath>extern/ttmplexprovider.cpp</itemPath>
         <itemPath>extern/ttmplexprovider.h</itemPath>
         <itemPath>extern/tttranscode.cpp</itemPath>
@@ -272,8 +269,6 @@
         <itemPath>gui/ttmarkertreeview.h</itemPath>
         <itemPath>gui/ttmplayerwidget.cpp</itemPath>
         <itemPath>gui/ttmplayerwidget.h</itemPath>
-        <itemPath>gui/ttnavigation.cpp</itemPath>
-        <itemPath>gui/ttnavigation.h</itemPath>
         <itemPath>gui/ttnavigatordisplay.cpp</itemPath>
         <itemPath>gui/ttnavigatordisplay.h</itemPath>
         <itemPath>gui/ttphononwidget.cpp</itemPath>
@@ -290,6 +285,16 @@
         <itemPath>gui/ttvideoplayer.h</itemPath>
         <itemPath>gui/ttvideotreeview.cpp</itemPath>
         <itemPath>gui/ttvideotreeview.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="mpeg2decoder"
+                     displayName="mpeg2decoder"
+                     projectFiles="true">
+        <itemPath>mpeg2decoder/ttmpeg2decoder.cpp</itemPath>
+        <itemPath>mpeg2decoder/ttmpeg2decoder.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="mpeg2window" displayName="mpeg2window" projectFiles="true">
+        <itemPath>mpeg2window/ttmpeg2window2.cpp</itemPath>
+        <itemPath>mpeg2window/ttmpeg2window2.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -313,6 +318,8 @@
     <Elem>gui</Elem>
     <Elem>trans</Elem>
     <Elem>ui</Elem>
+    <Elem>mpeg2decoder</Elem>
+    <Elem>mpeg2window</Elem>
   </sourceRootList>
   <projectmakefile>Makefile.mk</projectmakefile>
   <confs>
@@ -323,12 +330,26 @@
         <platform>4</platform>
       </toolsSet>
       <qt>
-        <modules>core gui phonon</modules>
+        <modules>core gui phonon xml</modules>
         <mocDir>moc</mocDir>
         <rccDir>res</rccDir>
         <uiDir>ui_h</uiDir>
       </qt>
       <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>/sw/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>MACX</Elem>
+          </preprocessorList>
+        </ccTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibLibItem>mpeg2</linkerLibLibItem>
+            <linkerLibLibItem>mpeg2convert</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
     </conf>
     <conf name="Release" type="4">

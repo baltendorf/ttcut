@@ -33,11 +33,6 @@
 #include "../avstream/ttavstream.h"
 #include "../common/ttexception.h"
 
-#include <QFileInfo>
-#include <QtXml>
-#include <QTextStream>
-#include <QString>
-#include <QStringList>
 
 
 /* /////////////////////////////////////////////////////////////////////////////

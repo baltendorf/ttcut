@@ -33,12 +33,12 @@
 class TTAVItem;
 class TTAVData;
 class TTVideoStream;
-class QFileInfo;
-class QTextStream;
-class QString;
-class QDomDocument;
-class QDomElement;
-class QDomNodeList;
+
+#include <QFileInfo>
+#include <QDomElement>
+#include <QTextStream>
+#include <QString>
+#include <QStringList>
 
 /* /////////////////////////////////////////////////////////////////////////////
  * TTCutProjectData
