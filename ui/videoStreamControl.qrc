@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="pixmaps" >
+        <file>pixmaps/fileopen_24.xpm</file>
+    </qresource>
+</RCC>

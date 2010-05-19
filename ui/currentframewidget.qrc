@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="/pixmaps" >
+    <file>pixmaps/goto.png</file>
+    <file>pixmaps/goto-next.png</file>
+    <file>pixmaps/goto-prev.png</file>
+    <file>pixmaps/play_18.xpm</file>
+    <file>pixmaps/note_18.xpm</file>
+  </qresource>
+</RCC>

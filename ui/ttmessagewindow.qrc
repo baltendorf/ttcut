@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/pixmaps" >
+        <file>pixmaps/button_ok.xpm</file>
+    </qresource>
+</RCC>
