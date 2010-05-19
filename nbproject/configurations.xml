@@ -5,6 +5,34 @@
                    displayName="Resource Files"
                    projectFiles="true"
                    kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f1"
+                     displayName="resources"
+                     projectFiles="true"
+                     kind="SOURCE_LOGICAL_FOLDER">
+        <itemPath>ui/audiofilelistwidget.qrc</itemPath>
+        <itemPath>ui/avcutdialog.qrc</itemPath>
+        <itemPath>ui/currentframewidget.qrc</itemPath>
+        <itemPath>ui/cutlistwidget.qrc</itemPath>
+        <itemPath>ui/cutoutframewidget.qrc</itemPath>
+        <itemPath>ui/frameinfowidget.qrc</itemPath>
+        <itemPath>ui/framenavigationwidget.qrc</itemPath>
+        <itemPath>ui/mainwindow.qrc</itemPath>
+        <itemPath>ui/previewwidget.qrc</itemPath>
+        <itemPath>ui/processviewwidget.qrc</itemPath>
+        <itemPath>ui/stepbywidget.qrc</itemPath>
+        <itemPath>ui/ttcutframenavigationwidget.qrc</itemPath>
+        <itemPath>ui/ttcutsettingschapter.qrc</itemPath>
+        <itemPath>ui/ttcutsettingscommon.qrc</itemPath>
+        <itemPath>ui/ttcutsettingsencoder.qrc</itemPath>
+        <itemPath>ui/ttcutsettingsmuxer.qrc</itemPath>
+        <itemPath>ui/ttcutvideoinfowidget.qrc</itemPath>
+        <itemPath>ui/ttmessagewindow.qrc</itemPath>
+        <itemPath>ui/ttmpeg2_mainwnd.qrc</itemPath>
+        <itemPath>ui/ttsettingsdialog.qrc</itemPath>
+        <itemPath>ui/videoStreamControl.qrc</itemPath>
+        <itemPath>ui/videofileinfowidget.qrc</itemPath>
+        <itemPath>ui/videofilelistwidget.qrc</itemPath>
+      </logicalFolder>
       <logicalFolder name="trans" displayName="trans" projectFiles="true">
         <itemPath>trans/ttcut_de_DE.qm</itemPath>
         <itemPath>trans/ttcut_de_DE.ts</itemPath>
