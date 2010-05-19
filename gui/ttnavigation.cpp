@@ -35,324 +35,327 @@
 const char oName[] = "TTNavigation";
 
 TTNavigation::TTNavigation(QWidget* parent) :
-	QWidget(parent)
+QWidget(parent)
 {
-	setupUi(this);
+  setupUi(this);
 
-	// message logger instance
-	log = TTMessageLogger::getInstance();
+  // message logger instance
+  log = TTMessageLogger::getInstance();
 
-	isControlEnabled = true;
-	isEditCut = false;
-	isCutInPosition = false;
-	isCutOutPosition = false;
+  isControlEnabled = true;
+  isEditCut = false;
+  isCutInPosition = false;
+  isCutOutPosition = false;
 
-	cutInPosition = -1;
-	cutOutPosition = -1;
-	markerPosition = -1;
+  cutInPosition = -1;
+  cutOutPosition = -1;
+  markerPosition = -1;
 
-	connect(pbNextIFrame, SIGNAL(clicked()), SLOT(onNextIFrame()));
-	connect(pbPrevIFrame, SIGNAL(clicked()), SLOT(onPrevIFrame()));
-	connect(pbNextPFrame, SIGNAL(clicked()), SLOT(onNextPFrame()));
-	connect(pbPrevPFrame, SIGNAL(clicked()), SLOT(onPrevPFrame()));
-	connect(pbNextBFrame, SIGNAL(clicked()), SLOT(onNextBFrame()));
-	connect(pbPrevBFrame, SIGNAL(clicked()), SLOT(onPrevBFrame()));
-	connect(pbSetCutIn, SIGNAL(clicked()), SLOT(onSetCutIn()));
-	connect(pbSetCutOut, SIGNAL(clicked()), SLOT(onSetCutOut()));
-	connect(pbGotoCutIn, SIGNAL(clicked()), SLOT(onGotoCutIn()));
-	connect(pbGotoCutOut, SIGNAL(clicked()), SLOT(onGotoCutOut()));
-	connect(pbAddCut, SIGNAL(clicked()), SLOT(onAddCutRange()));
-	connect(pbQuickJump, SIGNAL(clicked()), SLOT(onQuickJump()));
-	connect(pbStreamPoints, SIGNAL(clicked()), SLOT(onStreamPoints()));
-	connect(pbSetMarker, SIGNAL(clicked()), SLOT(onSetMarker()));
-	connect(pbGotoMarker, SIGNAL(clicked()), SLOT(onGotoMarker()));
+  connect(pbNextIFrame, SIGNAL(clicked()), SLOT(onNextIFrame()));
+  connect(pbPrevIFrame, SIGNAL(clicked()), SLOT(onPrevIFrame()));
+  connect(pbNextPFrame, SIGNAL(clicked()), SLOT(onNextPFrame()));
+  connect(pbPrevPFrame, SIGNAL(clicked()), SLOT(onPrevPFrame()));
+  connect(pbNextBFrame, SIGNAL(clicked()), SLOT(onNextBFrame()));
+  connect(pbPrevBFrame, SIGNAL(clicked()), SLOT(onPrevBFrame()));
+  connect(pbSetCutIn, SIGNAL(clicked()), SLOT(onSetCutIn()));
+  connect(pbSetCutOut, SIGNAL(clicked()), SLOT(onSetCutOut()));
+  connect(pbGotoCutIn, SIGNAL(clicked()), SLOT(onGotoCutIn()));
+  connect(pbGotoCutOut, SIGNAL(clicked()), SLOT(onGotoCutOut()));
+  connect(pbAddCut, SIGNAL(clicked()), SLOT(onAddCutRange()));
+  connect(pbQuickJump, SIGNAL(clicked()), SLOT(onQuickJump()));
+  connect(pbStreamPoints, SIGNAL(clicked()), SLOT(onStreamPoints()));
+  connect(pbSetMarker, SIGNAL(clicked()), SLOT(onSetMarker()));
+  connect(pbGotoMarker, SIGNAL(clicked()), SLOT(onGotoMarker()));
 }
 
 void TTNavigation::setTitle(const QString & title)
 {
-	gbNavigation->setTitle(title);
+  gbNavigation->setTitle(title);
 }
 
 void TTNavigation::controlEnabled(bool enabled)
 {
-	isControlEnabled = enabled;
-	pbNextIFrame->setEnabled(enabled);
-	pbPrevIFrame->setEnabled(enabled);
-	pbNextPFrame->setEnabled(enabled);
-	pbPrevPFrame->setEnabled(enabled);
-	pbNextBFrame->setEnabled(enabled);
-	pbPrevBFrame->setEnabled(enabled);
-	pbSetCutIn->setEnabled(enabled);
-	pbSetCutOut->setEnabled(enabled);
-	pbGotoCutIn->setEnabled(enabled);
-	pbGotoCutOut->setEnabled(enabled);
-	pbAddCut->setEnabled(enabled);
-	pbSetMarker->setEnabled(enabled);
-	pbGotoMarker->setEnabled(false);
+  isControlEnabled = enabled;
+  pbNextIFrame->setEnabled(enabled);
+  pbPrevIFrame->setEnabled(enabled);
+  pbNextPFrame->setEnabled(enabled);
+  pbPrevPFrame->setEnabled(enabled);
+  pbNextBFrame->setEnabled(enabled);
+  pbPrevBFrame->setEnabled(enabled);
+  pbSetCutIn->setEnabled(enabled);
+  pbSetCutOut->setEnabled(enabled);
+  pbGotoCutIn->setEnabled(enabled);
+  pbGotoCutOut->setEnabled(enabled);
+  pbAddCut->setEnabled(enabled);
+  pbSetMarker->setEnabled(enabled);
+  pbGotoMarker->setEnabled(false);
 }
 
 void TTNavigation::checkCutPosition(TTVideoDataItem* avData)
 {
-	TTVideoStream* vs = avData->videoStream();
-	currentPosition = vs->currentIndex();
-	currentTime = vs->currentFrameTime().toString("hh:mm:ss.zzz");
-	currentFrameType = vs->currentFrameType();
+  TTVideoStream* vs = avData->videoStream();
+  currentPosition = vs->currentIndex();
+  currentTime = vs->currentFrameTime().toString("hh:mm:ss.zzz");
+  currentFrameType = vs->currentFrameType();
 
-	pbSetCutIn->setEnabled(vs->isCutInPoint(-1));
-	pbSetCutOut->setEnabled(vs->isCutOutPoint(-1));
+  pbSetCutIn->setEnabled(vs->isCutInPoint(-1));
+  pbSetCutOut->setEnabled(vs->isCutOutPoint(-1));
 }
 
 void TTNavigation::keyPressEvent(QKeyEvent* e)
 {
-	int steps = 0;
+  int steps = 0;
 
-	if (!isControlEnabled)
-		return;
+  if (!isControlEnabled)
+    return;
 
-	//log->infoMsg(oName, "key press event");
+  //log->infoMsg(oName, "key press event");
 
-	switch (e->key()) {
+  switch (e->key())
+  {
 
-	// left arrow key
-	case Qt::Key_Left:
+      // left arrow key
+    case Qt::Key_Left:
 
-		switch (e->modifiers()) {
+      switch (e->modifiers())
+      {
 
-		// backward TTCut::stepPlusAlt
-		case Qt::AltModifier:
-			steps -= TTCut::stepPlusAlt;
-			break;
-			// backward TTCut::stepPlusCtrl
-		case Qt::ControlModifier:
-			steps -= TTCut::stepPlusCtrl;
-			break;
-			// backward TTCut::stepPlusShift
-		case Qt::ShiftModifier:
-			steps -= TTCut::stepPlusShift;
-			break;
-			// backward one frame
-		default:
-			steps -= 1;
-			break;
-		}
+          // backward TTCut::stepPlusAlt
+        case Qt::AltModifier:
+          steps -= TTCut::stepPlusAlt;
+          break;
+          // backward TTCut::stepPlusCtrl
+        case Qt::ControlModifier:
+          steps -= TTCut::stepPlusCtrl;
+          break;
+          // backward TTCut::stepPlusShift
+        case Qt::ShiftModifier:
+          steps -= TTCut::stepPlusShift;
+          break;
+          // backward one frame
+        default:
+          steps -= 1;
+          break;
+      }
 
-		emit moveNumSteps(steps);
-		break;
+      emit moveNumSteps(steps);
+      break;
 
-		// right arrow key
-	case Qt::Key_Right:
+      // right arrow key
+    case Qt::Key_Right:
 
-		switch (e->modifiers()) {
+      switch (e->modifiers())
+      {
 
-		// forward TTCut::stepPlusAlt
-		case Qt::AltModifier:
-			steps += TTCut::stepPlusAlt;
-			break;
-			// forward TTCut::stepPlusCtrl
-		case Qt::ControlModifier:
-			steps += TTCut::stepPlusCtrl;
-			break;
-			// forward TTCut::stepPlusShift
-		case Qt::ShiftModifier:
-			steps += TTCut::stepPlusShift;
-			break;
-			// forward one frame
-		default:
-			steps += 1;
-			break;
-		}
+          // forward TTCut::stepPlusAlt
+        case Qt::AltModifier:
+          steps += TTCut::stepPlusAlt;
+          break;
+          // forward TTCut::stepPlusCtrl
+        case Qt::ControlModifier:
+          steps += TTCut::stepPlusCtrl;
+          break;
+          // forward TTCut::stepPlusShift
+        case Qt::ShiftModifier:
+          steps += TTCut::stepPlusShift;
+          break;
+          // forward one frame
+        default:
+          steps += 1;
+          break;
+      }
 
-		emit moveNumSteps(steps);
-		break;
-		// home key: show first frame
-	case Qt::Key_Home:
-		emit moveToHome();
-		break;
-		// end key: show last frame
-	case Qt::Key_End:
-		emit moveToEnd();
-		break;
-		// page down
-	case Qt::Key_PageUp:
-		steps -= TTCut::stepPgUpDown;
-		emit moveNumSteps(steps);
-		break;
-		// page up
-	case Qt::Key_PageDown:
-		steps += TTCut::stepPgUpDown;
-		emit moveNumSteps(steps);
-		break;
-		// I-frame
-	case Qt::Key_I:
-		// previous I-Frame
-		if (e->modifiers() == Qt::ControlModifier)
-			emit prevIFrame();
-		// next I-frame
-		else
-			emit nextIFrame();
-		break;
-		// ---------------------------------------------------------------------------
-		// P-frame
-		// ---------------------------------------------------------------------------
-	case Qt::Key_P:
-		// previous P-Frame
-		if (e->modifiers() == Qt::ControlModifier)
-			emit prevPFrame();
-		// next P-frame
-		else
-			emit nextPFrame();
-		break;
-		// ---------------------------------------------------------------------------
-		// B-frame
-		// ---------------------------------------------------------------------------
-	case Qt::Key_B:
-		// previous B-Frame
-		if (e->modifiers() == Qt::ControlModifier)
-			emit prevBFrame();
-		// next B-frame
-		else
-			emit nextBFrame();
-		break;
+      emit moveNumSteps(steps);
+      break;
+      // home key: show first frame
+    case Qt::Key_Home:
+      emit moveToHome();
+      break;
+      // end key: show last frame
+    case Qt::Key_End:
+      emit moveToEnd();
+      break;
+      // page down
+    case Qt::Key_PageUp:
+      steps -= TTCut::stepPgUpDown;
+      emit moveNumSteps(steps);
+      break;
+      // page up
+    case Qt::Key_PageDown:
+      steps += TTCut::stepPgUpDown;
+      emit moveNumSteps(steps);
+      break;
+      // I-frame
+    case Qt::Key_I:
+      // previous I-Frame
+      if (e->modifiers() == Qt::ControlModifier)
+        emit prevIFrame();
+        // next I-frame
+      else
+        emit nextIFrame();
+      break;
+      // ---------------------------------------------------------------------------
+      // P-frame
+      // ---------------------------------------------------------------------------
+    case Qt::Key_P:
+      // previous P-Frame
+      if (e->modifiers() == Qt::ControlModifier)
+        emit prevPFrame();
+        // next P-frame
+      else
+        emit nextPFrame();
+      break;
+      // ---------------------------------------------------------------------------
+      // B-frame
+      // ---------------------------------------------------------------------------
+    case Qt::Key_B:
+      // previous B-Frame
+      if (e->modifiers() == Qt::ControlModifier)
+        emit prevBFrame();
+        // next B-frame
+      else
+        emit nextBFrame();
+      break;
 
-	default:
-		break;
-	}
+    default:
+      break;
+  }
 }
 
 void TTNavigation::onPrevIFrame()
 {
-	emit prevIFrame();
+  emit prevIFrame();
 }
 
 void TTNavigation::onNextIFrame()
 {
-	emit nextIFrame();
+  emit nextIFrame();
 }
 
 void TTNavigation::onPrevPFrame()
 {
-	emit prevPFrame();
+  emit prevPFrame();
 }
 
 void TTNavigation::onNextPFrame()
 {
-	emit nextPFrame();
+  emit nextPFrame();
 }
 
 void TTNavigation::onPrevBFrame()
 {
-	emit prevBFrame();
+  emit prevBFrame();
 }
 
 void TTNavigation::onNextBFrame()
 {
-	emit nextBFrame();
+  emit nextBFrame();
 }
 
 void TTNavigation::onSetCutIn()
 {
-	QString szTemp1, szTemp2;
+  QString szTemp1, szTemp2;
 
-	isCutInPosition = true;
-	cutInPosition = currentPosition;
+  isCutInPosition = true;
+  cutInPosition = currentPosition;
 
-	szTemp1 = currentTime;
-	szTemp2.sprintf(" (%d)", cutInPosition);
+  szTemp1 = currentTime;
+  szTemp2.sprintf(" (%d)", cutInPosition);
 
-	if (currentFrameType == 1)
-		szTemp2 += " [I]";
-	if (currentFrameType == 2)
-		szTemp2 += " [P]";
-	if (currentFrameType == 3)
-		szTemp2 += " [B]";
+  if (currentFrameType == 1)
+    szTemp2 += " [I]";
+  if (currentFrameType == 2)
+    szTemp2 += " [P]";
+  if (currentFrameType == 3)
+    szTemp2 += " [B]";
 
-	szTemp1 += szTemp2;
-	laCutInPosition->setText(szTemp1);
+  szTemp1 += szTemp2;
+  laCutInPosition->setText(szTemp1);
 
-	emit setCutIn(cutInPosition);
+  emit setCutIn(cutInPosition);
 }
 
 void TTNavigation::onSetCutOut()
 {
-	QString szTemp1, szTemp2;
+  QString szTemp1, szTemp2;
 
-	isCutOutPosition = true;
-	cutOutPosition = currentPosition;
+  isCutOutPosition = true;
+  cutOutPosition = currentPosition;
 
-	szTemp1 = currentTime;
-	szTemp2.sprintf(" (%d)", cutOutPosition);
+  szTemp1 = currentTime;
+  szTemp2.sprintf(" (%d)", cutOutPosition);
 
-	if (currentFrameType == 1)
-		szTemp2 += " [I]";
-	if (currentFrameType == 2)
-		szTemp2 += " [P]";
-	if (currentFrameType == 3)
-		szTemp2 += " [B]";
+  if (currentFrameType == 1)
+    szTemp2 += " [I]";
+  if (currentFrameType == 2)
+    szTemp2 += " [P]";
+  if (currentFrameType == 3)
+    szTemp2 += " [B]";
 
-	szTemp1 += szTemp2;
-	laCutOutPosition->setText(szTemp1);
+  szTemp1 += szTemp2;
+  laCutOutPosition->setText(szTemp1);
 
-	emit setCutOut(cutOutPosition);
+  emit setCutOut(cutOutPosition);
 }
 
 void TTNavigation::onGotoCutIn()
 {
-	if (isCutInPosition)
-		emit gotoCutIn(cutInPosition);
+  if (isCutInPosition)
+    emit gotoCutIn(cutInPosition);
 }
 
 void TTNavigation::onGotoCutOut()
 {
-	if (isCutOutPosition)
-		emit gotoCutOut(cutOutPosition);
+  if (isCutOutPosition)
+    emit gotoCutOut(cutOutPosition);
 }
 
 void TTNavigation::onAddCutRange()
 {
-	if (isCutInPosition && isCutOutPosition) {
-		isCutInPosition = false;
-		isCutOutPosition = false;
-		laCutInPosition->setText("...");
-		laCutOutPosition->setText("...");
+  if (isCutInPosition && isCutOutPosition) {
+    isCutInPosition = false;
+    isCutOutPosition = false;
+    laCutInPosition->setText("...");
+    laCutOutPosition->setText("...");
 
-		if (isEditCut) {
-			editCutData->avDataItem()->updateCutEntry(*editCutData,
-					cutInPosition, cutOutPosition);
-			pbAddCut->setText(tr("Add range to cut list"));
-			isEditCut = false;
-			delete editCutData;
-			return;
-		}
+    if (isEditCut) {
+      editCutData->avDataItem()->updateCutEntry(*editCutData,
+        cutInPosition, cutOutPosition);
+      pbAddCut->setText(tr("Add range to cut list"));
+      isEditCut = false;
+      delete editCutData;
+      return;
+    }
 
-		emit addCutRange(cutInPosition, cutOutPosition);
-	}
+    emit addCutRange(cutInPosition, cutOutPosition);
+  }
 }
 
 void TTNavigation::onSetMarker()
 {
-	QString szTemp1, szTemp2;
+  QString szTemp1, szTemp2;
 
-	markerPosition = currentPosition;
-	pbGotoMarker->setEnabled(true);
+  markerPosition = currentPosition;
+  pbGotoMarker->setEnabled(true);
 
-	szTemp1 = currentTime;
-	szTemp2.sprintf(" (%d)", markerPosition);
+  szTemp1 = currentTime;
+  szTemp2.sprintf(" (%d)", markerPosition);
 
-	if (currentFrameType == 1)
-		szTemp2 += " [I]";
-	if (currentFrameType == 2)
-		szTemp2 += " [P]";
-	if (currentFrameType == 3)
-		szTemp2 += " [B]";
+  if (currentFrameType == 1)
+    szTemp2 += " [I]";
+  if (currentFrameType == 2)
+    szTemp2 += " [P]";
+  if (currentFrameType == 3)
+    szTemp2 += " [B]";
 
-	szTemp1 += szTemp2;
-	laMarkerPosition->setText(szTemp1);
+  szTemp1 += szTemp2;
+  laMarkerPosition->setText(szTemp1);
 }
 
 void TTNavigation::onGotoMarker()
 {
-	if (markerPosition >= 0)
-		emit gotoMarker(markerPosition);
+  if (markerPosition >= 0)
+    emit gotoMarker(markerPosition);
 }
 
 void TTNavigation::onStreamPoints()
@@ -365,43 +368,43 @@ void TTNavigation::onQuickJump()
 
 void TTNavigation::onEditCut(const TTCutItem& cutData)
 {
-	QString szTemp1, szTemp2;
+  QString szTemp1, szTemp2;
 
-	isCutInPosition = true;
-	isCutOutPosition = true;
-	cutInPosition = cutData.cutInIndex();
-	cutOutPosition = cutData.cutOutIndex();
+  isCutInPosition = true;
+  isCutOutPosition = true;
+  cutInPosition = cutData.cutInIndex();
+  cutOutPosition = cutData.cutOutIndex();
 
-	szTemp1 = cutData.cutInTime().toString("hh:mm:ss.zzz");
-	szTemp2.sprintf(" (%d)", cutInPosition);
+  szTemp1 = cutData.cutInTime().toString("hh:mm:ss.zzz");
+  szTemp2.sprintf(" (%d)", cutInPosition);
 
-	if (cutData.cutInFrameType() == 1)
-		szTemp2 += " [I]";
-	if (cutData.cutInFrameType() == 2)
-		szTemp2 += " [P]";
-	if (cutData.cutInFrameType() == 3)
-		szTemp2 += " [B]";
+  if (cutData.cutInFrameType() == 1)
+    szTemp2 += " [I]";
+  if (cutData.cutInFrameType() == 2)
+    szTemp2 += " [P]";
+  if (cutData.cutInFrameType() == 3)
+    szTemp2 += " [B]";
 
-	szTemp1 += szTemp2;
-	laCutInPosition->setText(szTemp1);
+  szTemp1 += szTemp2;
+  laCutInPosition->setText(szTemp1);
 
-	szTemp1 = cutData.cutOutTime().toString("hh:mm:ss.zzz");
-	szTemp2.sprintf(" (%d)", cutOutPosition);
+  szTemp1 = cutData.cutOutTime().toString("hh:mm:ss.zzz");
+  szTemp2.sprintf(" (%d)", cutOutPosition);
 
-	if (cutData.cutOutFrameType() == 1)
-		szTemp2 += " [I]";
-	if (cutData.cutOutFrameType() == 2)
-		szTemp2 += " [P]";
-	if (cutData.cutOutFrameType() == 3)
-		szTemp2 += " [B]";
+  if (cutData.cutOutFrameType() == 1)
+    szTemp2 += " [I]";
+  if (cutData.cutOutFrameType() == 2)
+    szTemp2 += " [P]";
+  if (cutData.cutOutFrameType() == 3)
+    szTemp2 += " [B]";
 
-	szTemp1 += szTemp2;
-	laCutOutPosition->setText(szTemp1);
+  szTemp1 += szTemp2;
+  laCutOutPosition->setText(szTemp1);
 
-	isEditCut = true;
-	editCutData = new TTCutItem(cutData);
+  isEditCut = true;
+  editCutData = new TTCutItem(cutData);
 
-	pbAddCut->setText(tr("Update range in cut list"));
+  pbAddCut->setText(tr("Update range in cut list"));
 
-	emit gotoCutIn(cutInPosition);
+  emit gotoCutIn(cutInPosition);
 }
