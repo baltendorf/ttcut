@@ -1,10 +1,11 @@
 /*----------------------------------------------------------------------------*/
-/* COPYRIGHT: TriTime (c) 2003/2010 / www.tritime.org                         */
+/* COPYRIGHT: TriTime (c) 2003/2015 / www.tritime.org                         */
 /*----------------------------------------------------------------------------*/
 /* PROJEKT  : TTCUT 2008                                                      */
 /* FILE     : ttmarkertreeview.h                                              */
 /*----------------------------------------------------------------------------*/
 /* AUTHOR  : b. altendorf (E-Mail: b.altendorf@tritime.de)   DATE: 12/18/2008 */
+/* MODIFIED: b. altendorf                                    DATE: 01/14/2015 */
 /*----------------------------------------------------------------------------*/
 
 // ----------------------------------------------------------------------------
@@ -75,14 +76,8 @@ class TTMarkerTreeView : public QWidget, Ui::TTMarkerListWidget
 
   private:
   	QTreeWidgetItem* findItem(const TTMarkerItem& cutItem);
-    void createActions();
 
   private:
   	TTAVData* mpAVData;
-    QMenu*        contextMenu;
-    QAction*      itemUpAction;
-    QAction*      itemDownAction;
-    QAction*      itemDeleteAction;
-    QAction*      itemNewAction;
 };
 #endif

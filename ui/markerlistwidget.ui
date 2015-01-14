@@ -32,7 +32,16 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <property name="spacing">
@@ -241,9 +250,181 @@
     </spacer>
    </item>
   </layout>
+  <action name="actionItemUp">
+   <property name="icon">
+    <iconset resource="audiofilelistwidget.qrc">
+     <normaloff>:/pixmaps/pixmaps/uparrow_18.xpm</normaloff>:/pixmaps/pixmaps/uparrow_18.xpm</iconset>
+   </property>
+   <property name="text">
+    <string>Move &amp;Up</string>
+   </property>
+   <property name="toolTip">
+    <string>Move selected marker one position upward</string>
+   </property>
+  </action>
+  <action name="actionItemDelete">
+   <property name="icon">
+    <iconset resource="audiofilelistwidget.qrc">
+     <normaloff>:/pixmaps/pixmaps/cancel_18.xpm</normaloff>:/pixmaps/pixmaps/cancel_18.xpm</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Delete</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove selected marker from list</string>
+   </property>
+  </action>
+  <action name="actionItemDown">
+   <property name="icon">
+    <iconset resource="audiofilelistwidget.qrc">
+     <normaloff>:/pixmaps/pixmaps/downarrow_18.xpm</normaloff>:/pixmaps/pixmaps/downarrow_18.xpm</iconset>
+   </property>
+   <property name="text">
+    <string>Move d&amp;own</string>
+   </property>
+   <property name="toolTip">
+    <string>Move selected marker one position down</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="audiofilelistwidget.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionItemDown</sender>
+   <signal>triggered()</signal>
+   <receiver>TTMarkerListWidget</receiver>
+   <slot>onItemDown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>464</x>
+     <y>127</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionItemUp</sender>
+   <signal>triggered()</signal>
+   <receiver>TTMarkerListWidget</receiver>
+   <slot>onItemUp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>464</x>
+     <y>127</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionItemDelete</sender>
+   <signal>triggered()</signal>
+   <receiver>TTMarkerListWidget</receiver>
+   <slot>onRemoveItem()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>464</x>
+     <y>127</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbEntryUp</sender>
+   <signal>clicked()</signal>
+   <receiver>TTMarkerListWidget</receiver>
+   <slot>onItemUp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>21</x>
+     <y>240</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>200</x>
+     <y>220</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbEntryDown</sender>
+   <signal>clicked()</signal>
+   <receiver>TTMarkerListWidget</receiver>
+   <slot>onItemDown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>80</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>226</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pbEntryDelete</sender>
+   <signal>clicked()</signal>
+   <receiver>TTMarkerListWidget</receiver>
+   <slot>onRemoveItem()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>130</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>475</x>
+     <y>225</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>markerListView</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>TTMarkerListWidget</receiver>
+   <slot>onActivateMarker()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>164</x>
+     <y>91</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1</x>
+     <y>123</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>markerListView</sender>
+   <signal>customContextMenuRequested(QPoint)</signal>
+   <receiver>TTMarkerListWidget</receiver>
+   <slot>onContextMenuRequest(QPoint)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>616</x>
+     <y>157</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>640</x>
+     <y>220</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>onItemUp()</slot>
+  <slot>onItemDown()</slot>
+  <slot>onRemoveItem()</slot>
+  <slot>onActivateMarker()</slot>
+  <slot>onContextMenuRequest(QPoint)</slot>
+ </slots>
 </ui>

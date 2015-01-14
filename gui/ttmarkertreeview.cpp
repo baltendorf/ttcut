@@ -1,10 +1,11 @@
 /*----------------------------------------------------------------------------*/
-/* COPYRIGHT: TriTime (c) 2003/2010 / www.tritime.org                         */
+/* COPYRIGHT: TriTime (c) 2003/2015 / www.tritime.org                         */
 /*----------------------------------------------------------------------------*/
 /* PROJEKT  : TTCUT 2008                                                      */
 /* FILE     : ttmarkertreeview.cpp                                            */
 /*----------------------------------------------------------------------------*/
 /* AUTHOR  : b. altendorf (E-Mail: b.altendorf@tritime.de)   DATE: 12/18/2008 */
+/* MODIFIED: b. altendorf                                    DATE: 01/14/2015 */
 /*----------------------------------------------------------------------------*/
 
 // ----------------------------------------------------------------------------
@@ -54,30 +55,21 @@ TTMarkerTreeView::TTMarkerTreeView(QWidget* parent)
   header->resizeSection(1, 120);
   header->resizeSection(2, 160);
   header->resizeSection(3, 100);
-
-  createActions();
-
-  // signal and slot connections
-  connect(pbEntryUp,      SIGNAL(clicked()),                                 SLOT(onItemUp()));
-  connect(pbEntryDown,    SIGNAL(clicked()),                                 SLOT(onItemDown()));
-  connect(pbEntryDelete,  SIGNAL(clicked()),                                 SLOT(onRemoveItem()));
-  connect(markerListView, SIGNAL(doubleClicked(const QModelIndex)),          SLOT(onActivateMarker()));
-  connect(markerListView, SIGNAL(customContextMenuRequested(const QPoint&)), SLOT(onContextMenuRequest(const QPoint&)));
 }
 
-/*!
+/* /////////////////////////////////////////////////////////////////////////////
  * setAVData
  */
 void TTMarkerTreeView::setAVData(TTAVData* avData)
 {
   mpAVData = avData;
 
-  connect(mpAVData, SIGNAL(markerAppended(const TTMarkerItem&)),                  SLOT(onAppendItem(const TTMarkerItem&)));
-  connect(mpAVData, SIGNAL(markerRemoved(int)),                                   SLOT(onItemRemoved(int)));
+  connect(mpAVData, SIGNAL(markerAppended(const TTMarkerItem&)),                     SLOT(onAppendItem(const TTMarkerItem&)));
+  connect(mpAVData, SIGNAL(markerRemoved(int)),                                      SLOT(onItemRemoved(int)));
   connect(mpAVData, SIGNAL(markerUpdated(const TTMarkerItem&, const TTMarkerItem&)), SLOT(onUpdateItem(const TTMarkerItem&, const TTMarkerItem&)));
-  connect(mpAVData, SIGNAL(markerDataReloaded()),                                 SLOT(onReloadList()));
-  connect(this,     SIGNAL(removeItem(const TTMarkerItem&)),            mpAVData, SLOT(onRemoveMarker(const TTMarkerItem&)));
-  connect(this,     SIGNAL(itemOrderChanged(int, int)),                 mpAVData, SLOT(onMarkerOrderChanged(int , int)));
+  connect(mpAVData, SIGNAL(markerDataReloaded()),                                    SLOT(onReloadList()));
+  connect(this,     SIGNAL(removeItem(const TTMarkerItem&)),               mpAVData, SLOT(onRemoveMarker(const TTMarkerItem&)));
+  connect(this,     SIGNAL(itemOrderChanged(int, int)),                    mpAVData, SLOT(onMarkerOrderChanged(int , int)));
 }
 
 void TTMarkerTreeView::clear()
@@ -219,11 +211,9 @@ void TTMarkerTreeView::onContextMenuRequest(const QPoint& point)
     return;
 
   QMenu contextMenu(this);
-  //contextMenu.addAction(itemNewAction);
-  //contextMenu.addSeparator();
-  contextMenu.addAction(itemUpAction);
-  contextMenu.addAction(itemDeleteAction);
-  contextMenu.addAction(itemDownAction);
+  contextMenu.addAction(actionItemUp);
+  contextMenu.addAction(actionItemDelete);
+  contextMenu.addAction(actionItemDown);
 
   contextMenu.exec(markerListView->mapToGlobal(point));
 }
@@ -237,9 +227,6 @@ void TTMarkerTreeView::onReloadList()
   }
 }
 
-/*!
- * findItem
- */
 QTreeWidgetItem* TTMarkerTreeView::findItem(const TTMarkerItem& markerItem)
 {
 	for (int i = 0; i < markerListView->topLevelItemCount(); i++) {
@@ -248,31 +235,5 @@ QTreeWidgetItem* TTMarkerTreeView::findItem(const TTMarkerItem& markerItem)
 			return item;
 	}
 	return 0;
-}
-
-
-/* /////////////////////////////////////////////////////////////////////////////
- * createAction
- * Create the actions used by the context menu.
- */
-void TTMarkerTreeView::createActions()
-{
-  itemUpAction = new QAction(tr("Move &up"), this);
-  //itemUpAction->setShortcut(tr("Ctrl+U"));
-  itemUpAction->setIcon(QIcon(QString::fromUtf8(":/pixmaps/pixmaps/uparrow_18.xpm")));
-  itemUpAction->setStatusTip(tr("Move selected audiofile one position upward"));
-  connect(itemUpAction, SIGNAL(triggered()), SLOT(onItemUp()));
-
-  itemDeleteAction = new QAction(tr("&Delete"), this);
-  //itemDeleteAction->setShortcut(tr("Ctrl+D"));
-  itemDeleteAction->setIcon(QIcon(QString::fromUtf8(":/pixmaps/pixmaps/cancel_18.xpm")));
-  itemDeleteAction->setStatusTip(tr("Remove selected audiofile from list"));
-  connect(itemDeleteAction, SIGNAL(triggered()), SLOT(onRemoveItem()));
-
-  itemDownAction = new QAction(tr("Move d&own"), this);
-  //itemDownAction->setShortcut(tr("Ctrl+O"));
-  itemDownAction->setIcon(QIcon(QString::fromUtf8(":/pixmaps/pixmaps/downarrow_18.xpm")));
-  itemDownAction->setStatusTip(tr("Move selected audiofile one position downward"));
-  connect(itemDownAction, SIGNAL(triggered()), SLOT(onItemDown()));
 }
 
