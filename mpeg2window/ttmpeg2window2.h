@@ -36,12 +36,12 @@
 #include <QFileDialog>
 #include <QLabel>
 
-#include "../common/ttcut.h"
-#include "../mpeg2decoder/ttmpeg2decoder.h"
-#include "../common/ttmessagelogger.h"
-#include "../avstream/ttvideoheaderlist.h"
-#include "../avstream/ttvideoindexlist.h"
-#include "../avstream/ttmpeg2videostream.h"
+#include "common/ttcut.h"
+#include "mpeg2decoder/ttmpeg2decoder.h"
+#include "common/ttmessagelogger.h"
+#include "avstream/ttvideoheaderlist.h"
+#include "avstream/ttvideoindexlist.h"
+#include "avstream/ttmpeg2videostream.h"
 
 class TTMPEG2Window2 : public QLabel
 {

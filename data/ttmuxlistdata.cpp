@@ -29,7 +29,7 @@
 
 #include "ttmuxlistdata.h"
 
-#include "../avstream/ttavheader.h"
+#include "avstream/ttavheader.h"
 
 #include <QFileInfo>
 #include <QString>

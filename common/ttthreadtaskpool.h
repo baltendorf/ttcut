@@ -34,8 +34,6 @@
 #include <QObject>
 #include <QTime>
 #include <QQueue>
-#include <QMap>
-#include <QUuid>
 
 class TTMessageLogger;
 class TTThreadTask;
@@ -76,8 +74,6 @@ class TTThreadTaskPool : public QObject
 
 	private:
     QQueue<TTThreadTask*> mTaskQueue;
-    QMap<QUuid, quint64>  mTotalMap;
-    QMap<QUuid, quint64>  mProgressMap;
     TTMessageLogger*      log;
     QTime                 mOverallTotalTime;
     quint64               mOverallTotalSteps;

@@ -45,7 +45,7 @@
 
 #include "ttvideoheaderlist.h"
 
-#include "../common/ttexception.h"
+#include "common/ttexception.h"
 
 bool videoHeaderListCompareItems( TTAVHeader* head_1, TTAVHeader* head_2 );
 

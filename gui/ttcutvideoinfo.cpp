@@ -28,11 +28,11 @@
 /*----------------------------------------------------------------------------*/
 
 #include "ttcutvideoinfo.h"
-#include "../data/ttavdata.h"
-#include "../data/ttavlist.h"
-#include "../common/ttcut.h"
-#include "../avstream/ttavtypes.h"
-#include "../avstream/ttmpeg2videostream.h"
+#include "data/ttavdata.h"
+#include "data/ttavlist.h"
+#include "common/ttcut.h"
+#include "avstream/ttavtypes.h"
+#include "avstream/ttmpeg2videostream.h"
 
 #include <QFileInfo>
 #include <QFileDialog>

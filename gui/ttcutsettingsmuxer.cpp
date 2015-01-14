@@ -29,7 +29,7 @@
 
 #include "ttcutsettingsmuxer.h"
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
 #include <QFileDialog>
   

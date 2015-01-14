@@ -29,7 +29,7 @@
 
 #include "ttcutsettingscommon.h"
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
 #include <QFileDialog>
 #include <QDir>

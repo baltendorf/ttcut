@@ -29,9 +29,9 @@
 
 #include "ttaudiolist.h"
 #include "ttavlist.h"
-#include "../avstream/ttavheader.h"
-#include "../common/ttmessagelogger.h"
-#include "../avstream/ttavstream.h"
+#include "avstream/ttavheader.h"
+#include "common/ttmessagelogger.h"
+#include "avstream/ttavstream.h"
 
 #include <QFileInfo>
 #include <QString>

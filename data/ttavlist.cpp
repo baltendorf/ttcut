@@ -31,10 +31,10 @@
 #include "ttcutprojectdata.h"
 #include "ttcutlist.h"
 #include "ttaudiolist.h"
-#include "../avstream/ttmpeg2videoheader.h"
-#include "../avstream/ttavstream.h"
-#include "../common/ttexception.h"
-#include "../common/ttmessagelogger.h"
+#include "avstream/ttmpeg2videoheader.h"
+#include "avstream/ttavstream.h"
+#include "common/ttexception.h"
+#include "common/ttmessagelogger.h"
 
 #include <QList>
 #include <QDir>
@@ -194,7 +194,7 @@ void TTAVItem::canCutWith(const TTAVItem* avItem, int cutIn, int cutOut)
 	TTSequenceHeader* seqOut2 = video2->getSequenceHeader(cutOut);
 
 	for (int i = 0; i < cutCount(); i++) {
-		TTCutItem         cutItem1 = cutListItemAt(i);
+		//unused: TTCutItem         cutItem1 = cutListItemAt(i);
 		TTSequenceHeader* seqIn1   = video2->getSequenceHeader(cutIn);
 		TTSequenceHeader* seqOut1  = video2->getSequenceHeader(cutOut);
 

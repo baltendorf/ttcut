@@ -108,7 +108,8 @@ void TTMplexProvider::writeMuxScript()
   QTextStream muxOutStream(&muxFile);
 
   muxOutStream << "# TTCut - Mplex script ver. 1.0" << "\n";
-  muxOutStream << "#!/bin/sh" << "\n";
+  //TODO: use /usr/bin/env bash if available
+  //muxOutStream << "#!/bin/sh" << "\n";
   muxOutStream << "#\n";
 
   for (int i=0; i < mpMuxList->count(); i++)

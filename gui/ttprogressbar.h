@@ -36,7 +36,7 @@
 #include <QHash>
 
 #include "ui_ttprogressform.h"
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 #include "ttprocessform.h"
 
 class TTThreadTask;

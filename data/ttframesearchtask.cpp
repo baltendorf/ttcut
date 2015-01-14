@@ -29,10 +29,10 @@
 
 #include "ttframesearchtask.h"
 
-#include "../common/ttcut.h"
-#include "../common/ttexception.h"
-#include "../common/istatusreporter.h"
-#include "../avstream/ttavstream.h"
+#include "common/ttcut.h"
+#include "common/ttexception.h"
+#include "common/istatusreporter.h"
+#include "avstream/ttavstream.h"
 
 //! Search for an equal frame
 TTFrameSearchTask::TTFrameSearchTask(TTVideoStream* referenceStream, int referenceIndex,

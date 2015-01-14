@@ -3,6 +3,7 @@
 Make*
 ttcut
 logfile.log
+.qmake.stash
 
 # ignore pattern for common files to ignore
 *.o
@@ -14,5 +15,6 @@ res
 obj
 moc
 ui_h
+test
 ttcut.app
 testing

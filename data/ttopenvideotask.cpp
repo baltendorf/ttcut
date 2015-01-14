@@ -29,9 +29,9 @@
 
 #include "ttopenvideotask.h"
 
-#include "../common/ttexception.h"
-#include "../data/ttavlist.h"
-#include "../avstream/ttmpeg2videostream.h"
+#include "common/ttexception.h"
+#include "data/ttavlist.h"
+#include "avstream/ttmpeg2videostream.h"
 
 /**
  * Open video stream task

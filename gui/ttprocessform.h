@@ -33,9 +33,9 @@
 #define TTPROCESSFORM_H
 
 #include "ui_processviewwidget.h"
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
-#include <QtGui/QApplication>
+#include <QApplication>
 
 class TTProcessForm : public QDialog, Ui::ProcessViewWidget
 {

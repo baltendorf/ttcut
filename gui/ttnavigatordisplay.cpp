@@ -29,10 +29,10 @@
 
 #include "ttnavigatordisplay.h"
 
-#include "../common/ttcut.h"
-#include "../avstream/ttavstream.h"
-#include "../data/ttavlist.h"
-#include "../data/ttcutlist.h"
+#include "common/ttcut.h"
+#include "avstream/ttavstream.h"
+#include "data/ttavlist.h"
+#include "data/ttcutlist.h"
 
 #include <QPainter>
 

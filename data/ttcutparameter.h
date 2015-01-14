@@ -34,9 +34,9 @@
 
 #include <QVector>
 
-#include "../avstream/ttcommon.h"
-#include "../avstream/ttfilebuffer.h"
-#include "../avstream/ttvideoheaderlist.h"
+#include "avstream/ttcommon.h"
+#include "avstream/ttfilebuffer.h"
+#include "avstream/ttvideoheaderlist.h"
 
 /*//////////////////////////////////////////////////////////////////////////////
  * TTCutParameter

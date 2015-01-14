@@ -32,8 +32,8 @@
 
 #include "ui_markerlistwidget.h"
 
-#include "../common/ttcut.h"
-#include "../data/ttavdata.h"
+#include "common/ttcut.h"
+#include "data/ttavdata.h"
 
 class TTAVItem;
 class TTMarkerItem;

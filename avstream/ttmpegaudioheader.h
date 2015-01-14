@@ -71,7 +71,7 @@
 #ifndef TTMPEGAUDIOHEADER_H
 #define TTMPEGAUDIOHEADER_H
 
-#include "../common/ttmessagelogger.h"
+#include "common/ttmessagelogger.h"
 #include "ttavheader.h"
 
 class QString;

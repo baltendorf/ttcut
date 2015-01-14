@@ -46,14 +46,14 @@
 
 #include "ttavstream.h"
 
-#include "../data/ttcutlist.h"
-#include "../common/ttexception.h"
-#include "../common/istatusreporter.h"
+#include "data/ttcutlist.h"
+#include "common/ttexception.h"
+#include "common/istatusreporter.h"
 #include "ttcommon.h"
 #include "ttfilebuffer.h"
 
-#include "../data/ttcutparameter.h"
-#include "../common/ttmessagelogger.h"
+#include "data/ttcutparameter.h"
+#include "common/ttmessagelogger.h"
 
 #include "ttaudioheaderlist.h"
 #include "ttvideoheaderlist.h"

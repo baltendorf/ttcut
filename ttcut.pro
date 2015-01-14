@@ -10,13 +10,14 @@
 #
 #
 PROJECT     = TTCut
-CONFIG      += qt warn_on debug
-QT          += xml phonon
+CONFIG      += qt warn_on
+QT          += core gui xml multimedia multimediawidgets widgets
 DEFINES     += _FILE_OFFSET_BITS=64
 DIST        = ttcut
 TARGET      = ttcut
 ICON        = ui/pixmaps/ttcut_logo_001.icns
-LIBS        = -lmpeg2 -lmpeg2convert
+INCLUDEPATH += /opt/local/include
+LIBS        += -L /opt/local/lib -lmpeg2 -lmpeg2convert
 
 unix {
   DEFINES += UNIX
@@ -139,7 +140,7 @@ HEADERS     = common/ttcut.h\
               gui/tttaskprogress.h\
               gui/ttcutpreview.h\
               gui/ttvideoplayer.h\
-              gui/ttphononwidget.h\
+              gui/ttmediaplayerwidget.h\
               gui/ttmplayerwidget.h\
               gui/ttcutaboutdlg.h\
               gui/ttcutavcutdlg.h\
@@ -208,7 +209,7 @@ SOURCES     = common/ttcut.cpp\
               gui/ttprocessform.cpp\
               gui/ttcutpreview.cpp\
               gui/ttvideoplayer.cpp\
-              gui/ttphononwidget.cpp\
+              gui/ttmediaplayerwidget.cpp\
               gui/ttmplayerwidget.cpp\
               gui/ttcutaboutdlg.cpp\
               gui/ttcutavcutdlg.cpp\

@@ -33,7 +33,7 @@
 #define TTCUTABOUTDLG_H
 
 #include "ui_aboutdlg.h"
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
 class TTCutAboutDlg : public QDialog, Ui::TTCutAboutDlg
 {

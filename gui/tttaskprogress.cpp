@@ -30,7 +30,7 @@
 
 #include "tttaskprogress.h"
 
-#include "../common/ttthreadtask.h"
+#include "common/ttthreadtask.h"
 
 #include <QDebug>
 

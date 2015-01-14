@@ -42,10 +42,10 @@
 
 #include "ttmpeg2videostream.h"
 
-#include "../common/ttexception.h"
-#include "../common/istatusreporter.h"
-#include "../data/ttcutlist.h"
-#include "../data/ttcutparameter.h"
+#include "common/ttexception.h"
+#include "common/istatusreporter.h"
+#include "data/ttcutlist.h"
+#include "data/ttcutparameter.h"
 
 #include <QCoreApplication>
 #include <stdio.h>
@@ -969,7 +969,7 @@ void TTMpeg2VideoStream::encodePart(int start, int end, TTCutParameter* cr)
 
   QDir      tempDir( TTCut::tempDirPath );
   QString   aviOutFile   = "encode.avi";
-  QString   mpeg2OutFile = "encode";          // extension is added by transcode (!)
+  QString   mpeg2OutFile = "encode.m2v";
   QFileInfo aviFileInfo(tempDir, aviOutFile);
   QFileInfo mpeg2FileInfo(tempDir, mpeg2OutFile);
 
@@ -1011,7 +1011,7 @@ void TTMpeg2VideoStream::encodePart(int start, int end, TTCutParameter* cr)
   // remove temporary files
   QString rmCmd = QString("rm %1/encode.*").arg(mpeg2FileInfo.absolutePath());
 
-  if (system(rmCmd.toAscii().data()) < 0)
+  if (system(rmCmd.toStdString().c_str()) < 0)
     log->errorMsg(__FILE__, __LINE__, QString(tr("system call %1 failed!")).arg(rmCmd));
 
   cr->setIsWriteMaxBitrate(savIsWriteMaxBitrate);

@@ -37,8 +37,8 @@
 #include <QResizeEvent>
 #include <QCloseEvent>
 
-#include "../common/ttcut.h"
-#include "../data/ttcutlist.h"
+#include "common/ttcut.h"
+#include "data/ttcutlist.h"
 
 class TTAVData;
 class QVBoxLayout;

@@ -35,7 +35,7 @@
 #include <QTime>
 #include <QUuid>
 
-#include "../common/istatusreporter.h"
+#include "common/istatusreporter.h"
 
 class TTMessageLogger;
 

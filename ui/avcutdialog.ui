@@ -494,19 +494,19 @@
   <customwidget>
    <class>TTCutSettingsMuxer</class>
    <extends>QGroupBox</extends>
-   <header>../gui/ttcutsettingsmuxer.h</header>
+   <header>gui/ttcutsettingsmuxer.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>TTCutSettingsChapter</class>
    <extends>QGroupBox</extends>
-   <header>../gui/ttcutsettingschapter.h</header>
+   <header>gui/ttcutsettingschapter.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>TTCutSettingsEncoder</class>
    <extends>QGroupBox</extends>
-   <header>../gui/ttcutsettingsencoder.h</header>
+   <header>gui/ttcutsettingsencoder.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

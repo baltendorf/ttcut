@@ -32,9 +32,9 @@
 
 #include "ui_ttcutframenavigationwidget.h"
 
-#include "../common/ttmessagelogger.h"
-#include "../data/ttcutlist.h"
-#include "../avstream/ttavstream.h"
+#include "common/ttmessagelogger.h"
+#include "data/ttcutlist.h"
+#include "avstream/ttavstream.h"
 
 class TTAVItem;
 

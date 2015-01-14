@@ -35,7 +35,7 @@
 #include <QVector>
 
 #include "ttmpeg2videoheader.h"
-#include "../common/ttmessagelogger.h"
+#include "common/ttmessagelogger.h"
 
 // -----------------------------------------------------------------------------
 // TTVideoIndexList: List of pointers to TTFrameIndex 

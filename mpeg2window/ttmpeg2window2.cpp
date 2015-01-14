@@ -107,7 +107,7 @@ void TTMPEG2Window2::moveToFirstFrame(bool show)
 		mpeg2Decoder->decodeFirstMPEG2Frame( formatRGB32 );
 		getFrameInfo();
 	}
-	catch (TTMpeg2DecoderException ex)
+	catch (TTMpeg2DecoderException& ex)
 	{
 		log->errorMsg(__FILE__, __LINE__, ex.message());
 	}
@@ -129,7 +129,7 @@ void TTMPEG2Window2::openVideoFile( QString fName, TTVideoIndexList* viIndex, TT
   {
   	mpeg2Decoder = new TTMpeg2Decoder(fName, viIndex, viHeader);
   }
-  catch (TTMpeg2DecoderException ex)
+  catch (TTMpeg2DecoderException& ex)
   {
   	log->errorMsg(__FILE__, __LINE__, ex.message());
   }
@@ -175,7 +175,7 @@ void TTMPEG2Window2::moveToVideoFrame(int iFramePos)
 		currentIndex = iFramePos;
 		getFrameInfo();
 	}
-	catch (TTMpeg2DecoderException ex)
+	catch (TTMpeg2DecoderException& ex)
 	{
 		log->errorMsg(__FILE__, __LINE__, ex.message());
 	}
@@ -217,7 +217,7 @@ void TTMPEG2Window2::decodeAndShowSlice()
 		mpeg2Decoder->decodeMPEG2Frame(formatRGB24);
 		getFrameInfo();
 	}
-	catch (TTMpeg2DecoderException ex)
+	catch (TTMpeg2DecoderException& ex)
 	{
 		log->errorMsg(__FILE__, __LINE__, ex.message());
 	}

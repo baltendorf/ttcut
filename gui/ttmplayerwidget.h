@@ -30,8 +30,8 @@
 #include <QObject>
 #include <QProcess>
 
-#include "../common/ttcut.h"
-#include "../common/ttmessagelogger.h"
+#include "common/ttcut.h"
+#include "common/ttmessagelogger.h"
 #include "ttvideoplayer.h"
 
 #ifndef TTMPLAYERWIDGET_H
@@ -52,7 +52,7 @@ public:
     void setControlsVisible(bool visible);
 
     void cleanUp();
-    void load(QString value);
+    void load(const QString& value);
     void play();
     void stop();
 

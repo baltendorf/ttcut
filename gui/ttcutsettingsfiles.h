@@ -32,7 +32,7 @@
 
 #include "ui_ttcutsettingsfiles.h"
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
 
 class TTCutSettingsFiles : public QWidget, Ui::TTCutSettingsFiles

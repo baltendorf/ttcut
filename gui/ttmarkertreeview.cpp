@@ -30,9 +30,9 @@
 
 #include "ttmarkertreeview.h"
 
-#include "../data/ttmarkerlist.h"
-#include "../data/ttavlist.h"
-#include "../avstream/ttavstream.h"
+#include "data/ttmarkerlist.h"
+#include "data/ttavlist.h"
+#include "avstream/ttavstream.h"
 
 #include <QHeaderView>
 #include <QFileDialog>
@@ -61,7 +61,7 @@ TTMarkerTreeView::TTMarkerTreeView(QWidget* parent)
   connect(pbEntryUp,      SIGNAL(clicked()),                                 SLOT(onItemUp()));
   connect(pbEntryDown,    SIGNAL(clicked()),                                 SLOT(onItemDown()));
   connect(pbEntryDelete,  SIGNAL(clicked()),                                 SLOT(onRemoveItem()));
-  connect(markerListView,  SIGNAL(doubleClicked(const QModelIndex)),          SLOT(onActivateMarker()));
+  connect(markerListView, SIGNAL(doubleClicked(const QModelIndex)),          SLOT(onActivateMarker()));
   connect(markerListView, SIGNAL(customContextMenuRequested(const QPoint&)), SLOT(onContextMenuRequest(const QPoint&)));
 }
 
@@ -114,7 +114,7 @@ void TTMarkerTreeView::onAppendItem(const TTMarkerItem& item)
   treeItem->setText(0, item.fileName());
   treeItem->setText(1, item.markerPosString());
   treeItem->setText(2, item.markerTimeString());
-  treeItem->setText(3, item.ID());
+  treeItem->setText(3, item.ID().toString());
 }
 
 /*!
@@ -132,7 +132,7 @@ void TTMarkerTreeView::onUpdateItem(const TTMarkerItem& mItem, const TTMarkerIte
   treeItem->setText(0, uItem.fileName());
   treeItem->setText(1, uItem.markerPosString());
   treeItem->setText(2, uItem.markerTimeString());
-  treeItem->setText(3, uItem.ID());
+  treeItem->setText(3, uItem.ID().toString());
 
   emit itemUpdated(mItem);
   emit refreshDisplay();
@@ -219,8 +219,8 @@ void TTMarkerTreeView::onContextMenuRequest(const QPoint& point)
     return;
 
   QMenu contextMenu(this);
-  contextMenu.addAction(itemNewAction);
-  contextMenu.addSeparator();
+  //contextMenu.addAction(itemNewAction);
+  //contextMenu.addSeparator();
   contextMenu.addAction(itemUpAction);
   contextMenu.addAction(itemDeleteAction);
   contextMenu.addAction(itemDownAction);
@@ -244,7 +244,7 @@ QTreeWidgetItem* TTMarkerTreeView::findItem(const TTMarkerItem& markerItem)
 {
 	for (int i = 0; i < markerListView->topLevelItemCount(); i++) {
 		QTreeWidgetItem* item = markerListView->topLevelItem(i);
-		if (item->text(3) == QString("%1").arg(markerItem.ID()))
+		if (item->text(3) == QString("%1").arg(markerItem.ID().toString()))
 			return item;
 	}
 	return 0;

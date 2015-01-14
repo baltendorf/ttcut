@@ -59,7 +59,7 @@
 #define TTAVHEADER_H
 
 #include "ttcommon.h"
-#include "../common/ttmessagelogger.h"
+#include "common/ttmessagelogger.h"
 #include "ttfilebuffer.h"
 
 class QString;

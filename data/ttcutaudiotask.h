@@ -30,8 +30,8 @@
 #ifndef TTCUTAUDIOTASK_H
 #define TTCUTAUDIOTASK_H
 
-#include "../common/ttthreadtask.h"
-#include "../data/ttmuxlistdata.h"
+#include "common/ttthreadtask.h"
+#include "data/ttmuxlistdata.h"
 
 class TTFileBuffer;
 class TTCutParameter;

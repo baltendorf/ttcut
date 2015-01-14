@@ -30,9 +30,9 @@
 #include "ttprogressbar.h"
 #include "tttaskprogress.h"
 
-#include "../common/ttexception.h"
-#include "../common/istatusreporter.h"
-#include "../common/ttthreadtask.h"
+#include "common/ttexception.h"
+#include "common/istatusreporter.h"
+#include "common/ttthreadtask.h"
 
 #include <QDebug>
 #include <QApplication>
@@ -45,7 +45,7 @@ TTProgressBar::TTProgressBar(QWidget* parent)
 {
   setupUi(this);
 
-  scrollArea->hide();
+  scrollArea->show();
   this->adjustSize();
 
   processForm    = 0;
@@ -66,7 +66,8 @@ TTProgressBar::TTProgressBar(QWidget* parent)
  */
 TTProgressBar::~TTProgressBar()
 {
-  if (processForm != 0) delete processForm;
+  if (processForm != 0)
+  	delete processForm;
 }
 
 /**
@@ -216,19 +217,24 @@ void TTProgressBar::onSetProgress(TTThreadTask* task, int state, const QString& 
       break;
 
     case StatusReportArgs::ShowProcessForm:
+    	//TODO: show/hide process form does not work properly
+    	printf(">>> show process form in non-blocking mode\n");
       //showProcessForm();
       break;
 
     case StatusReportArgs::ShowProcessFormBlocking:
       isBlocking = true;
+      printf(">>> show process form in blocking mode\n");
       //showProcessForm();
       break;
 
     case StatusReportArgs::AddProcessLine:
+    	//printf(">>> add process line %s\n", msg.toStdString().c_str());
       //addProcessLine(msg);
       break;
 
     case StatusReportArgs::HideProcessForm:
+    	printf(">>>  hide process form\n");
       //hideProcessForm();
       break;
 
@@ -258,14 +264,10 @@ void TTProgressBar::addTaskProgress(TTThreadTask* task)
  */
 void TTProgressBar::showProcessForm()
 {
-  if (processForm != 0) {
-    delete processForm;
+  if (processForm == 0) {
+  	processForm = new TTProcessForm(this);
+    connect(processForm, SIGNAL(btnCancelClicked()), this, SLOT(onBtnCancelClicked()));
   }
-  // return;
-
-	processForm = new TTProcessForm(this);
-
-  connect(processForm, SIGNAL(btnCancelClicked()), this, SLOT(onBtnCancelClicked()));
 
   processForm->setModal(isBlocking);
 	//processForm->showCancelButton(isBlocking);
@@ -298,7 +300,5 @@ void TTProgressBar::hideProcessForm()
   }
 
 	processForm->hide();
-	//delete processForm;
-	//processForm = 0;
 }
 

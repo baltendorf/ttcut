@@ -32,7 +32,7 @@
 
 #include "ui_ttcutsettingsencoder.h"
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
 
 class TTCutSettingsEncoder : public QWidget, Ui::TTCutSettingsEncoder

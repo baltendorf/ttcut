@@ -29,7 +29,7 @@
 
 #include "ttvideoplayer.h"
 
-#include <QtGui/QLayout>
+#include <QLayout>
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Constructor for MovieWidget

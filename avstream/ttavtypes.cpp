@@ -50,8 +50,8 @@
 #include "ttmpegaudiostream.h"
 #include "ttmpegaudioheader.h"
 #include "ttmpeg2videostream.h"
-#include "../common/ttmessagelogger.h"
-#include "../common/ttexception.h"
+#include "common/ttmessagelogger.h"
+#include "common/ttexception.h"
 
 #include <QString>
 #include <qfileinfo.h>

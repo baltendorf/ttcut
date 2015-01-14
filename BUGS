@@ -2,7 +2,4 @@
 TTCut-Buglist (Known issues)
 -------------------------------------------------------------------------------
 
-* Preview is still playin while closing the preview window
-
-* Sometimes TTCut crashed while executing transcode and forces the xserver
-  to shut down.
+* Do not add cut where cut-in position is equal cut-out position (does not make sense)

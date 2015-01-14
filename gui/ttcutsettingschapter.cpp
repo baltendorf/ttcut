@@ -29,7 +29,7 @@
 
 #include "ttcutsettingschapter.h"
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
   
 TTCutSettingsChapter::TTCutSettingsChapter(QWidget* parent)

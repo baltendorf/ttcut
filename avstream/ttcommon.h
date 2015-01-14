@@ -4,16 +4,16 @@
 
 class TTTimeCode;
 
-extern "C" bool    ttAssigned( const void* pointer );
-extern "C" bool    ttFileExists( QString fName );
-extern "C" bool    ttDeleteFile( QString fName );
-extern "C" QString ttAddFileExt( QString fName, const char* cExt );
-extern "C" QString ttChangeFileExt( QString fName, const char* cExt );
-extern "C" QTime   ttMsecToTime( int msec );
-extern "C" QTime   ttMsecToTimeD( double msec );
-extern "C" QTime   ttFramesToTime(long lFrames, float fps);
-extern "C" long    ttTimeToFrames(QTime timeCode, float fps);
-extern "C" TTTimeCode ttFrameToTimeCode( int FrameNr, float fps);
+extern bool    ttAssigned( const void* pointer );
+extern bool    ttFileExists( QString fName );
+extern bool    ttDeleteFile( QString fName );
+extern QString ttAddFileExt( QString fName, const char* cExt );
+extern QString ttChangeFileExt( QString fName, const char* cExt );
+extern QTime   ttMsecToTime( int msec );
+extern QTime   ttMsecToTimeD( double msec );
+extern QTime   ttFramesToTime(long lFrames, float fps);
+extern long    ttTimeToFrames(QTime timeCode, float fps);
+extern TTTimeCode ttFrameToTimeCode( int FrameNr, float fps);
 
 #ifndef TTTIMECODE_H
 #define TTTIMECODE_H

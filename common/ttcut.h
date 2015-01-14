@@ -32,7 +32,7 @@
 /*----------------------------------------------------------------------------*/
 
 
-#include "../avstream/ttcommon.h"
+#include "avstream/ttcommon.h"
 
 #ifndef TTCUT_H
 #define TTCUT_H

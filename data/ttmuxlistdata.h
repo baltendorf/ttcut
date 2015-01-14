@@ -30,8 +30,8 @@
 #ifndef TTMUXLISTDATA_H
 #define TTMUXLISTDATA_H
 
-#include "../common/ttcut.h"
-#include "../common/ttmessagelogger.h"
+#include "common/ttcut.h"
+#include "common/ttmessagelogger.h"
 
 #include <QList>
 #include <QStringList>

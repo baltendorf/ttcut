@@ -30,9 +30,9 @@
 
 #include "ttvideotreeview.h"
 
-#include "../data/ttavdata.h"
-#include "../data/ttavlist.h"
-#include "../avstream/ttmpeg2videostream.h"
+#include "data/ttavdata.h"
+#include "data/ttavlist.h"
+#include "avstream/ttmpeg2videostream.h"
 
 #include <QHeaderView>
 #include <QFileDialog>

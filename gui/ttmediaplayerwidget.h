@@ -8,7 +8,7 @@
 /*----------------------------------------------------------------------------*/
 
 // ----------------------------------------------------------------------------
-// TTPHONONWIDGET
+// TTMEDIAPLAYERWIDGET
 // ----------------------------------------------------------------------------
 
 /*----------------------------------------------------------------------------*/
@@ -28,36 +28,54 @@
 /*----------------------------------------------------------------------------*/
 
 #include <QObject>
-#include <QtGui/QWidget>
+#include <QWidget>
 
-#ifndef TTPHONONWIDGET_H
-#define TTPHONONWIDGET_H
+#ifndef TTMEDIAPLAYERWIDGET_H
+#define TTMEDIAPLAYERWIDGET_H
 
-#include <videoplayer.h>
 #include "ttvideoplayer.h"
+
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QVideoWidget>
 #include <QResizeEvent>
 
-class TTPhononWidget : public TTVideoPlayer
+class TTMediaPlayerWidget : public TTVideoPlayer
 {
    Q_OBJECT
    Q_PROPERTY(bool getControlsVisible READ getControlsVisible WRITE setControlsVisible)
 
   public:
-    TTPhononWidget(QWidget *parent);
-    ~TTPhononWidget();
+    TTMediaPlayerWidget(QWidget *parent);
+    ~TTMediaPlayerWidget();
     void resizeEvent(QResizeEvent* e);
 
     void cleanUp();
-    void load(QString value);
+    void load(const QString& value);
     void play();
     void stop();
+    void seek(int seconds);
+
+    bool isPlaying() const;
 
   public slots:
     void onPlayerFinished();
-    void onStateChanged(Phonon::State newState, Phonon::State oldState);
+    void onStateChanged(QMediaPlayer::MediaStatus state);
+    void onPositionChanged(qint64 progress);
+    void onDurationChanged(qint64 duration);
+    void onBufferingProgress(int progress);
+    void onVideoAvailableChanged(bool value);
+    void onPlaylistPositionChanged(int index);
+    void onError();
 
   protected:
-    Phonon::VideoPlayer* player;
+    void addMedia(const QString& value, bool select=true);
+    void updateDurationInfo(qint64 currentInfo);
+
+  protected:
+    QMediaPlayer* player;
+    QMediaPlaylist* playlist;
+    QVideoWidget* videoWidget;
 };
 
 #endif

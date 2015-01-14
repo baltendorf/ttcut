@@ -1,6 +1,6 @@
 
 #include "ttcommon.h"
-#include "../common/ttmessagelogger.h"
+#include "common/ttmessagelogger.h"
 
 #include <math.h>
 #include <QString>

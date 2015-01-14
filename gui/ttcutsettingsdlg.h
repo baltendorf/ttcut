@@ -32,7 +32,7 @@
 
 #include "ui_ttsettingsdialog.h"
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
 
 class TTCutSettingsDlg : public QDialog, Ui::TTSettingsDialog

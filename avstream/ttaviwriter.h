@@ -34,15 +34,15 @@
 
 #include <QString>
 
-#include "../avstream/ttavstream.h"
-#include "../mpeg2decoder/ttmpeg2decoder.h"
+#include "avstream/ttavstream.h"
+#include "mpeg2decoder/ttmpeg2decoder.h"
 
 class QFileInfo;
 class TTMessageLogger;
 
 extern "C"
 {
-#include "../avilib/avilib.h"
+#include "avilib/avilib.h"
 }
 
 /* /////////////////////////////////////////////////////////////////////////////

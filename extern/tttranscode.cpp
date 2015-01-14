@@ -32,7 +32,7 @@
 #include "tttranscode.h"
 #include "ttencodeparameter.h"
 
-#include "../avstream/ttaviwriter.h"
+#include "avstream/ttaviwriter.h"
 
 #include <QDebug>
 #include <QCoreApplication>
@@ -75,6 +75,8 @@ void TTTranscodeProvider::buildCommandLine()
 
   strl_command_line << "-i"
 		    << enc_par.aviFileInfo().absoluteFilePath()
+				<< "-x"
+				<< "avi"
 		    << "--pre_clip"
 		    << "0"
 	      << "--export_prof"
@@ -274,7 +276,7 @@ void TTTranscodeProvider::procOutput()
 {
   QByteArray ba = proc->readAll();
   QTextStream out(&ba);
-int count = 0;
+  int count = 0;
   while (1) {//!out.atEnd()) {
     QString line = out.readLine();
     count++;

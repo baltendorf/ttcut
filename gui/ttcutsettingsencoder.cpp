@@ -29,7 +29,7 @@
 
 #include "ttcutsettingsencoder.h"
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
   
 TTCutSettingsEncoder::TTCutSettingsEncoder(QWidget* parent)

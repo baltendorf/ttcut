@@ -30,11 +30,11 @@
 #ifndef TTMPLEXPROVIDER_H
 #define TTMPLEXPROVIDER_H
 
-#include "../extern/imuxprovider.h"
-#include "../common/istatusreporter.h"
-#include "../common/ttmessagelogger.h"
-#include "../common/ttcut.h"
-#include "../data/ttmuxlistdata.h"
+#include "extern/imuxprovider.h"
+#include "common/istatusreporter.h"
+#include "common/ttmessagelogger.h"
+#include "common/ttcut.h"
+#include "data/ttmuxlistdata.h"
 
 #include <QCoreApplication>
 #include <QObject>

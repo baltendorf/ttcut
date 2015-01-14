@@ -30,7 +30,7 @@
 
 
 #include "ttaviwriter.h"
-#include "../common/ttmessagelogger.h"
+#include "common/ttmessagelogger.h"
 
 #include <QFileInfo>
 #include <QDir>

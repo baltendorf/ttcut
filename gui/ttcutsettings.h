@@ -36,7 +36,7 @@
 #include <QString>
 #include <QSettings>
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
 // -----------------------------------------------------------------------------
 // TTCut settings object; Save and restore settings from configuration file

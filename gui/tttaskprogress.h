@@ -33,7 +33,7 @@
 #define TTTASKPROGRESS_H
 
 #include "ui_tttaskprogresswidget.h"
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
 class TTThreadTask;
 

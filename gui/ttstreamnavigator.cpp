@@ -28,8 +28,8 @@
 /*----------------------------------------------------------------------------*/
 
 #include "ttstreamnavigator.h"
-#include "../avstream/ttavstream.h"
-#include "../data/ttavlist.h"
+#include "avstream/ttavstream.h"
+#include "data/ttavlist.h"
 
 TTStreamNavigator::TTStreamNavigator(QWidget* parent)
   :QWidget(parent)

@@ -33,7 +33,7 @@
 #ifndef TTMPEG2DECODER_H
 #define TTMPEG2DECODER_H
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
 // standard C header files
 #include <math.h>
@@ -50,10 +50,10 @@ extern "C"
 // Qt header files
 #include <qstring.h>
 
-#include "../avstream/ttavheader.h"
-#include "../avstream/ttvideoheaderlist.h"
-#include "../avstream/ttvideoindexlist.h"
-#include "../avstream/ttmpeg2videoheader.h"
+#include "avstream/ttavheader.h"
+#include "avstream/ttvideoheaderlist.h"
+#include "avstream/ttvideoindexlist.h"
+#include "avstream/ttmpeg2videoheader.h"
 
 /* /////////////////////////////////////////////////////////////////////////////
  * constants for mpeg2 pixel format

@@ -33,7 +33,7 @@
 #include <QString>
 #include <QFileInfo>
 
-#include "../common/ttthreadtask.h"
+#include "common/ttthreadtask.h"
 
 class TTVideoType;
 class TTVideoStream;

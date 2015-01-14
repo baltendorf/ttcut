@@ -27,11 +27,11 @@
 /* Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.              */
 /*----------------------------------------------------------------------------*/
 
-#include "../data/ttcutlist.h"
-#include "../common/ttcut.h"
-#include "../data/ttavdata.h"
-#include "../data/ttavlist.h"
-#include "../avstream/ttavstream.h"
+#include "data/ttcutlist.h"
+#include "common/ttcut.h"
+#include "data/ttavdata.h"
+#include "data/ttavlist.h"
+#include "avstream/ttavstream.h"
 
 #include "ttcuttreeview.h"
 
@@ -135,7 +135,7 @@ void TTCutTreeView::onAppendItem(const TTCutItem& item)
   treeItem->setText(1, item.cutInString());
   treeItem->setText(2, item.cutOutString());
   treeItem->setText(3, item.cutLengthString());
-  treeItem->setText(4, QString("%1").arg(item.ID()));
+  treeItem->setText(4, QString("%1").arg(item.ID().toString())); //TODO: we need this to find cut entry in list
 
   //emit refreshDisplay();
 }
@@ -191,7 +191,7 @@ QTreeWidgetItem* TTCutTreeView::findItem(const TTCutItem& cutItem)
 {
 	for (int i = 0; i < videoCutList->topLevelItemCount(); i++) {
 		QTreeWidgetItem* item = videoCutList->topLevelItem(i);
-		if (item->text(4) == QString("%1").arg(cutItem.ID()))
+		if (item->text(4) == QString("%1").arg(cutItem.ID().toString()))
 			return item;
 	}
 	return 0;

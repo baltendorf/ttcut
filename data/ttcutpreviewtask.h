@@ -30,7 +30,7 @@
 #ifndef TTCUTPREVIEWTASK_H
 #define TTCUTPREVIEWTASK_H
 
-#include "../common/ttthreadtask.h"
+#include "common/ttthreadtask.h"
 
 class TTAVData;
 class TTCutList;

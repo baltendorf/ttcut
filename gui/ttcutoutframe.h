@@ -29,9 +29,9 @@
 
 #ifndef TTCUTOUTFRAME_H
 
-#include "../ui_h/ui_cutoutframewidget.h"
-#include "../avstream/ttmpeg2videostream.h"
-#include "../data/ttcutlist.h"
+#include "ui_h/ui_cutoutframewidget.h"
+#include "avstream/ttmpeg2videostream.h"
+#include "data/ttcutlist.h"
 #include "ttprogressbar.h"
 
 class TTAVItem;

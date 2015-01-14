@@ -33,8 +33,8 @@
 
 #include "ui_avcutdialog.h"
 
-#include "../common/ttmessagelogger.h"
-#include "../common/ttcut.h"
+#include "common/ttmessagelogger.h"
+#include "common/ttcut.h"
 
 class QString;
 

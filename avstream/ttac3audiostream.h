@@ -43,7 +43,7 @@
 #ifndef TTAC3AUDIOSTREAM_H
 #define TTAC3AUDIOSTREAM_H
 
-#include "../common/ttmessagelogger.h"
+#include "common/ttmessagelogger.h"
 #include "ttavstream.h"
 #include "ttac3audioheader.h"
 

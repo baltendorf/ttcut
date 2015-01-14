@@ -35,13 +35,13 @@
 
 #include <QMutexLocker>
 
-#include "../common/ttcut.h"
-#include "../common/ttmessagelogger.h"
-#include "../data/ttaudiolist.h"
-#include "../data/ttcutlist.h"
+#include "common/ttcut.h"
+#include "common/ttmessagelogger.h"
+#include "data/ttaudiolist.h"
+#include "data/ttcutlist.h"
 
-#include "../avstream/ttavtypes.h"
-#include "../avstream/ttmpeg2videostream.h"
+#include "avstream/ttavtypes.h"
+#include "avstream/ttmpeg2videostream.h"
 
 #include "ttcutpreview.h"
 #include "ttcutsettings.h"

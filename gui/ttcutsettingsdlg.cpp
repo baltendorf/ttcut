@@ -29,7 +29,7 @@
 
 #include "ttcutsettingsdlg.h"
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
   
 TTCutSettingsDlg::TTCutSettingsDlg(QWidget* parent)

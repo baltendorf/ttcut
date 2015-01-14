@@ -27,15 +27,14 @@
 /* Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.              */
 /*----------------------------------------------------------------------------*/
 
-#include "../common/ttexception.h"
+#include <gui/ttmediaplayerwidget.h>
+#include "common/ttexception.h"
 #include "ttcutpreview.h"
-#include "../avstream/ttavstream.h"
-#include "../data/ttavdata.h"
-#include "../data/ttavlist.h"
-#include "../data/ttcutpreviewtask.h"
+#include "avstream/ttavstream.h"
+#include "data/ttavdata.h"
+#include "data/ttavlist.h"
+#include "data/ttcutpreviewtask.h"
 #include "ttmplayerwidget.h"
-#include "ttphononwidget.h"
-
 #include <QApplication>
 #include <QDir>
 
@@ -47,8 +46,9 @@ TTCutPreview::TTCutPreview(QWidget* parent, int prevW, int prevH)
 {
   setupUi(this);
 
-  videoPlayer = new TTPhononWidget(videoFrame);
-
+  videoPlayer = new TTMediaPlayerWidget(videoFrame);
+  //videoPlayer = new TTMplayerWidget(videoFrame);
+  
   setObjectName("TTCutPreview");
 
   // set desired video width x height
@@ -158,7 +158,6 @@ void TTCutPreview::onCutSelectionChanged( int iCut )
   preview_video_info.setFile( QDir(TTCut::tempDirPath), preview_video_name );
   current_video_file = preview_video_info.absoluteFilePath();
 
-  qDebug("load preview %s", qPrintable(current_video_file));
   videoPlayer->load(current_video_file);
   pbPlay->setText(tr("Play"));
   pbPlay->setIcon(QIcon(":/pixmaps/pixmaps/play_18.xpm"));

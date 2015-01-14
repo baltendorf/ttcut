@@ -29,7 +29,7 @@
 
 #include "ttmplayerwidget.h"
 
-#include <QtGui/QLayout>
+#include <QLayout>
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Constructor for MplayerWidget
@@ -75,7 +75,7 @@ void TTMplayerWidget::stop()
 /* /////////////////////////////////////////////////////////////////////////////
  * Load the current movie from file
  */
-void TTMplayerWidget::load(QString fileName)
+void TTMplayerWidget::load(const QString& fileName)
 {
   currentMovie = fileName;
 

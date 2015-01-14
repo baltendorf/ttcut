@@ -30,9 +30,9 @@
 
 #include "ttaudiotreeview.h"
 
-#include "../data/ttaudiolist.h"
-#include "../data/ttavlist.h"
-#include "../avstream/ttavstream.h"
+#include "data/ttaudiolist.h"
+#include "data/ttavlist.h"
+#include "avstream/ttavstream.h"
 
 #include <QHeaderView>
 #include <QFileDialog>

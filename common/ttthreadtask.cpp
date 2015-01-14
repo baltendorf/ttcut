@@ -31,7 +31,7 @@
 #include "ttmessagelogger.h"
 #include "ttexception.h"
 
-#include "../gui/ttprogressbar.h"
+#include "gui/ttprogressbar.h"
 
 #include <QThread>
 #include <QDebug>

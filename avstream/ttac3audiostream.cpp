@@ -44,10 +44,10 @@
 #include "ttac3audiostream.h"
 #include "ttaudioheaderlist.h"
 
-#include "../common/istatusreporter.h"
-#include "../common/ttexception.h"
-#include "../data/ttcutlist.h"
-#include "../data/ttcutparameter.h"
+#include "common/istatusreporter.h"
+#include "common/ttexception.h"
+#include "data/ttcutlist.h"
+#include "data/ttcutparameter.h"
 
 // /////////////////////////////////////////////////////////////////////////////
 // -----------------------------------------------------------------------------

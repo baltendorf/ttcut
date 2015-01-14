@@ -29,17 +29,17 @@
 
 #include "ttcutpreviewtask.h"
 
-#include "../common/ttexception.h"
-#include "../common/ttthreadtaskpool.h"
-#include "../common/istatusreporter.h"
-#include "../avstream/ttfilebuffer.h"
-#include "../data/ttcutparameter.h"
-#include "../data/ttcutlist.h"
-#include "../data/ttavdata.h"
-#include "../avstream/ttavstream.h"
-#include "../data/ttcutaudiotask.h"
-#include "../data/ttcutvideotask.h"
-#include "../data/ttmuxlistdata.h"
+#include "common/ttexception.h"
+#include "common/ttthreadtaskpool.h"
+#include "common/istatusreporter.h"
+#include "avstream/ttfilebuffer.h"
+#include "data/ttcutparameter.h"
+#include "data/ttcutlist.h"
+#include "data/ttavdata.h"
+#include "avstream/ttavstream.h"
+#include "data/ttcutaudiotask.h"
+#include "data/ttcutvideotask.h"
+#include "data/ttmuxlistdata.h"
 
 #include <QCoreApplication>
 #include <QFileInfo>
@@ -133,9 +133,7 @@ void TTCutPreviewTask::operation()
     }
     catch (TTException* ex)
     {
-      qDebug() << "catched exception from cutVideoTask!";
     	delete tmpCutList;
-      qDebug() << "redirect exception from cutVideoTask...";
     	throw ex;
     }
 

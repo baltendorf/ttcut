@@ -28,8 +28,8 @@
 /*----------------------------------------------------------------------------*/
 
 #include "ttcutframenavigation.h"
-#include "../common/ttcut.h"
-#include "../data/ttavlist.h"
+#include "common/ttcut.h"
+#include "data/ttavlist.h"
 
 #include <QKeyEvent>
 

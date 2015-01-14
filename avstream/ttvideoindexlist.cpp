@@ -32,7 +32,7 @@
 
 #include "ttheaderlist.h"
 #include "ttvideoindexlist.h"
-#include "../common/ttexception.h"
+#include "common/ttexception.h"
 
 const char c_name[] = "TTVIDEOINDEX  : ";
 

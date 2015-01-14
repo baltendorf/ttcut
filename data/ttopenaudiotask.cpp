@@ -29,11 +29,11 @@
 
 #include "ttopenaudiotask.h"
 
-#include "../common/ttmessagelogger.h"
-#include "../common/ttexception.h"
-#include "../avstream/ttavtypes.h"
-#include "../avstream/ttavstream.h"
-#include "../data/ttavlist.h"
+#include "common/ttmessagelogger.h"
+#include "common/ttexception.h"
+#include "avstream/ttavtypes.h"
+#include "avstream/ttavstream.h"
+#include "data/ttavlist.h"
 
 #include <QDebug>
 

@@ -30,8 +30,8 @@
 #ifndef TTCUTVIDEOTASK_H
 #define TTCUTVIDEOTASK_H
 
-#include "../common/ttthreadtask.h"
-#include "../data/ttmuxlistdata.h"
+#include "common/ttthreadtask.h"
+#include "data/ttmuxlistdata.h"
 
 class TTAVData;
 class TTFileBuffer;

@@ -30,8 +30,8 @@
 #include "ttcutprojectdata.h"
 #include "ttavdata.h"
 #include "ttavdata.h"
-#include "../avstream/ttavstream.h"
-#include "../common/ttexception.h"
+#include "avstream/ttavstream.h"
+#include "common/ttexception.h"
 
 
 

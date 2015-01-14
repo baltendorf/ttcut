@@ -32,7 +32,7 @@
 
 #include "ui_ttcutsettingsmuxer.h"
 
-#include "../common/ttcut.h"
+#include "common/ttcut.h"
 
 
 class TTCutSettingsMuxer : public QWidget, Ui::TTCutSettingsMuxer

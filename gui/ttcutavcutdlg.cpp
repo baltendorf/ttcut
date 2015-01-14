@@ -159,7 +159,7 @@ void TTCutAVCutDlg::getCommonData()
   TTCut::cutDirPath    = leOutputPath->text();
 
   if ( !QDir(TTCut::cutDirPath).exists() )
-    TTCut::cutDirPath    = QDir::currentPath();
+    TTCut::cutDirPath = QDir::currentPath();
 
   // Check for video file extension
   QFileInfo cutFile(TTCut::cutVideoName);

@@ -30,8 +30,8 @@
 #ifndef TTFRAMESEARCHTASK_H
 #define TTFRAMESEARCHTASK_H
 
-#include "../common/ttthreadtask.h"
-#include "../mpeg2decoder/ttmpeg2decoder.h"
+#include "common/ttthreadtask.h"
+#include "mpeg2decoder/ttmpeg2decoder.h"
 
 class TTVideoStream;
 

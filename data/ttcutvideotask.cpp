@@ -29,13 +29,13 @@
 
 #include "ttcutvideotask.h"
 
-#include "../common/ttexception.h"
-#include "../common/ttthreadtaskpool.h"
-#include "../avstream/ttfilebuffer.h"
-#include "../data/ttcutparameter.h"
-#include "../avstream/ttavstream.h"
-#include "../data/ttavdata.h"
-#include "../data/ttcutlist.h"
+#include "avstream/ttavstream.h"
+#include "avstream/ttfilebuffer.h"
+#include "common/ttexception.h"
+#include "common/ttthreadtaskpool.h"
+#include "data/ttavdata.h"
+#include "data/ttcutlist.h"
+#include "data/ttcutparameter.h"
 
 #include <QDebug>
 
@@ -46,6 +46,8 @@
 TTCutVideoTask::TTCutVideoTask(TTAVData* avData) :
                 TTThreadTask("CutVideoTask")
 {
+	mpTgtStream  = NULL;
+	mpCutParams  = NULL;
   mpAVData     = avData;
   mpCutList    = 0;
   mpCutStream  = 0;
@@ -139,7 +141,6 @@ void TTCutVideoTask::operation()
 
   delete mpTgtStream;
 
-  qDebug("cut video task -> emit finished signal!");
   emit finished(mMuxListItem);
 }
 
@@ -148,6 +149,8 @@ void TTCutVideoTask::operation()
  */
 TTCutTask::TTCutTask() : TTThreadTask("CutTask")
 {
+	mCutIn         = 0;
+	mCutOut        = 0;
   mpCutStream    = 0;
   mpCutParameter = 0;
 }

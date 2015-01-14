@@ -31,9 +31,9 @@
 #include "ttthreadtaskpool.h"
 #include "ttthreadtask.h"
 
-#include "../common/ttmessagelogger.h"
-#include "../common/ttexception.h"
-#include "../gui/ttprogressbar.h"
+#include "common/ttmessagelogger.h"
+#include "common/ttexception.h"
+#include "gui/ttprogressbar.h"
 
 #include <QThreadPool>
 #include <QDebug>
@@ -49,8 +49,8 @@ TTThreadTaskPool::TTThreadTaskPool() : QObject()
   mOverallStepCount   = 0;
   mEstimateTaskCount  = 1;
   mCompleted          = 0.0;
-  mTotalMap.clear();
-  mProgressMap.clear();
+  //mTotalMap.clear();
+  //mProgressMap.clear();
 
   log = TTMessageLogger::getInstance();
 }
@@ -69,8 +69,8 @@ TTThreadTaskPool::~TTThreadTaskPool()
 void TTThreadTaskPool::init(int estimateTaskCount)
 {
   mEstimateTaskCount = estimateTaskCount;
-  mTotalMap.clear();
-  mProgressMap.clear();
+  //mTotalMap.clear();
+  //mProgressMap.clear();
 }
 
 /**
@@ -128,7 +128,7 @@ void TTThreadTaskPool::start(TTThreadTask* task, bool runSyncron, int priority)
   //log->debugMsg(__FILE__, __LINE__, QString("enqueue task %1, current task count %2").
   //    arg(task->taskName()).
   //    arg(mTaskQueue.count()));
-  qDebug() << "enqueue task " << (runSyncron ? "(synchron) " : "(asynchron)" ) << task->taskName() << " with UUID " << task->taskID();
+  //qDebug() << "enqueue task " << (runSyncron ? "(synchron) " : "(asynchron)" ) << task->taskName() << " with UUID " << task->taskID();
 
 
   if (runSyncron)
@@ -140,7 +140,7 @@ void TTThreadTaskPool::start(TTThreadTask* task, bool runSyncron, int priority)
 /**
  * Threadtask emitted start signal
  */
-void TTThreadTaskPool::onThreadTaskStarted(TTThreadTask* task)
+void TTThreadTaskPool::onThreadTaskStarted(TTThreadTask* /*task*/)
 {
 }
 
@@ -158,7 +158,7 @@ void TTThreadTaskPool::onThreadTaskFinished(TTThreadTask* task)
 
 
   //qDebug() << "finished " << task->taskName() << " UUID " << task->taskID() << "% " << overallPercentage();
-  qDebug() << "finished " << task->taskName() << " with UUID " << task->taskID() << " active threads " << runningTaskCount() << " queue count " << mTaskQueue.count();
+  //qDebug() << "finished " << task->taskName() << " with UUID " << task->taskID() << " active threads " << runningTaskCount() << " queue count " << mTaskQueue.count();
 
   if (runningTaskCount() == 0)
   {
@@ -188,7 +188,7 @@ void TTThreadTaskPool::onThreadTaskAborted(TTThreadTask* task)
 
   if (mTaskQueue.count() == 0)
   {
-    qDebug() << "Last thread task aborted -> exit the thread queue!";
+    //qDebug() << "Last thread task aborted -> exit the thread queue!";
     emit aborted();
     emit exit();
   }
@@ -201,7 +201,7 @@ void TTThreadTaskPool::onStatusReport(TTThreadTask* task, int state, const QStri
 {
   if (state == StatusReportArgs::Start)
   {
-    qDebug() << task->taskID() << " total steps " << value;
+    //qDebug() << task->taskID() << " total steps " << value;
     //mTotalMap.insert(task->taskID(), value);
     //mProgressMap.insert(task->taskID(), 0);
     mOverallTotalSteps = value;
@@ -216,7 +216,7 @@ void TTThreadTaskPool::onStatusReport(TTThreadTask* task, int state, const QStri
 
   if (state == StatusReportArgs::Finished)
   {
-    qDebug() << task->taskID() << " finished " << value;
+    //qDebug() << task->taskID() << " finished " << value;
     //mProgressMap[task->taskID()] = value;
     mCompleted += overallPercentage() - mCompleted;
   }

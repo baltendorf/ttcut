@@ -28,7 +28,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "ttcutoutframe.h"
-#include "../data/ttavlist.h"
+#include "data/ttavlist.h"
 
 /*!
  * Constructor

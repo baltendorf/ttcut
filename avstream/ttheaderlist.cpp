@@ -31,7 +31,7 @@
 
 #include "ttheaderlist.h"
 
-#include "../common/ttexception.h"
+#include "common/ttexception.h"
 
 #include <QString>
 

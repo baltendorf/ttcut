@@ -30,7 +30,7 @@
 
 #include "ttcutparameter.h"
 
-#include "../avstream/ttmpeg2videoheader.h"
+#include "avstream/ttmpeg2videoheader.h"
 
 /*!
  * TTCutParameter

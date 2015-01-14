@@ -32,8 +32,8 @@
 
 #include "ui_currentframewidget.h"
 
-#include "../common/ttcut.h"
-#include "../avstream//ttmpeg2videostream.h"
+#include "common/ttcut.h"
+#include "avstream//ttmpeg2videostream.h"
 
 class TTAVItem;
 

@@ -45,7 +45,7 @@
 #define TTHEADERLIST_H
 
 #include "ttavheader.h"
-#include "../common/ttmessagelogger.h"
+#include "common/ttmessagelogger.h"
 
 #include <QVector>
 

@@ -49,8 +49,8 @@
 #include "ttmpeg2videoheader.h"
 #include "ttaviwriter.h"
 
-#include "../common/ttmessagelogger.h"
-#include "../extern/tttranscode.h"
+#include "common/ttmessagelogger.h"
+#include "extern/tttranscode.h"
 
 #include <QString>
 #include <QFileInfo>

@@ -31,7 +31,7 @@
 #define TTVIDEOPLAYER_H
 
 #include <QObject>
-#include <QtGui/QWidget>
+#include <QWidget>
 
 class TTVideoPlayer : public QWidget
 {
@@ -49,10 +49,11 @@ public:
     virtual void  setControlsVisible(bool visible)      { areControlsVisible = visible; };
     virtual bool  isPlaying()                     const { return mIsPlaying; }
 
-    virtual void cleanUp()     {};
-    virtual void load(QString) {};
-    virtual void play()        {};
-    virtual void stop()        {};
+    virtual void cleanUp()            {};
+    virtual void load(const QString&) {};
+    virtual void play()               {};
+    virtual void stop()               {};
+    virtual void seek(int)            {};
 
 signals:
     virtual void optimalSizeChanged();
