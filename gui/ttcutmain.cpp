@@ -45,7 +45,7 @@ int main( int argc, char **argv )
 {
   try
   {
-    QT_REQUIRE_VERSION(argc, argv, "4.4.3");
+    QT_REQUIRE_VERSION(argc, argv, "5.4.0");
 
     QApplication::setColorSpec( QApplication::CustomColor );
     QApplication a( argc, argv );
