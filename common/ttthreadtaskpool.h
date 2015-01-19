@@ -76,8 +76,6 @@ class TTThreadTaskPool : public QObject
     QQueue<TTThreadTask*> mTaskQueue;
     TTMessageLogger*      log;
     QTime                 mOverallTotalTime;
-    quint64               mOverallTotalSteps;
-    quint64               mOverallStepCount;
     int                   mEstimateTaskCount;
 };
 #endif

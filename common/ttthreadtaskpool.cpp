@@ -45,8 +45,6 @@ TTThreadTaskPool::TTThreadTaskPool() : QObject()
 {
   QThreadPool::globalInstance()->setExpiryTimeout(100);
 
-  mOverallTotalSteps  = 0;
-  mOverallStepCount   = 0;
   mEstimateTaskCount  = 1;
 
   log = TTMessageLogger::getInstance();
@@ -94,8 +92,6 @@ void TTThreadTaskPool::cleanUpQueue()
     t.remove();
   }
 
-  mOverallTotalSteps  = 0;
-  mOverallStepCount   = 0;
   mEstimateTaskCount  = 1;
 }
 
@@ -197,27 +193,6 @@ void TTThreadTaskPool::onThreadTaskAborted(TTThreadTask* task)
  */
 void TTThreadTaskPool::onStatusReport(TTThreadTask* task, int state, const QString& msg, quint64 value)
 {
-  if (state == StatusReportArgs::Start)
-  {
-    qDebug() << task->taskID() << " / " << task->taskName() << " total steps " << value;
-    //mTotalMap.insert(task->taskID(), value);
-    //mProgressMap.insert(task->taskID(), 0);
-    mOverallTotalSteps = value;
-  }
-
-  if (state == StatusReportArgs::Step)
-  {
-    //qDebug() << "thread step " << value;
-    //mProgressMap[task->taskID()] = value;
-  	//overallPercentage();
-    mOverallStepCount = value;
-  }
-
-  if (state == StatusReportArgs::Finished)
-  {
-  	qDebug() << "finished " << task->taskName();
-  }
-
   emit statusReport(task, state, msg, value);
 }
 
