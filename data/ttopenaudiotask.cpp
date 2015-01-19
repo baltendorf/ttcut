@@ -95,9 +95,10 @@ void TTOpenAudioTask::operation()
 
 	mpAudioStream = (TTAudioStream*) mpAudioType->createAudioStream();
 
+	qDebug("connect audio stream step signal");
   connect(mpAudioStream, SIGNAL(statusReport(int, const QString&, quint64)),
 				  this,          SLOT(onStatusReport(int, const QString&, quint64)));
-
+  qDebug("create audio stream header list");
 	mpAudioStream->createHeaderList();
 
 	emit finished(mpAVItem, mpAudioStream, mOrder);

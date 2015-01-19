@@ -49,7 +49,7 @@ TTProgressBar::TTProgressBar(QWidget* parent)
   this->adjustSize();
 
   processForm    = 0;
-  normTotalSteps = 1000;
+  normTotalSteps = 100;
   isBlocking     = false;
 
   progressBar->setMinimum( 0 );
@@ -107,7 +107,7 @@ void TTProgressBar::setActionText( QString action )
  */
 void TTProgressBar::setTotalProgress(int progress, QTime time)
 {
-    percentageString->setText(QString("%1%").arg((float)progress/10.0, 0, 'f', 0));
+    percentageString->setText(QString("%1%").arg((float)progress/1.0, 0, 'f', 0));
     progressBar->setValue(progress);
     elapsedTimeString->setText(time.toString("hh:mm:ss"));
 }

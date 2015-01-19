@@ -42,6 +42,7 @@ TTOpenVideoTask::TTOpenVideoTask(TTAVItem* avItem, QString fileName, int order) 
   mpAVItem      = avItem;
   mOrder        = order;
 	mFileName     = fileName;
+	mpVideoType   = 0;
 	mpVideoStream = 0;
 }
 

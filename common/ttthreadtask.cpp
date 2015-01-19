@@ -43,14 +43,16 @@ TTThreadTask::TTThreadTask(QString name) : QObject()
 {
 	setAutoDelete(false);
 
-  mTaskName   = name;
-	log         = TTMessageLogger::getInstance();
-  mTaskID     = QUuid::createUuid();
-  mTotalSteps = 0;
-  mStepCount  = 0;
-  mIsSynchron = false;
-  mIsRunning  = false;
-  mIsAborted  = false;
+  mTaskName        = name;
+	log              = TTMessageLogger::getInstance();
+  mTaskID          = QUuid::createUuid();
+  mTotalSteps      = 0;
+  mStepCount       = 0;
+  mStepPercent     = 0.0;
+  mPreviousPercent = -1;
+  mIsSynchron      = false;
+  mIsRunning       = false;
+  mIsAborted       = false;
 }
 
 /**
@@ -101,17 +103,19 @@ quint64 TTThreadTask::stepCount() const
 }
 
 /**
+ * Return the current step count as percentage value
+ */
+double TTThreadTask::stepPercent() const
+{
+	return mStepPercent;
+}
+
+/**
  * Returns true if task is in running state, otherwise false
  */
 bool TTThreadTask::isRunning() const
 {
   return mIsRunning;
-}
-
-//TODO: isRunning should not be set from outside
-void TTThreadTask::setIsRunning(bool value)
-{
-  mIsRunning = value;
 }
 
 /**
@@ -136,13 +140,28 @@ void TTThreadTask::onStatusReport(int state, const QString& msg, quint64 value)
 void TTThreadTask::onStatusReport(TTThreadTask* task, int state, const QString& msg, quint64 value)
 {
   if (state == StatusReportArgs::Start) {
+  	//qDebug("ThreadTask: [%s] start total-steps: %lld", taskID().toString().toStdString().c_str(), value);
+  	mPreviousPercent = -1;
     mStepCount  = 0;
+    mStepPercent = 0.0;
     mTotalSteps = value;
   }
 
-  if (state == StatusReportArgs::Step ||
-  		state == StatusReportArgs::Finished)
-    mStepCount = value;
+  if (state == StatusReportArgs::Step || state == StatusReportArgs::Finished) {
+  	mStepPercent = (double)value/(double)mTotalSteps*100.0;
+  	mStepCount = value;
+  	if ((int)mStepPercent > mPreviousPercent)
+  	{
+  		//qDebug("ThreadTask: [%s] current steps: %lld %d", taskName().toStdString().c_str(), value, (int)mStepPercent);
+  		mPreviousPercent = (int)mStepPercent;
+  	}
+  }
+
+  if (state == StatusReportArgs::Finished)
+  {
+  	mStepCount = mTotalSteps;
+  	mStepPercent = 100.0;
+  }
 
   emit statusReport(task, state, msg, value);
 }
@@ -188,7 +207,7 @@ void TTThreadTask::run()
       throw new TTAbortException("Aborting operation!");
     }
 
-     //qDebug() << "run task " << taskName() << " with uuid " << taskID();
+    qDebug() << "run task " << taskName() << " with uuid " << taskID();
     mIsRunning = true;
     emit started(this);
     qApp->processEvents();
@@ -196,7 +215,7 @@ void TTThreadTask::run()
     operation();
 
     mIsRunning = false;
-    //qDebug() << "emit finished for task " << taskName() << " with UUID " << taskID();
+    qDebug() << "emit finished for task " << taskName() << " with UUID " << taskID();
     emit finished(this);
     qApp->processEvents();
     cleanUp();

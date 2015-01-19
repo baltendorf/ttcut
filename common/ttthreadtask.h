@@ -56,10 +56,10 @@ public:
   int elapsedTime() const;
   quint64 totalSteps() const;
   quint64 stepCount() const;
+  double stepPercent() const;
   int processValue() const;
   bool isRunning() const;
   bool isAborted() const;
-  void setIsRunning(bool value);
 
 protected:
   virtual void operation() = 0;
@@ -74,19 +74,21 @@ protected slots:
   virtual void onStatusReport(TTThreadTask* task, int state, const QString& msg, quint64 value);
 
 signals:
-  void started(TTThreadTask* task); /**<internal signal thread was started  */
-  void finished(TTThreadTask* task); /**<internal signal thread has finished */
-  void aborted(TTThreadTask* task); /**<internal signal thread was aborted  */
+  void started(TTThreadTask* task);    /**<internal signal thread was started  */
+  void finished(TTThreadTask* task);   /**<internal signal thread has finished */
+  void aborted(TTThreadTask* task);    /**<internal signal thread was aborted  */
 
   void statusReport(TTThreadTask* task, int state, const QString& msg, quint64 value);
 
 protected:
-  QUuid mTaskID; /**<unique task ID                             */
-  QTime mTaskTime; /**<time set to current time when task started */
-  quint64 mTotalSteps; /**<estimate count of total task steps         */
-  quint64 mStepCount; /**<current step count                         */
-  TTMessageLogger* log; /**<message logger istance                     */
-  QString mTaskName; /**<task name                                  */
+  QUuid mTaskID;             /**<unique task ID                             */
+  QTime mTaskTime;           /**<time set to current time when task started */
+  quint64 mTotalSteps;       /**<estimate count of total task steps         */
+  quint64 mStepCount;        /**<current step count                         */
+  double mStepPercent;      /**<thread-step percentage value               */
+  int mPreviousPercent;
+  TTMessageLogger* log;      /**<message logger instance                    */
+  QString mTaskName;         /**<task name                                  */
   bool mIsSynchron;
   bool mIsRunning;
   bool mIsAborted;
