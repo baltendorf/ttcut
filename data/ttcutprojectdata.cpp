@@ -87,6 +87,12 @@ void TTCutProjectData::serializeAVDataItem(TTAVItem* vItem)
     writeAudioSection(video, aStream->filePath(), aItem.order());
   }
 
+  for (int i = 0; i < vItem->subtitleCount(); i++) {
+    TTSubtitleItem sItem   = vItem->subtitleListItemAt(i);
+    TTSubtitleStream*      sStream = sItem.getSubtitleStream();
+    writeSubtitleSection(video, sStream->filePath(), sItem.order());
+  }
+
   for (int i = 0; i < vItem->cutCount(); i++) {
     TTCutItem cItem = vItem->cutListItemAt(i);
     writeCutSection(video, cItem.cutInIndex(), cItem.cutOutIndex(), cItem.order());
@@ -142,6 +148,9 @@ void TTCutProjectData::parseVideoSection(QDomNodeList videoNodesList, TTAVData* 
     if (videoNodesList.at(i).nodeName() == "Audio") {
       parseAudioSection(videoNodesList.at(i).childNodes(), avData, avItem);
     }
+    else if (videoNodesList.at(i).nodeName() == "Subtitle") {
+      parseSubtitleSection(videoNodesList.at(i).childNodes(), avData, avItem);
+    }
     else if (videoNodesList.at(i).nodeName() == "Cut") {
       parseCutSection(videoNodesList.at(i).childNodes(), avItem);
     }
@@ -169,6 +178,20 @@ void TTCutProjectData::parseAudioSection(QDomNodeList audioNodesList, TTAVData* 
   qDebug("TTCutProjectData::parseAudioSection -> before doOpenAudioStream...");
   avData->doOpenAudioStream(avItem, name, order);
   qDebug("after doOpenAudioStream...");
+}
+
+/* /////////////////////////////////////////////////////////////////////////////
+ *
+ */
+void TTCutProjectData::parseSubtitleSection(QDomNodeList subtitleNodesList, TTAVData* avData, TTAVItem* avItem)
+{
+  int     order = subtitleNodesList.at(0).toElement().text().toInt();
+  QString name  = subtitleNodesList.at(1).toElement().text();
+
+  QFileInfo fInfo(name);
+  qDebug("TTCutProjectData::subtitleNodesList -> before doOpenSubtitleStream...");
+  avData->doOpenSubtitleStream(avItem, name, order);
+  qDebug("after doOpenSubtitleStream...");
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -231,6 +254,25 @@ QDomElement TTCutProjectData::writeAudioSection(QDomElement& parent, const QStri
   name.appendChild(xmlDocument->createTextNode(filePath));
 
   return audio;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////
+ *
+ */
+QDomElement TTCutProjectData::writeSubtitleSection(QDomElement& parent, const QString& filePath, int order)
+{
+  QDomElement subtitle = xmlDocument->createElement("Subtitle");
+  parent.appendChild(subtitle);
+
+  QDomElement xmlOrder = xmlDocument->createElement("Order");
+  subtitle.appendChild(xmlOrder);
+  xmlOrder.appendChild(xmlDocument->createTextNode(QString("%1").arg(order)));
+
+  QDomElement name = xmlDocument->createElement("Name");
+  subtitle.appendChild(name);
+  name.appendChild(xmlDocument->createTextNode(filePath));
+
+  return subtitle;
 }
 
 /* /////////////////////////////////////////////////////////////////////////////

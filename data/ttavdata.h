@@ -47,9 +47,11 @@ class TTAudioStream;
 class TTVideoStream;
 class TTOpenVideoTask;
 class TTOpenAudioTask;
+class TTOpenSubtitleTask;
 class TTCutPreviewTask;
 class TTCutVideoTask;
 class TTCutAudioTask;
+class TTCutSubtitleTask;
 class TTCutProjectData;
 class TTMuxListData;
 class TTMuxListDataItem;
@@ -72,6 +74,7 @@ class TTAVData : public QObject
     void      readProjectFile(const QFileInfo& fInfo);
 
     void      appendAudioStream(TTAVItem* avItem, const QFileInfo& fInfo, int order=-1);
+    void      appendSubtitleStream (TTAVItem* avItem, const QFileInfo& fInfo, int order=-1);
 
     void      appendCutEntry(TTAVItem* avItem, int cutIn, int cutOut);
     void      copyCutEntry(const TTCutItem& cutItem);
@@ -96,6 +99,7 @@ class TTAVData : public QObject
 
     TTAVItem* doOpenVideoStream(const QString& filePath, int order=-1);
     void      doOpenAudioStream(TTAVItem* avItem, const QString& filePath, int order=-1);
+    void      doOpenSubtitleStream(TTAVItem* avItem, const QString& filePath, int order=-1);
     void      doCutPreview(TTCutList* cutList);
 
     int       totalProcess() const;
@@ -137,6 +141,9 @@ class TTAVData : public QObject
 
     void onOpenAudioFinished(TTAVItem* avItem, TTAudioStream* aStream, int order);
     void onOpenAudioAborted(TTAVItem* avItem);
+
+    void onOpenSubtitleFinished(TTAVItem* avItem, TTSubtitleStream* sStream, int order);
+    void onOpenSubtitleAborted(TTAVItem* avItem);
 
     void onCutPreviewFinished(TTCutList* cutList);
     void onCutPreviewAborted();
@@ -183,22 +190,26 @@ class TTAVData : public QObject
     TTAVItem*      createAVItem();
     TTAVList*      videoDataList() { return mpAVList; }
     QFileInfoList  getAudioNames(const QFileInfo& vFileInfo);
+    QFileInfoList  getSubtitleNames (const QFileInfo& vFileInfo);
     QString        createAudioCutFileName(QString cutBaseFileName, QString audioFileName, int index);
+    QString        createSubtitleCutFileName(QString cutBaseFileName, QString subtitleFileName, int index);
 
   private:
-  	TTThreadTaskPool* mpThreadTaskPool;
-    TTMessageLogger*  log;
-    TTAVItem*         mpCurrentAVItem;
-    TTAVList*         mpAVList;
-    TTCutList*        mpCutList;
-    TTMarkerList*     mpMarkerList;
-    TTMuxListData*    mpMuxList;
-    TTOpenVideoTask*  openVideoTask;
-    TTOpenAudioTask*  openAudioTask;
-    TTCutPreviewTask* cutPreviewTask;
-    TTCutVideoTask*   cutVideoTask;
-    TTCutAudioTask*   cutAudioTask;
-    TTCutProjectData* mpProjectData;
+    TTThreadTaskPool*   mpThreadTaskPool;
+    TTMessageLogger*    log;
+    TTAVItem*           mpCurrentAVItem;
+    TTAVList*           mpAVList;
+    TTCutList*          mpCutList;
+    TTMarkerList*       mpMarkerList;
+    TTMuxListData*      mpMuxList;
+    TTOpenVideoTask*    openVideoTask;
+    TTOpenAudioTask*    openAudioTask;
+    TTOpenSubtitleTask* openSubtitleTask;
+    TTCutPreviewTask*   cutPreviewTask;
+    TTCutVideoTask*     cutVideoTask;
+    TTCutAudioTask*     cutAudioTask;
+    TTCutSubtitleTask*  cutSubtitleTask;
+    TTCutProjectData*   mpProjectData;
 };
 
 

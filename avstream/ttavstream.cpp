@@ -13,6 +13,7 @@
 // TTAVSTREAM (abstract)
 // TTAUDIOSTREAM
 // TTVIDEOSTREAM
+// TTSUBTITLESTREAM
 // ----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
@@ -24,7 +25,9 @@
 //             |                 +- TTAC3AudioStream
 // TTAVStream -|
 //             |
-//             +- TTVideoStream -TTMpeg2VideoStream
+//             +- TTVideoStream - TTMpeg2VideoStream
+//             |
+//             +- TTSubtitleStream - TTSrtSubtitleStream
 //
 // -----------------------------------------------------------------------------
 
@@ -534,5 +537,31 @@ int TTVideoStream::moveToPrevPIFrame()
   int index = (pos_i_frame >= pos_p_frame) ? pos_i_frame : pos_p_frame;
 
   return (index >= 0) ? current_index=index : current_index;
+}
+
+
+// /////////////////////////////////////////////////////////////////////////////
+// -----------------------------------------------------------------------------
+// *** TTSubtitleStream: Base class for all subtitle streams
+// -----------------------------------------------------------------------------
+// /////////////////////////////////////////////////////////////////////////////
+
+
+// constructor with file info and start position
+// -----------------------------------------------------------------------------
+TTSubtitleStream::TTSubtitleStream(const QFileInfo &f_info)
+  : TTAVStream(f_info)
+{
+}
+
+TTSubtitleStream::~TTSubtitleStream()
+{
+}
+
+// return pointer to current header list
+// -----------------------------------------------------------------------------
+TTSubtitleHeaderList* TTSubtitleStream::headerList()
+{
+  return header_list;
 }
 

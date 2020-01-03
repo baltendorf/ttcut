@@ -20,7 +20,9 @@
 //             |                 +- TTAC3AudioStream
 // TTAVStream -|
 //             |
-//             +- TTVideoStream -TTMpeg2VideoStream
+//             +- TTVideoStream - TTMpeg2VideoStream
+//             |
+//             +- TTSubtitleStream - TTSrtSubtitleStream
 //
 // -----------------------------------------------------------------------------
 

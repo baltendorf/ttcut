@@ -38,6 +38,7 @@ TRANSLATIONS = trans/ttcut_de.ts\
 RESOURCES   = ui/ttcutvideoinfowidget.qrc\
               ui/audiofilelistwidget.qrc\
               ui/videofilelistwidget.qrc\
+              ui/subtitlefilelistwidget.qrc\
               ui/cutoutframewidget.qrc\
               ui/currentframewidget.qrc\
               ui/ttcutframenavigationwidget.qrc \
@@ -51,6 +52,7 @@ RESOURCES   = ui/ttcutvideoinfowidget.qrc\
               ui/mainwindow.qrc
 FORMS       = ui/audiofilelistwidget.ui\
               ui/videofilelistwidget.ui\
+              ui/subtitlefilelistwidget.ui\
               ui/markerlistwidget.ui\
               ui/cutoutframewidget.ui\
               ui/currentframewidget.ui\
@@ -82,6 +84,7 @@ HEADERS     = common/ttcut.h\
               common/ttexception.h\
               common/istatusreporter.h\
               data/ttaudiolist.h\
+              data/ttsubtitlelist.h\
               data/ttcutlist.h\
               data/ttmarkerlist.h\
               data/ttcutparameter.h\
@@ -91,8 +94,10 @@ HEADERS     = common/ttcut.h\
               data/ttcutprojectdata.h\
               data/ttopenvideotask.h\
               data/ttopenaudiotask.h\
+              data/ttopensubtitletask.h\
               data/ttcutvideotask.h\
               data/ttcutaudiotask.h\
+              data/ttcutsubtitletask.h\
               data/ttcutpreviewtask.h\
               data/ttframesearchtask.h\
 #unused              data/ttthreadstatusargs.h\
@@ -110,6 +115,8 @@ HEADERS     = common/ttcut.h\
               avstream/ttmpegaudioheader.h\    
               avstream/ttmpegaudiostream.h\    
               avstream/ttvideoheaderlist.h\    
+              avstream/ttsrtsubtitlestream.h\
+              avstream/ttsubtitleheaderlist.h\
               avstream/ttvideoindexlist.h\
               avstream/ttaviwriter.h\
               mpeg2decoder/ttmpeg2decoder.h\
@@ -128,6 +135,7 @@ HEADERS     = common/ttcut.h\
               gui/ttcutvideoinfo.h\
               gui/ttaudiotreeview.h\
               gui/ttvideotreeview.h\
+              gui/ttsubtitletreeview.h\
               gui/ttmarkertreeview.h\
               gui/ttcutoutframe.h\
               gui/ttcurrentframe.h\
@@ -153,6 +161,7 @@ SOURCES     = common/ttcut.cpp\
               common/ttexception.cpp\
               common/istatusreporter.cpp\
               data/ttaudiolist.cpp \
+              data/ttsubtitlelist.cpp\
               data/ttcutlist.cpp\
               data/ttmarkerlist.cpp\
               data/ttcutparameter.cpp\
@@ -162,8 +171,10 @@ SOURCES     = common/ttcut.cpp\
               data/ttcutprojectdata.cpp\              
               data/ttopenvideotask.cpp\
               data/ttopenaudiotask.cpp\
+              data/ttopensubtitletask.cpp\
               data/ttcutvideotask.cpp\
               data/ttcutaudiotask.cpp\
+              data/ttcutsubtitletask.cpp\
               data/ttcutpreviewtask.cpp\
               data/ttframesearchtask.cpp\
               avstream/ttcommon.cpp\
@@ -180,6 +191,8 @@ SOURCES     = common/ttcut.cpp\
               avstream/ttmpegaudioheader.cpp\    
               avstream/ttmpegaudiostream.cpp\    
               avstream/ttvideoheaderlist.cpp\    
+              avstream/ttsrtsubtitlestream.cpp\
+              avstream/ttsubtitleheaderlist.cpp\
               avstream/ttvideoindexlist.cpp\
               avstream/ttaviwriter.cpp\
               mpeg2decoder/ttmpeg2decoder.cpp\
@@ -197,6 +210,7 @@ SOURCES     = common/ttcut.cpp\
               gui/ttcutvideoinfo.cpp\
               gui/ttaudiotreeview.cpp\
               gui/ttvideotreeview.cpp\
+              gui/ttsubtitletreeview.cpp\
               gui/ttmarkertreeview.cpp\
               gui/ttcutoutframe.cpp\
               gui/ttcurrentframe.cpp\

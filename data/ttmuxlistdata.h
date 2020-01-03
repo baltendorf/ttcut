@@ -46,18 +46,21 @@ class TTMuxListDataItem
   public:
     TTMuxListDataItem();
     TTMuxListDataItem(const TTMuxListDataItem& item);
-    TTMuxListDataItem(QString video, QStringList audio);
+    TTMuxListDataItem(QString video, QStringList audio, QStringList subtitle);
 
     QString     getVideoName();
     void        setVideoName(QString videoFilePath);
     QStringList getAudioNames();
     void        appendAudioFile(QString audioFilePath);
+    QStringList getSubtitleNames();
+    void        appendSubtitleFile(QString subtitleFilePath);
 
     const TTMuxListDataItem& operator=(const TTMuxListDataItem& item);
 
   private:
     QString     videoFileName;
     QStringList audioFileNames;
+    QStringList subtitleFileNames;
 };
 
 
@@ -68,15 +71,17 @@ class TTMuxListData
     ~TTMuxListData();
 
     int  addItem(QString video);
-    int  addItem(QString video, QString audio);
-    int  addItem(QString video, QStringList audio);
+    int  addItem(QString video, QString audio, QString subtitle="");
+    int  addItem(QString video, QStringList audio, QStringList subtitle);
     void appendAudioName(int index, QString audio);
+    void appendSubtitleName(int index, QString subtitle);
 
     void appendItem(const TTMuxListDataItem& item);
 
     TTMuxListDataItem& itemAt(int index);
     QString            videoFilePathAt(int index);
     QStringList        audioFilePathsAt(int index);
+    QStringList        subtitleFilePathsAt(int index);
     int  							 count();
     void 							 deleteAll();
     void 						   removeAt(int index);

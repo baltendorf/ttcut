@@ -64,10 +64,12 @@ class TTCutProjectData
     void createDocumentStructure();
     QDomElement writeVideoSection(const QString& filePath, int order);
     QDomElement writeAudioSection(QDomElement& parent, const QString& filePath, int order);
+    QDomElement writeSubtitleSection(QDomElement& parent, const QString& filePath, int order);
     QDomElement writeCutSection(QDomElement& parent, int cutIn, int cutOut, int order);
     QDomElement writeMarkerSection(QDomElement& parent, int markerPos, int markerType, int order);
     void        parseVideoSection(QDomNodeList videoNodesList, TTAVData* avData);
     void        parseAudioSection(QDomNodeList audioNodesList, TTAVData* avData, TTAVItem* avItem);
+    void        parseSubtitleSection(QDomNodeList subtitleNodesList, TTAVData* avData, TTAVItem* avItem);
     void        parseCutSection(QDomNodeList cutNodesList, TTAVItem* avItem);
     void        parseMarkerSection(QDomNodeList markerNodeList, TTAVItem* avItem);
 

@@ -19,7 +19,7 @@
 //
 //               +- TTAudioHeaderList 
 //               | 
-// TTHeaderList -+
+// TTHeaderList -+- TTSubtitleHeaderList
 //               |
 //               +- TTVideoHeaderList
 //

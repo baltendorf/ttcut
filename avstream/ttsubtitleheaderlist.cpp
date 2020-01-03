@@ -2,30 +2,29 @@
 /* COPYRIGHT: TriTime (c) 2003/2005 / www.tritime.org                         */
 /*----------------------------------------------------------------------------*/
 /* PROJEKT  : TTCUT 2005                                                      */
-/* FILE     : ttmpegaudiostream.h                                             */
+/* FILE     : ttaudioheaderlist.cpp                                           */
 /*----------------------------------------------------------------------------*/
 /* AUTHOR  : b. altendorf (E-Mail: b.altendorf@tritime.de)   DATE: 05/12/2005 */
-/* MODIFIED: b. altendorf                                    DATE: 06/11/2005 */
-/* MODIFIED: b. altendorf                                    DATE: 08/13/2005 */
 /* MODIFIED:                                                 DATE:            */
 /*----------------------------------------------------------------------------*/
 
 // ----------------------------------------------------------------------------
-// TTMPEGAUDIOSTREAM
+// *** TTAUDIOHEADERLIST
 // ----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
 // Overview
 // -----------------------------------------------------------------------------
 //
-//                               +- TTMpegAudioStream
-//             +- TTAudioStream -|
-//             |                 +- TTAC3AudioStream
-// TTAVStream -|
-//             |
-//             +- TTVideoStream - TTMpeg2VideoStream
-//             |
-//             +- TTSubtitleStream - TTSrtSubtitleStream
+//               +- TTAudioHeaderList
+//               |
+//               +- TTAudioIndexList
+// TTHeaderList -|
+//               +- TTVideoHeaderList
+//               |
+//               +- TTVideoIndexList
+//               |
+//               +- TTSubtitleHeaderList
 //
 // -----------------------------------------------------------------------------
 
@@ -45,36 +44,52 @@
 /* Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.              */
 /*----------------------------------------------------------------------------*/
 
-#ifndef TTMPEGAUDIOSTREAM_H
-#define TTMPEGAUDIOSTREAM_H
+#include "ttsubtitleheaderlist.h"
 
-#include "ttavstream.h"
-#include "ttmpegaudioheader.h"
+bool subtitleHeaderListCompareItems( TTAVHeader* head_1, TTAVHeader* head_2 );
 
-/* \brief This class represents an MPEG audio stream
- *
- */
-class TTMPEGAudioStream : public TTAudioStream
+TTSubtitleHeaderList::TTSubtitleHeaderList( int size )
+  : TTHeaderList( size )
 {
- public:
-  TTMPEGAudioStream( const QFileInfo &f_info, int s_pos=0 );
-  virtual ~TTMPEGAudioStream();
 
-  TTAVTypes::AVStreamType streamType() const;
+}
 
-  void searchNextSyncByte();
-  void parseAudioHeader( quint8* data, int offset, TTMpegAudioHeader* audio_header );
+TTSubtitleHeader* TTSubtitleHeaderList::subtitleHeaderAt( int index )
+{
+  checkIndexRange(index);
+    
+  return (TTSubtitleHeader*)at( index );
+}
 
-  virtual void cut(int start, int end, TTCutParameter* cp);
+int TTSubtitleHeaderList::searchTimeIndex( int search_time )
+{
+  int abs_time = 0;
+  TTSubtitleHeader* subtitle_header;
 
-  void    readAudioHeader( TTMpegAudioHeader* audio_header );
+  int index = 0;
 
-  virtual int createHeaderList( );
-  virtual int createIndexList(){return 0;};
+  do
+  {
+    subtitle_header = (TTSubtitleHeader*)at(index);
+    abs_time = (int)(subtitle_header->startMSec());
+    index++;
+  }
+  while ( abs_time < search_time && index < size());
 
-  QString streamExtension();
-  QTime   streamLengthTime();
-  int     searchIndex( double s_time );
-};
+  // return index of next subtitle, if search_time is after end of found subtitle
+  return subtitle_header->endMSec() < search_time ? index : index-1;
+}
 
-#endif //TTMPEGAUDIOSTREAM_H
+void TTSubtitleHeaderList::sort()
+{
+  qSort( begin(), end(), subtitleHeaderListCompareItems );
+}
+
+bool subtitleHeaderListCompareItems( TTAVHeader* head_1, TTAVHeader* head_2 )
+{
+  // the values for the display order of two items are compared
+  int time1 = (int)((TTSubtitleHeader*)head_1)->startMSec();
+  int time2 = (int)((TTSubtitleHeader*)head_2)->startMSec();
+
+  return (time1 < time2);
+}
