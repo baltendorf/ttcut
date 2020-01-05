@@ -148,6 +148,7 @@ TTCutMainWindow::TTCutMainWindow()
   // --------------------------------------------------------------------------
   connect(actionOpenVideo,        SIGNAL(triggered()), SLOT(onOpenVideoFile()));
   connect(actionOpenAudio,        SIGNAL(triggered()), SLOT(onOpenAudioFile()));
+  connect(actionOpenSubtitle,     SIGNAL(triggered()), SLOT(onOpenSubtitleFile()));
   connect(actionFileNew,          SIGNAL(triggered()), SLOT(onFileNew()));
   connect(actionFileOpen,         SIGNAL(triggered()), SLOT(onFileOpen()));
   connect(actionFileSave,         SIGNAL(triggered()), SLOT(onFileSave()));
@@ -172,12 +173,13 @@ TTCutMainWindow::TTCutMainWindow()
 
   // Connect signals from video and audio info
   // --------------------------------------------------------------------------
-  connect(videoFileInfo,  SIGNAL(openFile()),       SLOT(onOpenVideoFile()));
-  connect(videoFileInfo,  SIGNAL(nextAVClicked()),  SLOT(onNextAVData()));
-  connect(videoFileInfo,  SIGNAL(prevAVClicked()),  SLOT(onPrevAVData()));
+  connect(videoFileInfo,    SIGNAL(openFile()),       SLOT(onOpenVideoFile()));
+  connect(videoFileInfo,    SIGNAL(nextAVClicked()),  SLOT(onNextAVData()));
+  connect(videoFileInfo,    SIGNAL(prevAVClicked()),  SLOT(onPrevAVData()));
 
-  connect(videoFileList,  SIGNAL(openFile()),                      SLOT(onOpenVideoFile()));
-  connect(audioFileList,  SIGNAL(openFile()),                      SLOT(onOpenAudioFile()));
+  connect(videoFileList,    SIGNAL(openFile()),       SLOT(onOpenVideoFile()));
+  connect(audioFileList,    SIGNAL(openFile()),       SLOT(onOpenAudioFile()));
+  connect(subtitleFileList, SIGNAL(openFile()),       SLOT(onOpenSubtitleFile()));
 
   // Connect signals from navigation widget
   // --------------------------------------------------------------------------
@@ -283,6 +285,26 @@ void TTCutMainWindow::onOpenAudioFile()
   QFileInfo fInfo(fn);
   TTCut::lastDirPath = fInfo.absolutePath();
   onReadAudioStream(fn);
+}
+
+/* //////////////////////////////////////////////////////////////////////////////
+ * show subtitle file open dialog
+ */
+void TTCutMainWindow::onOpenSubtitleFile()
+{
+  if (mpAVData->avCount() == 0) return;
+
+  QString fn = QFileDialog::getOpenFileName( this,
+      tr("Open subtitle file"),
+      TTCut::lastDirPath,
+      "Subtitle (*.srt)" );
+
+  if (fn.isEmpty())
+    return;
+
+  QFileInfo fInfo(fn);
+  TTCut::lastDirPath = fInfo.absolutePath();
+  onReadSubtitleStream(fn);
 }
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -479,6 +501,19 @@ void TTCutMainWindow::onReadAudioStream(QString fName)
   mpAVData->appendAudioStream(mpCurrentAVDataItem, fInfo);
 }
 
+/* /////////////////////////////////////////////////////////////////////////////
+ * Signals from the subtitle list view widget
+ */
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Signal from open subtitle action
+ */
+void TTCutMainWindow::onReadSubtitleStream(QString fName)
+{
+  QFileInfo fInfo(fName);
+  mpAVData->appendSubtitleStream(mpCurrentAVDataItem, fInfo);
+}
+
 void TTCutMainWindow::onAppendCutEntry(int cutIn, int cutOut)
 {
   if (mpAVData->avCount() == 0) return;
@@ -633,6 +668,7 @@ void TTCutMainWindow::closeProject()
 
   videoFileInfo->onAVDataChanged(mpAVData, 0);
   audioFileList->onAVDataChanged(0);
+  subtitleFileList->onAVDataChanged(0);
   streamNavigator->onAVItemChanged(0);
   currentFrame->onAVDataChanged(0);
   cutOutFrame->onAVDataChanged(0);
@@ -735,6 +771,7 @@ void TTCutMainWindow::onAVItemChanged(TTAVItem* avItem)
   currentFrame->onAVDataChanged(avItem);
   cutOutFrame->onAVDataChanged(avItem);
   audioFileList->onAVDataChanged(avItem);
+  subtitleFileList->onAVDataChanged(avItem);
 
   onNewFramePos( 0 );
 

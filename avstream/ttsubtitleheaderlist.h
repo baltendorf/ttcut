@@ -1,31 +1,29 @@
 /*----------------------------------------------------------------------------*/
-/* COPYRIGHT: TriTime (c) 2003/2005 / www.tritime.org                         */
+/* COPYRIGHT: Minei3oat (c) 2019 / github.com/Minei3oat                       */
 /*----------------------------------------------------------------------------*/
-/* PROJEKT  : TTCUT 2005                                                      */
-/* FILE     : ttmpegaudiostream.h                                             */
+/* PROJEKT  : TTCUT 2019                                                      */
+/* FILE     : ttsubtitleheaderlist.h                                          */
 /*----------------------------------------------------------------------------*/
-/* AUTHOR  : b. altendorf (E-Mail: b.altendorf@tritime.de)   DATE: 05/12/2005 */
-/* MODIFIED: b. altendorf                                    DATE: 06/11/2005 */
-/* MODIFIED: b. altendorf                                    DATE: 08/13/2005 */
-/* MODIFIED:                                                 DATE:            */
+/* AUTHOR  : Minei3oat                                       DATE: 12/30/2019 */
 /*----------------------------------------------------------------------------*/
 
 // ----------------------------------------------------------------------------
-// TTMPEGAUDIOSTREAM
+// *** TTSUBTITLEHEADERLIST
 // ----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
 // Overview
 // -----------------------------------------------------------------------------
 //
-//                               +- TTMpegAudioStream
-//             +- TTAudioStream -|
-//             |                 +- TTAC3AudioStream
-// TTAVStream -|
-//             |
-//             +- TTVideoStream - TTMpeg2VideoStream
-//             |
-//             +- TTSubtitleStream - TTSrtSubtitleStream
+//               +- TTAudioHeaderList 
+//               | 
+//               +- TTAudioIndexList
+// TTHeaderList -|
+//               +- TTVideoHeaderList
+//               |
+//               +- TTVideoIndexList
+//               |
+//               +- TTSubtitleHeaderList
 //
 // -----------------------------------------------------------------------------
 
@@ -45,36 +43,22 @@
 /* Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.              */
 /*----------------------------------------------------------------------------*/
 
-#ifndef TTMPEGAUDIOSTREAM_H
-#define TTMPEGAUDIOSTREAM_H
+#ifndef TTSUBTITLEHEADERLIST_H
+#define TTSUBTITLEHEADERLIST_H
 
-#include "ttavstream.h"
-#include "ttmpegaudioheader.h"
+#include "ttheaderlist.h"
 
-/* \brief This class represents an MPEG audio stream
- *
- */
-class TTMPEGAudioStream : public TTAudioStream
+class TTSubtitleHeaderList : public TTHeaderList
 {
  public:
-  TTMPEGAudioStream( const QFileInfo &f_info, int s_pos=0 );
-  virtual ~TTMPEGAudioStream();
+  TTSubtitleHeaderList( int size );
 
-  TTAVTypes::AVStreamType streamType() const;
+  TTSubtitleHeader* subtitleHeaderAt( int index );
 
-  void searchNextSyncByte();
-  void parseAudioHeader( quint8* data, int offset, TTMpegAudioHeader* audio_header );
+  int searchTimeIndex( int search_time );
 
-  virtual void cut(int start, int end, TTCutParameter* cp);
-
-  void    readAudioHeader( TTMpegAudioHeader* audio_header );
-
-  virtual int createHeaderList( );
-  virtual int createIndexList(){return 0;};
-
-  QString streamExtension();
-  QTime   streamLengthTime();
-  int     searchIndex( double s_time );
+ protected:
+  void sort();
 };
 
-#endif //TTMPEGAUDIOSTREAM_H
+#endif //TTSUBTITLEHEADERLIST_H

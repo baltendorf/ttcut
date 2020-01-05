@@ -13,6 +13,7 @@
 // TTAVSTREAM (abstract)
 // TTAUDIOSTREAM
 // TTVIDEOSTREAM
+// TTSUBTITLESTREAM
 // ----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
@@ -24,7 +25,9 @@
 //             |                 +- TTAC3AudioStream
 // TTAVStream -|
 //             |
-//             +- TTVideoStream -TTMpeg2VideoStream
+//             +- TTVideoStream - TTMpeg2VideoStream
+//             |
+//             +- TTSubtitleStream - TTSrtSubtitleStream
 //
 // -----------------------------------------------------------------------------
 
@@ -61,6 +64,8 @@ class TTVideoIndexList;
 class TTVideoIndex;
 class TTAudioHeaderList;
 class TTAudioHeader;
+class TTSubtitleHeaderList;
+class TTSubtitleHeader;
 class TTCutParameter;
 
 // -----------------------------------------------------------------------------
@@ -196,6 +201,31 @@ protected:
   // intern
   float         frame_rate;
   float         bit_rate;
+};
+
+// -----------------------------------------------------------------------------
+// *** TTSubtitleStream: Class TTSubtitleStream
+// -----------------------------------------------------------------------------
+class TTSubtitleStream : public TTAVStream
+{
+public:
+  TTSubtitleStream(const QFileInfo &f_info);
+  virtual ~TTSubtitleStream();
+
+  // header list
+  TTSubtitleHeaderList* headerList();
+
+  TTSubtitleHeader* headerAt( int index );
+
+  // virtual cut methods
+  virtual bool isCutInPoint(int)  {return true;}
+  virtual bool isCutOutPoint(int)  {return true;}
+
+protected:
+  // audio_delay > 0: audio starts before video (in ms)
+  // audio_delay < 0: audio starts after  video (in ms)
+  int subtitle_delay;
+  TTSubtitleHeaderList* header_list;
 };
 
 #endif //TTAVSTREAM_H

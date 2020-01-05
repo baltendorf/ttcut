@@ -78,6 +78,8 @@ public:
   quint64 directWriteUInt32(quint32 byte4);
   quint64 directWriteUInt64(quint64 byte8);
 
+  QString readLine(QString delimiter = "\n");
+
  protected:
   void    initInstance();
   void    fillBuffer();

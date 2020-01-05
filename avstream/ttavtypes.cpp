@@ -13,6 +13,7 @@
 // *** TTAVTYPES
 // *** TTAUDIOTYPES
 // *** TTVIDEOTYPES
+// *** TTSUBTITLETYPES
 // ----------------------------------------------------------------------------
 
 // -----------------------------------------------------------------------------
@@ -21,7 +22,7 @@
 //
 //            +- TTAudioType
 //            |
-// TTAVTypes -|
+// TTAVTypes -+- TTSubtitleType
 //            |
 //            +- TTVideoType
 //
@@ -50,6 +51,7 @@
 #include "ttmpegaudiostream.h"
 #include "ttmpegaudioheader.h"
 #include "ttmpeg2videostream.h"
+#include "ttsrtsubtitlestream.h"
 #include "common/ttmessagelogger.h"
 #include "common/ttexception.h"
 
@@ -303,6 +305,50 @@ void TTVideoType::getVideoStreamType()
   av_stream_type = mpeg2_demuxed_video;
 }
 
+// /////////////////////////////////////////////////////////////////////////////
+// -----------------------------------------------------------------------------
+// *** TTSubtitleType: Subtitle stream type
+// -----------------------------------------------------------------------------
+// /////////////////////////////////////////////////////////////////////////////
 
+// construct TTSubtitleType object
+// -----------------------------------------------------------------------------
+TTSubtitleType::TTSubtitleType( QString f_name )
+  : TTAVTypes( f_name )
+{
+  // if subtitle file exists get video stream type
+  if ( av_stream_exists )
+  {
+    getSubtitleStreamType();
+  }
+}
 
+// destructor
+// -----------------------------------------------------------------------------
+TTSubtitleType::~TTSubtitleType()
+{
 
+}
+
+// create subitle stream object according to video stream type
+// -----------------------------------------------------------------------------
+TTSubtitleStream* TTSubtitleType::createSubtitleStream()
+{
+  switch ( av_stream_type )
+  {
+  case srt_subtitle:
+    return new TTSrtSubtitleStream( *av_stream_info );
+
+  default:
+    log->errorMsg(__FILE__, __LINE__, "Unsupported subtitle stream type!");
+    return (TTSubtitleStream*)0;
+  }
+}
+
+// evaluate subtitle stream and estimate subtitle stream type
+// currently we use only srt subtitle, so this is a simple task
+// -----------------------------------------------------------------------------
+void TTSubtitleType::getSubtitleStreamType()
+{
+  av_stream_type = srt_subtitle;
+}

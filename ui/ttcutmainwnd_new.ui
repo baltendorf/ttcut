@@ -402,6 +402,30 @@
           </layout>
          </widget>
         </item>
+        <item row="2" column="0">
+         <widget class="QGroupBox" name="subtitleFileInfo">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>4</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string>Subtitle Files</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <property name="margin">
+            <number>4</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="TTSubtitleTreeView" name="subtitleFileList" native="true"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
        </layout>
       </widget>
      </widget>
@@ -447,6 +471,7 @@
     </widget>
     <addaction name="actionOpenVideo"/>
     <addaction name="actionOpenAudio"/>
+    <addaction name="actionOpenSubtitle"/>
     <addaction name="separator"/>
     <addaction name="actionFileNew"/>
     <addaction name="actionFileOpen"/>
@@ -590,6 +615,21 @@
     <string>Open Audio...</string>
    </property>
   </action>
+  <action name="actionOpenSubtitle">
+   <property name="icon">
+    <iconset resource="ui/mainwindow.qrc">
+     <normaloff>:/pixmaps/pixmaps/fileopen_16.xpm</normaloff>:/pixmaps/pixmaps/fileopen_16.xpm</iconset>
+   </property>
+   <property name="text">
+    <string>Open Subtitle...</string>
+   </property>
+   <property name="iconText">
+    <string>Open Subtitle...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open Subtitle...</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -645,6 +685,11 @@
    <extends>QWidget</extends>
    <header>../gui/ttmarkertreeview.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TTSubtitleTreeView</class>
+   <extends>QWidget</extends>
+   <header>../gui/ttsubtitletreeview.h</header>
   </customwidget>
  </customwidgets>
  <resources>

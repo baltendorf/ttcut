@@ -37,10 +37,12 @@
 #include "ttcutlist.h"
 #include "ttmarkerlist.h"
 #include "ttaudiolist.h"
+#include "ttsubtitlelist.h"
 
 
 class TTVideoStream;
 class TTAudioStream;
+class TTSubtitleStream;
 class TTMessageLogger;
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -57,18 +59,21 @@ class TTAVItem : public QObject
     TTAVItem(TTVideoStream* videoStream);
     ~TTAVItem();
 
-    bool           isInList();
-    TTVideoStream* videoStream()              const { return mpVideoStream; };
-    void           setVideoStream(TTVideoStream* videoStream);
-    TTAudioStream* audioStreamAt(int index)   const { return mpAudioList->at(index).getAudioStream(); }
-    int            audioCount()               const { return mpAudioList->count(); }
-    int            cutCount()                 const { return mpCutList->count(); }
-    int            markerCount()              const { return mpMarkerList->count(); }
-    TTAudioItem    audioListItemAt(int index) const { return mpAudioList->at(index); }
-    TTCutItem      cutListItemAt(int index)   const { return mpCutList->at(index); }
-    int            cutIndexOf(const TTCutItem& item) const { return mpCutList->indexOf(item); }
-    TTMarkerItem   markerAt(int index)               const { return mpMarkerList->at(index); }
-    int            markerIndexOf(const TTMarkerItem& item) const { return mpMarkerList->indexOf(item); }
+    bool              isInList();
+    TTVideoStream*    videoStream()                 const { return mpVideoStream; };
+    void              setVideoStream(TTVideoStream* videoStream);
+    TTAudioStream*    audioStreamAt(int index)      const { return mpAudioList->at(index).getAudioStream(); }
+    int               audioCount()                  const { return mpAudioList->count(); }
+    TTSubtitleStream* subtitleStreamAt(int index)   const { return mpSubtitleList->at(index).getSubtitleStream(); }
+    int               subtitleCount()               const { return mpSubtitleList->count(); }
+    int               cutCount()                    const { return mpCutList->count(); }
+    int               markerCount()                 const { return mpMarkerList->count(); }
+    TTAudioItem       audioListItemAt(int index)    const { return mpAudioList->at(index); }
+    TTSubtitleItem    subtitleListItemAt(int index) const { return mpSubtitleList->at(index); }
+    TTCutItem         cutListItemAt(int index)      const { return mpCutList->at(index); }
+    int               cutIndexOf(const TTCutItem& item) const { return mpCutList->indexOf(item); }
+    TTMarkerItem      markerAt(int index)               const { return mpMarkerList->at(index); }
+    int               markerIndexOf(const TTMarkerItem& item) const { return mpMarkerList->indexOf(item); }
 
     void canCutWith(const TTAVItem* avItem, int cutIn, int cutOut);
 
@@ -76,6 +81,11 @@ class TTAVItem : public QObject
     void appendAudioEntry(const TTAudioItem& aItem);
     void removeAudioEntry(const TTAudioItem& aItem);
     void updateAudioEntry(const TTAudioItem& aItem, const TTAudioItem& uItem);
+
+    void appendSubtitleEntry(TTSubtitleStream* sStream, int order=-1);
+    void appendSubtitleEntry(const TTSubtitleItem& sItem);
+    void removeSubtitleEntry(const TTSubtitleItem& sItem);
+    void updateSubtitleEntry(const TTSubtitleItem& sItem, const TTSubtitleItem& uItem);
 
     void appendCutEntry(int cutIn, int cutOut, int order=-1);
     void appendCutEntry(const TTCutItem& cItem);
@@ -92,6 +102,8 @@ class TTAVItem : public QObject
   public slots:
     void onRemoveAudioItem(int index);
     void onSwapAudioItems(int oldIndex, int newIndex);
+    void onRemoveSubtitleItem(int index);
+    void onSwapSubtitleItems(int oldIndex, int newIndex);
 
   signals:
 		void updated(TTAVItem* avItem);
@@ -101,19 +113,27 @@ class TTAVItem : public QObject
     void audioItemUpdated(const TTAudioItem& cItem, const TTAudioItem& uItem);
     void audioOrderUpdated(const TTAudioItem& item, int order);
     void audioItemsSwapped(int oldIndex, int newIndex);
+    void subtitleItemAppended(const TTSubtitleItem& item);
+    void subtitleItemRemoved(const TTSubtitleItem& item);
+    void subtitleItemRemoved(int index);
+    void subtitleItemUpdated(const TTSubtitleItem& cItem, const TTSubtitleItem& uItem);
+    void subtitleOrderUpdated(const TTSubtitleItem& item, int order);
+    void subtitleItemsSwapped(int oldIndex, int newIndex);
 
   private:
-    TTAudioList*  audioDataList() { return mpAudioList; }
-    TTCutList*    cutDataList()   { return mpCutList; }
-    TTMarkerList* markerList()    { return mpMarkerList; }
-    void          checkCut(int cutIn, int cutOut);
+    TTAudioList*    audioDataList()    { return mpAudioList; }
+    TTSubtitleList* subtitleDataList() { return mpSubtitleList; }
+    TTCutList*      cutDataList()      { return mpCutList; }
+    TTMarkerList*   markerList()       { return mpMarkerList; }
+    void            checkCut(int cutIn, int cutOut);
 
   private:
-  	bool           mIsInList;
-    TTVideoStream* mpVideoStream;
-    TTAudioList*   mpAudioList;
-    TTCutList*     mpCutList;
-    TTMarkerList*  mpMarkerList;
+    bool            mIsInList;
+    TTVideoStream*  mpVideoStream;
+    TTAudioList*    mpAudioList;
+    TTSubtitleList* mpSubtitleList;
+    TTCutList*      mpCutList;
+    TTMarkerList*   mpMarkerList;
 };
 
 /* /////////////////////////////////////////////////////////////////////////////

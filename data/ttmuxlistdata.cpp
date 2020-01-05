@@ -52,6 +52,11 @@ TTMuxListDataItem::TTMuxListDataItem(const TTMuxListDataItem& item)
 
   for(int i=0; i<item.audioFileNames.count(); i++)
     this->audioFileNames.append(item.audioFileNames[i]);
+
+  this->subtitleFileNames.clear();
+
+  for(int i=0; i<item.subtitleFileNames.count(); i++)
+    this->subtitleFileNames.append(item.subtitleFileNames[i]);
 }
 
 const TTMuxListDataItem& TTMuxListDataItem::operator=(const TTMuxListDataItem& item)
@@ -65,14 +70,20 @@ const TTMuxListDataItem& TTMuxListDataItem::operator=(const TTMuxListDataItem& i
   for(int i=0; i<item.audioFileNames.count(); i++)
     this->audioFileNames.append(item.audioFileNames[i]);
 
+  this->subtitleFileNames.clear();
+
+  for(int i=0; i<item.subtitleFileNames.count(); i++)
+    this->subtitleFileNames.append(item.subtitleFileNames[i]);
+
   return *this;
 }
 
 
-TTMuxListDataItem::TTMuxListDataItem(QString video, QStringList audio)
+TTMuxListDataItem::TTMuxListDataItem(QString video, QStringList audio, QStringList subtitle)
 {
-  videoFileName  = video;
-  audioFileNames = audio;
+  videoFileName     = video;
+  audioFileNames    = audio;
+  subtitleFileNames = subtitle;
 }
 
 QString TTMuxListDataItem::getVideoName()
@@ -90,16 +101,26 @@ QStringList TTMuxListDataItem::getAudioNames()
   return audioFileNames;
 }
 
+QStringList TTMuxListDataItem::getSubtitleNames()
+{
+  return subtitleFileNames;
+}
+
 void TTMuxListDataItem::appendAudioFile(QString audioFileName)
 {
   audioFileNames.append(audioFileName);
+}
+
+void TTMuxListDataItem::appendSubtitleFile(QString subtitleFileName)
+{
+  subtitleFileName.append(subtitleFileName);
 }
 
 /*! ////////////////////////////////////////////////////////////////////////////
  * TTMuxList Container
  */
 
-//! Construct the audio list data object
+//! Construct the audio and subtitle list data object
 TTMuxListData::TTMuxListData()
 {
   log = TTMessageLogger::getInstance();
@@ -125,23 +146,32 @@ int TTMuxListData::addItem(QString video)
   return data.count()-1;
 }
 
-int TTMuxListData::addItem(QString video, QString audio)
+int TTMuxListData::addItem(QString video, QString audio, QString subtitle)
 {
   TTMuxListDataItem item = createMuxListItem(video);
 
   item.audioFileNames.clear();
   item.audioFileNames.append(audio);
 
+  if (!subtitle.isEmpty())
+  {
+    item.subtitleFileNames.clear();
+    item.subtitleFileNames.append(subtitle);
+  }
+
   return data.count()-1;
 }
 
 //! Add item to list
-int TTMuxListData::addItem(QString video, QStringList audio)
+int TTMuxListData::addItem(QString video, QStringList audio, QStringList subtitle)
 {
   TTMuxListDataItem item = createMuxListItem(video);
 
   item.audioFileNames.clear();
   item.audioFileNames = audio;
+
+  item.subtitleFileNames.clear();
+  item.subtitleFileNames = subtitle;
 
   return data.count()-1;
 }
@@ -167,6 +197,11 @@ void TTMuxListData::appendAudioName(int index, QString audio)
   data[index].audioFileNames.append(audio);
 }
 
+void TTMuxListData::appendSubtitleName(int index, QString subtitle)
+{
+  data[index].subtitleFileNames.append(subtitle);
+}
+
 QString TTMuxListData::videoFilePathAt(int index)
 {
   return data[index].videoFileName;
@@ -176,6 +211,12 @@ QString TTMuxListData::videoFilePathAt(int index)
 QStringList TTMuxListData::audioFilePathsAt(int index)
 {
   return data[index].audioFileNames;
+}
+
+//! Returns the subtitle file-paths string list
+QStringList TTMuxListData::subtitleFilePathsAt(int index)
+{
+  return data[index].subtitleFileNames;
 }
 
 //! Returns the data item at position index
@@ -213,6 +254,10 @@ void TTMuxListData::print()
     QStringList audioNames = data[i].getAudioNames();
     for (int j=0; j < audioNames.size(); j++) {
       log->infoMsg(__FILE__, __LINE__, QString("audio-file: %1").arg(audioNames.at(j)));
+    }
+    QStringList subtitleNames = data[i].getSubtitleNames();
+    for (int j=0; j < subtitleNames.size(); j++) {
+      log->infoMsg(__FILE__, __LINE__, QString("subtitle-file: %1").arg(subtitleNames.at(j)));
     }
     log->infoMsg(__FILE__, __LINE__, "--------------------------------");
   }
