@@ -71,13 +71,13 @@ int TTSubtitleHeaderList::searchTimeIndex( int search_time )
   do
   {
     subtitle_header = (TTSubtitleHeader*)at(index);
-    abs_time = (int)(subtitle_header->startMSec());
+    abs_time = (int)(subtitle_header->endMSec());
     index++;
   }
   while ( abs_time < search_time && index < size());
 
   // return index of next subtitle, if search_time is after end of found subtitle
-  return subtitle_header->endMSec() < search_time ? index : index-1;
+  return index-1;
 }
 
 void TTSubtitleHeaderList::sort()

@@ -94,7 +94,7 @@ QTime TTSrtSubtitleStream::streamLengthTime()
 void TTSrtSubtitleStream::cut(int start, int end, TTCutParameter* cp)
 {
   int index = header_list->searchTimeIndex(start);
-  cp->setCutOutIndex(cp->getCutInIndex()+end-start+1);
+  cp->setCutOutIndex(cp->getCutInIndex()+end-start);
   TTFileBuffer* stream_buffer = cp->getTargetStreamBuffer();
   int picsWritten = cp->getNumPicturesWritten();
   int progress = 0;
@@ -114,19 +114,15 @@ void TTSrtSubtitleStream::cut(int start, int end, TTCutParameter* cp)
       return;
 
     picsWritten++;
-    QTime subtitleEnd = header->endMSec() <= end ? header->endTime() : QTime::fromMSecsSinceStartOfDay(end);
-    QString subtitleCode = QString("%1\r\n%2 --> %3\r\n%4")
+    QTime subtitleStart  = header->startMSec() <= start ? QTime::fromMSecsSinceStartOfDay(start) : header->startTime();
+    QTime subtitleEnd    = header->endMSec() <= end ? header->endTime() : QTime::fromMSecsSinceStartOfDay(end);
+    QString subtitleCode = QString("%1\r\n%2 --> %3\r\n%4\r\n\r\n")
         .arg(picsWritten)
-        .arg(header->startTime().addMSecs(offsett).toString("hh:mm:ss.zzz"))
-        .arg(subtitleEnd.addMSecs(offsett).toString("hh:mm:ss.zzz"))
+        .arg(subtitleStart.addMSecs(offsett).toString("hh:mm:ss,zzz"))
+        .arg(subtitleEnd.addMSecs(offsett).toString("hh:mm:ss,zzz"))
         .arg(header->text());
 
-    stream_buffer->directWrite((quint8*)subtitleCode.toUtf8().data(), subtitleCode.length());
-    // Needed, as when used inside subtitleCode, sometimes only one \r\n is written to file
-    stream_buffer->directWrite('\r');
-    stream_buffer->directWrite('\n');
-    stream_buffer->directWrite('\r');
-    stream_buffer->directWrite('\n');
+    stream_buffer->directWrite((quint8*)subtitleCode.toUtf8().data(), subtitleCode.toUtf8().length());
 
     cp->setNumPicturesWritten(picsWritten);
     index++;
